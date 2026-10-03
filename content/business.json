@@ -1,0 +1,16 @@
+{
+  "_note": "Single source of truth for business facts. The site reads this file; nothing else hard-codes these values. confirmed:false means placeholder: never launch with any false entries that are shown on the site.",
+  "name":        { "value": "Alejos Towing", "confirmed": true, "source": "Yordan, 2026-10-03" },
+  "phone":       { "value": null, "confirmed": false },
+  "sms":         { "value": null, "confirmed": false },
+  "email":       { "value": null, "confirmed": false },
+  "address":     { "value": null, "confirmed": false },
+  "hours":       { "value": null, "confirmed": false, "emergency_24_7": null },
+  "service_area":{ "value": [], "confirmed": false },
+  "services":    { "value": [], "confirmed": false },
+  "vehicles":    { "value": [], "confirmed": false },
+  "quote_form":  { "deliver_to": null, "confirmed": false },
+  "trust":       { "years_in_business": null, "licenses": [], "insurance": null, "certifications": [], "google_profile": null, "confirmed": false },
+  "reviews":     { "value": [], "confirmed": false },
+  "brand":       { "logo": null, "colors": null, "domain": null, "confirmed": false }
+}

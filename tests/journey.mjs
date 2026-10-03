@@ -1,0 +1,35 @@
+import { chromium } from 'playwright';
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+const ctx=await b.newContext({viewport:{width:390,height:844},hasTouch:true,ignoreHTTPSErrors:true}); const p=await ctx.newPage();
+const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await p.goto('file://'+process.cwd()+'/design/preview/_wrapped.html#highway',{waitUntil:'networkidle'});
+const ok=(c,m)=>console.log(c?'PASS':'FAIL',m);
+ok(await p.$eval('#actionbar',e=>e.classList.contains('away')),'action bar hidden while hero buttons visible');
+await p.mouse.wheel(0,900); await p.waitForTimeout(500);
+ok(!(await p.$eval('#actionbar',e=>e.classList.contains('away'))),'action bar shows after scrolling past hero');
+await p.tap('#menu-open'); ok(await p.isVisible('#sheet'),'menu opens'); await p.keyboard.press('Escape'); ok(!(await p.isVisible('#sheet')),'Escape closes menu');
+await p.tap('.chip[data-issue="Flat tire"]'); await p.waitForTimeout(900);
+ok(await p.$eval('#f-issue',e=>e.value)==='Flat tire','chip prefills issue');
+ok(await p.evaluate(()=>document.activeElement.id)==='f-loc','focus moves to location');
+await p.click('#submit-btn'); await p.waitForTimeout(200);
+ok(await p.isVisible('#err-summary'),'empty submit shows error summary');
+ok(await p.$$eval('.field.invalid',e=>e.length)===3,'3 invalid fields flagged');
+await p.screenshot({path:'screenshots/j-errors.png'});
+await p.fill('#f-loc','I-35 exit 150'); await p.fill('#f-name','Test Driver'); await p.fill('#f-phone','5125550199');
+ok(await p.$eval('#f-phone',e=>e.value)==='(512) 555-0199','phone auto-formats');
+await p.click('#loc-btn'); await p.waitForTimeout(400); ok((await p.textContent('#loc-hint')).includes("Couldn't"),'location denied shows fallback hint');
+await p.click('#submit-btn'); await p.waitForTimeout(150);
+ok((await p.textContent('#submit-btn')).includes('Sending'),'loading state'); await p.screenshot({path:'screenshots/j-loading.png'});
+await p.waitForTimeout(1500); ok(await p.isVisible('#res-ok'),'success state'); await p.screenshot({path:'screenshots/j-success.png'});
+ok((await p.textContent('#ok-text')).includes('(512) 555-0199'),'success repeats callback number');
+await p.click('[data-reset]'); await p.selectOption('#sim','fail');
+await p.selectOption('#f-issue','Accident'); await p.fill('#f-loc','Main St'); await p.fill('#f-name','A'); await p.fill('#f-phone','5125550199');
+await p.click('#submit-btn'); await p.waitForTimeout(1600); ok(await p.isVisible('#res-bad'),'failure state'); await p.screenshot({path:'screenshots/j-fail.png'});
+await p.click('[data-back]'); ok(await p.$eval('#f-loc',e=>e.value)==='Main St','details kept after failure');
+await p.tap('#actionbar .btn-call').catch(()=>{}); 
+console.log('page errors:',errs.length?errs:'none');
+// keyboard: first tabs
+const k=await b.newPage({viewport:{width:1440,height:900}}); await k.goto('file://'+process.cwd()+'/design/preview/_wrapped.html');
+const seq=[];for(let i=0;i<8;i++){await k.keyboard.press('Tab');seq.push(await k.evaluate(()=>{const a=document.activeElement;return (a.textContent||a.getAttribute('aria-label')||a.tagName).trim().replace(/\s+/g,' ').slice(0,30)}))}
+console.log('tab order:',seq.join(' > '));
+await b.close();
