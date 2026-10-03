@@ -98,6 +98,7 @@ p{margin:0}
 .btn-ghost:hover{border-color:var(--ink);background:color-mix(in srgb,var(--ink) 5%,transparent)}
 .btn-lg{--h:62px;font-size:1.2rem;padding-inline:26px}
 .btn .num{font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.num{white-space:nowrap}
 
 /* Header */
 .hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
@@ -181,7 +182,7 @@ p{margin:0}
 .site[data-dir="night"] .chip .ico{color:var(--accent)}
 
 /* Services */
-.svc-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.svc-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
 .svc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:grid;gap:10px;align-content:start;transition:transform .2s ease,box-shadow .2s ease,border-color .2s}
 .svc:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
 .svc-ico{width:48px;height:48px;border-radius:var(--radius-sm);display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent)}
@@ -201,7 +202,7 @@ p{margin:0}
 .area-grid{display:grid;gap:clamp(24px,4vw,48px);align-items:center}
 @media (min-width:880px){.area-grid{grid-template-columns:.9fr 1.1fr}}
 .map{position:relative;aspect-ratio:4/3;max-width:100%;border-radius:var(--radius);overflow:hidden;background:var(--surface-2);border:1px solid var(--line)}
-.map svg{width:100%;height:100%;display:block}
+.map>svg{width:100%;height:100%;display:block}
 .map-cap{position:absolute;left:12px;bottom:12px;right:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:10px 12px;font-size:.88rem;color:var(--muted);display:flex;gap:8px;align-items:center}
 .areas{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding:0;list-style:none}
 .areas li{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-weight:600;font-size:.95rem}
@@ -216,7 +217,11 @@ p{margin:0}
 .stars{display:flex;gap:2px;color:var(--signal)}
 .site[data-dir="door"] .stars{color:#e0a100}
 .stars svg{width:18px;height:18px;fill:currentColor;stroke:none}
-.bar{height:11px;border-radius:6px;background:var(--surface-2)}
+.review{margin:0}.review blockquote{margin:0;font-size:1.02rem;line-height:1.55}
+.review figcaption{font-size:.9rem;color:var(--muted)}.review figcaption b{color:var(--ink)}
+.orig summary{cursor:pointer;font-size:.88rem;font-weight:600;color:var(--accent);min-height:32px;display:flex;align-items:center}
+.orig p{font-size:.95rem;color:var(--muted);margin-top:6px}
+.reviews-more{margin-top:18px;color:var(--muted);font-size:.95rem}
 .review small{color:var(--muted)}
 
 /* Quote form */
@@ -262,8 +267,11 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
 .result p{color:var(--muted)}
 .result .actions{display:flex;flex-wrap:wrap;gap:10px}
 @keyframes pop{from{transform:scale(.96);opacity:0}}
-.sim{margin-top:18px;padding:12px;border-radius:var(--radius-sm);border:1.5px dashed var(--line);font:500 13px/1.4 system-ui,sans-serif;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
-.sim select{font:inherit;padding:4px 6px;border-radius:4px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.msg-preview{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden}
+.msg-to{font-size:.85rem;font-weight:700;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--line)}
+.msg-preview pre{margin:0;padding:12px;white-space:pre-wrap;word-break:break-word;font:500 .95rem/1.5 var(--font-body);color:var(--ink)}
+.linkish{all:unset;cursor:pointer;color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;justify-self:start}
+.linkish:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
 
 /* FAQ */
 .faq{display:grid;gap:10px;max-width:820px}
@@ -331,11 +339,13 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
   <symbol id="i-hook" viewBox="0 0 24 24"><path d="M12 2v9"/><path d="M12 11a4 4 0 1 1-4 4"/><path d="M8 15h0"/><path d="M9 2h6"/></symbol>
+  <symbol id="i-moto" viewBox="0 0 24 24"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M5 17h2l4-6h5l3 6"/><path d="M14 11l-2-4h-2"/><path d="M16 7h2"/></symbol>
+  <symbol id="i-junk" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M10 11v6M14 11v6"/></symbol>
   <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
 </svg>
 
 <div class="pv" role="region" aria-label="Preview controls">
-  <span><strong>Design preview</strong><span class="pv-note"> · Highlighted text is a placeholder until Yordan confirms it</span></span>
+  <span><strong>Design preview</strong><span class="pv-note"> · Real business details · Highlighted text still needs confirming</span></span>
   <div class="pv-controls">
     <span>Direction</span>
     <div class="seg" role="group" aria-label="Visual direction">
@@ -360,7 +370,7 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
         <a href="#services">Services</a><a href="#how">How it works</a><a href="#area">Service area</a><a href="#faq">FAQ</a><a href="#quote">Request a tow</a>
       </nav>
       <div class="hdr-actions">
-        <a class="btn btn-call" href="tel:+15555550142" data-call><svg class="ico"><use href="#i-phone"/></svg><span class="hdr-call-label num"><span class="ph">(555) 555-0142</span></span><span class="sr-only">Call Alejos Towing</span></a>
+        <a class="btn btn-call" href="tel:+12398887001" data-call><svg class="ico"><use href="#i-phone"/></svg><span class="hdr-call-label num">(239) 888-7001</span><span class="sr-only">Call Alejos Towing</span></a>
         <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet" id="menu-open"><svg class="ico"><use href="#i-menu"/></svg></button>
       </div>
     </div>
@@ -378,7 +388,7 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
       <a class="navlink" href="#area">Service area</a>
       <a class="navlink" href="#faq">FAQ</a>
       <a class="navlink" href="#quote">Request a tow</a>
-      <a class="btn btn-call btn-lg" href="tel:+15555550142" data-call style="margin-top:14px"><svg class="ico"><use href="#i-phone"/></svg>Call <span class="num ph">(555) 555-0142</span></a>
+      <a class="btn btn-call btn-lg" href="tel:+12398887001" data-call style="margin-top:14px"><svg class="ico"><use href="#i-phone"/></svg>Call <span class="num">(239) 888-7001</span></a>
     </div>
   </div>
 
@@ -386,14 +396,14 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
     <section class="hero" id="top">
       <div class="wrap hero-grid">
         <div>
-          <span class="status"><span class="dot" aria-hidden="true"></span><span>Dispatch open now · <span class="ph">24 hours, 7 days</span></span></span>
+          <span class="status"><span class="dot" aria-hidden="true"></span><span>Open now · 24 hours, 7 days</span></span>
           <h1>Stuck on the road? <em>Alejos</em> is on the way.</h1>
-          <p class="lede">Towing and roadside help across <span class="ph">your service area</span>. Call and a real dispatcher answers, gives you a price, and tells you when the truck will arrive.</p>
+          <p class="lede">Towing and roadside help in Cape Coral, Fort Myers and anywhere in Florida. Call or text at any hour, including 2&nbsp;a.m., and we'll get a truck to you.</p>
           <div class="cta-row" id="hero-cta">
-            <a class="btn btn-call btn-lg" href="tel:+15555550142" data-call><svg class="ico"><use href="#i-phone"/></svg>Call <span class="num ph">(555) 555-0142</span></a>
+            <a class="btn btn-call btn-lg" href="tel:+12398887001" data-call><svg class="ico"><use href="#i-phone"/></svg>Call <span class="num">(239) 888-7001</span></a>
             <a class="btn btn-ghost btn-lg" href="#quote">Request a tow<svg class="ico"><use href="#i-arrow"/></svg></a>
           </div>
-          <p class="hero-note"><svg class="ico"><use href="#i-msg"/></svg><span>Can't talk? <span class="ph">Text a photo and your location to the same number.</span></span></p>
+          <p class="hero-note"><svg class="ico"><use href="#i-msg"/></svg><span>Can't talk? Text a photo and your location to the same number.</span></p>
         </div>
 
         <div class="scene" aria-hidden="true">
@@ -450,15 +460,17 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
         <div class="sec-head">
           <span class="eyebrow">Services</span>
           <h2 id="svc-h">Whatever stopped you, we can move it.</h2>
-          <p class="lede ph-block">This list is a starting point. It will match exactly what Alejos offers once confirmed.</p>
+          <p class="lede">Cars, SUVs, pickups, vans and motorcycles, <span class="ph">any vehicle under 20 feet</span>.</p>
         </div>
         <div class="svc-grid">
-          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-truck"/></svg></span><h3>Local towing</h3><p>Fast tows to your home, a shop you trust, or a dealer.</p><ul><li>Cars</li><li>SUVs</li><li>Pickups</li></ul></article>
-          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-shield"/></svg></span><h3>Flatbed towing</h3><p>All four wheels off the ground for AWD, lowered and luxury vehicles.</p><ul><li>AWD</li><li>Classics</li><li>Motorcycles</li></ul></article>
+          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-truck"/></svg></span><h3>Towing, light to heavy</h3><p>Light, medium and heavy-duty tows to your home, a shop or a dealer.</p><ul><li>Cars</li><li>SUVs</li><li>Pickups</li><li>Vans</li></ul></article>
+          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-shield"/></svg></span><h3>Flatbed towing</h3><p>All four wheels off the ground for AWD, lowered and luxury vehicles.</p><ul><li>AWD</li><li>Classics</li><li>Lowered</li></ul></article>
           <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-battery"/></svg></span><h3>Roadside help</h3><p>Small problems fixed where you are, so you can drive away.</p><ul><li>Jump starts</li><li>Tire changes</li><li>Lockouts</li><li>Fuel</li></ul></article>
-          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-alert"/></svg></span><h3>Accident recovery</h3><p>Careful cleanup and transport after a collision, with paperwork for your insurer.</p><ul><li>Scene cleanup</li><li>Storage</li></ul></article>
-          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-hill"/></svg></span><h3>Winching &amp; recovery</h3><p>Out of ditches, mud, snow and tight spots without extra damage.</p><ul><li>Ditches</li><li>Mud</li><li>Snow</li></ul></article>
-          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-route"/></svg></span><h3>Long-distance towing</h3><p>Planned moves between cities, quoted up front.</p><ul><li>Relocations</li><li>Auctions</li><li>Purchases</li></ul></article>
+          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-alert"/></svg></span><h3>Accident recovery</h3><p>Careful recovery and transport after a collision.</p><ul><li>Collisions</li><li>Disabled vehicles</li></ul></article>
+          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-hill"/></svg></span><h3>Winching</h3><p>Out of ditches, sand, mud and tight spots without extra damage.</p><ul><li>Ditches</li><li>Sand</li><li>Mud</li></ul></article>
+          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-moto"/></svg></span><h3>Motorcycle towing</h3><p>Bikes strapped down properly and moved without a scratch.</p><ul><li>Street</li><li>Cruisers</li><li>Sport</li></ul></article>
+          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-route"/></svg></span><h3>Long-distance towing</h3><p>From Cape Coral to Miami, Tampa or anywhere in Florida.</p><ul><li>Statewide</li><li>Relocations</li><li>Purchases</li></ul></article>
+          <article class="svc"><span class="svc-ico"><svg class="ico"><use href="#i-junk"/></svg></span><h3>Junk car removal</h3><p>Old or wrecked car taking up space? We'll haul it away.</p><ul><li>Wrecks</li><li>Non-running</li></ul></article>
         </div>
       </div>
     </section>
@@ -471,8 +483,8 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
         </div>
         <ol class="steps" style="list-style:none;margin:0;padding:0">
           <li class="step"><h3>Call or send a request</h3><p>Tell us where you are and what happened. A photo helps if it's safe to take one.</p></li>
-          <li class="step"><h3>Get your price and arrival time</h3><p>We confirm the price before we roll and text you when the truck is on its way.</p></li>
-          <li class="step"><h3>We load up and deliver</h3><p>Your vehicle is secured and taken where you choose. You can ride along if there's room.</p></li>
+          <li class="step"><h3>We confirm and head out</h3><p>We confirm your location and the job, and tell you when to expect the truck.</p></li>
+          <li class="step"><h3>We load up and deliver</h3><p>Your vehicle is secured and taken where you choose, across town or across the state.</p></li>
         </ol>
       </div>
     </section>
@@ -481,13 +493,13 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
       <div class="wrap area-grid">
         <div>
           <span class="eyebrow">Service area</span>
-          <h2 id="area-h" style="margin-top:14px">Close by, wherever the road quits on you.</h2>
-          <p class="lede" style="margin-top:16px">Based in <span class="ph">your city</span>, covering about <span class="ph">30 miles</span> in every direction.</p>
-          <ul class="areas ph-block" aria-label="Areas served">
-            <li>City one</li><li>City two</li><li>City three</li><li>County</li><li>Highway corridor</li>
+          <h2 id="area-h" style="margin-top:14px">Home base Southwest Florida. Anywhere in the state.</h2>
+          <p class="lede" style="margin-top:16px">Most calls come from Cape Coral and Fort Myers, but we've towed drivers off I-75 and taken them all the way to Miami.</p>
+          <ul class="areas" aria-label="Areas served">
+            <li>Cape Coral</li><li>Fort Myers</li><li>I-75 corridor</li><li>Anywhere in Florida</li>
           </ul>
         </div>
-        <div class="map ph-block" role="img" aria-label="Map of the service area, coming once the area is confirmed">
+        <div class="map" role="img" aria-label="Schematic map: centered on Cape Coral and Fort Myers, serving all of Florida">
           <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
             <rect width="400" height="300" fill="var(--surface-2)"/>
             <g stroke="var(--line)" stroke-width="10" fill="none" stroke-linecap="round">
@@ -499,7 +511,7 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
             <circle cx="190" cy="140" r="110" fill="color-mix(in srgb, var(--accent) 12%, transparent)" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6"/>
             <g transform="translate(176 106)"><path d="M14 0a14 14 0 0 1 14 14c0 11-14 24-14 24S0 25 0 14A14 14 0 0 1 14 0z" fill="var(--accent)"/><circle cx="14" cy="14" r="5" fill="var(--accent-ink)"/></g>
           </svg>
-          <div class="map-cap"><svg class="ico"><use href="#i-pin"/></svg>Interactive map added once the service area is confirmed.</div>
+          <div class="map-cap"><svg class="ico"><use href="#i-pin"/></svg>Cape Coral &amp; Fort Myers · statewide on request</div>
         </div>
       </div>
     </section>
@@ -508,19 +520,20 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">Why drivers call us</span>
-          <h2 id="trust-h">Local, licensed and straight about price.</h2>
+          <h2 id="trust-h">Local, licensed, and there at 2&nbsp;a.m.</h2>
         </div>
-        <div class="facts ph-block">
-          <div class="fact"><b>12 yrs</b><span>Serving the area</span></div>
-          <div class="fact"><b>~30 min</b><span>Typical arrival in town</span></div>
-          <div class="fact"><b>Insured</b><span>Licensed and fully insured</span></div>
-          <div class="fact"><b>4.9 ★</b><span>Average Google rating</span></div>
+        <div class="facts">
+          <div class="fact"><b>Since 2019</b><span>Towing in Southwest Florida</span></div>
+          <div class="fact"><b>24/7</b><span>Day, night, weekends and holidays</span></div>
+          <div class="fact"><b>Licensed</b><span>USDOT registered</span></div>
+          <div class="fact"><b>Insured</b><span>Covered through Progressive</span></div>
         </div>
-        <div class="reviews ph-block" aria-label="Customer reviews, to be added">
-          <figure class="review" style="margin:0"><div class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div><div class="bar" style="width:92%"></div><div class="bar" style="width:76%"></div><div class="bar" style="width:58%"></div><small>A real Google review goes here</small></figure>
-          <figure class="review" style="margin:0"><div class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div><div class="bar" style="width:86%"></div><div class="bar" style="width:90%"></div><div class="bar" style="width:40%"></div><small>A real Google review goes here</small></figure>
-          <figure class="review" style="margin:0"><div class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div><div class="bar" style="width:95%"></div><div class="bar" style="width:66%"></div><div class="bar" style="width:72%"></div><small>A real Google review goes here</small></figure>
+        <div class="reviews" aria-label="Customer reviews from Google">
+          <figure class="review"><div class="stars" role="img" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div><blockquote lang="en">“Very good service. I needed them in the early morning in the middle of I-75. I contacted them and they came for me and took me all the way to Miami. Very pleased with the service; they met my expectations.”</blockquote><details class="orig"><summary>Read original in Spanish</summary><p lang="es">“Muy buen servicio. Lo necesite en la madrugada en medio de la I75 y los contacte y fueron por mí hasta dejarme en Miami. Muy complacido con el servicio, cumplieron con mis expectativas.”</p></details><figcaption><b>Fernando P.</b> · Google review · translated from Spanish</figcaption></figure>
+          <figure class="review"><div class="stars" role="img" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div><blockquote lang="en">“The best in Cape Coral and in Florida too. If you're looking for a professional, very serious team, you've come to the right place. We've had very good experiences with them and I truly think their service is among the best, with excellent prices and great reliability. You won't regret it. Thank you.”</blockquote><details class="orig"><summary>Read original in Spanish</summary><p lang="es">“Los Mejores de Cape Coral y también de la Florida Si busca a un equipo Profesional y de gran seriedad pues has llegado al lugar correcto, hemos tenido muy buenas experiencias con ellos y de verdad creo que sus servicios son de los mejores, precios excelentes y una gran formalidad, no te arrepentirás, Gracias”</p></details><figcaption><b>Ysrael A.</b> · Google review · translated from Spanish</figcaption></figure>
+          <figure class="review"><div class="stars" role="img" aria-label="5 out of 5 stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div><blockquote lang="en">“Excellent service. In my case it was in the early morning hours and they arrived fast. I recommend them 100%.”</blockquote><details class="orig"><summary>Read original in Spanish</summary><p lang="es">“Excelente servicio. En mi caso fue en horas de la madrugada y llegaron rápido. Los recomiendo 100%”</p></details><figcaption><b>Meda H.</b> · Google review · translated from Spanish</figcaption></figure>
         </div>
+        <p class="reviews-more"><span class="ph">Rated ★ 5.0 from 30+ Google reviews</span> · <a href="#" class="ph">Read them all on Google</a></p>
       </div>
     </section>
 
@@ -529,13 +542,13 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
         <div style="display:grid;gap:20px">
           <div class="sec-head" style="margin:0">
             <span class="eyebrow">Request a tow</span>
-            <h2 id="quote-h">Tell us where you are. We'll call you back.</h2>
-            <p class="lede">Send the basics and a dispatcher calls you with a price and arrival time, usually within <span class="ph">a few minutes</span>.</p>
+            <h2 id="quote-h">Send your request by text.</h2>
+            <p class="lede">Fill this in and your phone opens a text to Alejos with everything written out. Press Send and we'll get back to you right away.</p>
           </div>
           <div class="callout">
             <b class="display" style="font-size:1.5rem">In a dangerous spot?</b>
             <p>Call instead. It's faster, and we can stay on the line. If anyone is hurt, call 911 first.</p>
-            <a class="btn btn-lg" href="tel:+15555550142" data-call><svg class="ico"><use href="#i-phone"/></svg>Call <span class="num ph">(555) 555-0142</span></a>
+            <a class="btn btn-lg" href="tel:+12398887001" data-call><svg class="ico"><use href="#i-phone"/></svg>Call <span class="num">(239) 888-7001</span></a>
           </div>
         </div>
 
@@ -580,28 +593,21 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
               </div>
             </div>
             <div class="form-foot">
-              <button class="btn btn-call btn-lg" type="submit" id="submit-btn">Send request</button>
-              <p class="hint">We only use your number to call you about this request.</p>
+              <button class="btn btn-call btn-lg" type="submit" id="submit-btn"><svg class="ico"><use href="#i-msg"/></svg>Text my request</button>
+              <p class="hint">Opens your Messages app, addressed to <span class="num">(239) 888-7001</span>. We only use your number to help with this request.</p>
             </div>
           </form>
           <div class="result ok" id="res-ok" hidden tabindex="-1">
-            <span class="result-ico"><svg class="ico"><use href="#i-check"/></svg></span>
-            <h3>Request received</h3>
-            <p id="ok-text">A dispatcher will call you shortly. Keep your phone nearby.</p>
-            <p>While you wait, stay somewhere safe, away from traffic, with your hazard lights on.</p>
-            <div class="actions"><button class="btn btn-ghost" type="button" data-reset>Send another request</button></div>
-          </div>
-          <div class="result bad" id="res-bad" hidden tabindex="-1">
-            <span class="result-ico"><svg class="ico"><use href="#i-alert"/></svg></span>
-            <h3>That didn't go through</h3>
-            <p>Your connection may have dropped. Your details are still filled in, so you can try again, or call and we'll take it from there.</p>
+            <span class="result-ico"><svg class="ico"><use href="#i-msg"/></svg></span>
+            <h3>Almost done: press Send</h3>
+            <p>Your Messages app should be open with your request written out to <span class="num">(239) 888-7001</span>. Press <b>Send</b> and we'll reply right away.</p>
+            <div class="msg-preview"><div class="msg-to">To: Alejos Towing · (239) 888-7001</div><pre id="msg-text"></pre></div>
             <div class="actions">
-              <button class="btn btn-ghost" type="button" data-back>Try again</button>
-              <a class="btn btn-call" href="tel:+15555550142" data-call><svg class="ico"><use href="#i-phone"/></svg>Call <span class="num ph">(555) 555-0142</span></a>
+              <a class="btn btn-call" id="sms-again" href="sms:+12398887001"><svg class="ico"><use href="#i-msg"/></svg>Open Messages again</a>
+              <button class="btn btn-ghost" type="button" id="copy-msg">Copy text</button>
             </div>
-          </div>
-          <div class="sim"><b>Preview only:</b> nothing is sent yet. When you submit, show
-            <select id="sim" aria-label="Simulated submission result"><option value="ok">the success state</option><option value="fail">the failure state</option></select>
+            <p>Messages didn't open, or you're on a computer? Call <a href="tel:+12398887001" class="num"><b>(239) 888-7001</b></a>, or copy the text above and send it from your phone.</p>
+            <button class="linkish" type="button" data-reset>Start a new request</button>
           </div>
         </div>
       </div>
@@ -611,11 +617,13 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
       <div class="wrap">
         <div class="sec-head"><span class="eyebrow">Questions</span><h2 id="faq-h">Good to know before you call.</h2></div>
         <div class="faq">
-          <details open><summary>How fast can you get to me?<svg class="ico"><use href="#i-chev"/></svg></summary><div class="ans">It depends on where you are and what's already on the board. The dispatcher gives you a real arrival time on the call. <span class="ph">In town, most customers wait under 30 minutes.</span></div></details>
-          <details><summary>How much does a tow cost?<svg class="ico"><use href="#i-chev"/></svg></summary><div class="ans">Price depends on distance, vehicle and the situation. You'll get the full price before we dispatch, with no surprises at drop-off. <span class="ph">Pricing details to be confirmed.</span></div></details>
+          <details open><summary>How fast can you get to me?<svg class="ico"><use href="#i-chev"/></svg></summary><div class="ans">It depends on where you are and what's already on the board. Tell us your location and we'll give you an arrival time on the call. We answer around the clock, including the middle of the night.</div></details>
+          <details><summary>How much does a tow cost?<svg class="ico"><use href="#i-chev"/></svg></summary><div class="ans">Price depends on distance, vehicle and the situation. Call or text for a quote before we send a truck.</div></details>
           <details><summary>Do you work with insurance and roadside plans?<svg class="ico"><use href="#i-chev"/></svg></summary><div class="ans"><span class="ph">To be confirmed: which insurers and motor clubs Alejos works with.</span></div></details>
           <details><summary>Can I ride in the tow truck?<svg class="ico"><use href="#i-chev"/></svg></summary><div class="ans"><span class="ph">Usually, yes, for one or two passengers. Let the dispatcher know when you call.</span></div></details>
-          <details><summary>What payment do you take?<svg class="ico"><use href="#i-chev"/></svg></summary><div class="ans"><span class="ph">To be confirmed: cash, cards, and mobile payments.</span></div></details>
+          <details><summary>¿Hablan español?<svg class="ico"><use href="#i-chev"/></svg></summary><div class="ans" lang="es"><span class="ph">Sí. Llámenos o escríbanos en español o en inglés.</span></div></details>
+          <details><summary>Do you tow outside Cape Coral and Fort Myers?<svg class="ico"><use href="#i-chev"/></svg></summary><div class="ans">Yes. We cover all of Florida, including long-distance tows between cities.</div></details>
+          <details><summary>What payment do you take?<svg class="ico"><use href="#i-chev"/></svg></summary><div class="ans">Card, cash and Zelle.</div></details>
         </div>
       </div>
     </section>
@@ -624,7 +632,7 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
       <div class="wrap final-in">
         <h2 id="final-h">Need a tow right now?</h2>
         <div class="cta-row" style="margin:0">
-          <a class="btn btn-call btn-lg" href="tel:+15555550142" data-call><svg class="ico"><use href="#i-phone"/></svg>Call <span class="num ph">(555) 555-0142</span></a>
+          <a class="btn btn-call btn-lg" href="tel:+12398887001" data-call><svg class="ico"><use href="#i-phone"/></svg>Call <span class="num">(239) 888-7001</span></a>
           <a class="btn btn-ghost btn-lg" href="#quote">Request a tow</a>
         </div>
       </div>
@@ -636,22 +644,23 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
       <div class="ftr-grid">
         <div style="display:grid;gap:14px;align-content:start">
           <a class="brand" href="#top"><span class="mark" aria-hidden="true"><svg class="ico"><use href="#i-hook"/></svg></span><span class="wordmark">Alejos Towing<small>Towing &amp; roadside</small></span></a>
-          <p style="color:var(--muted)">Towing and roadside assistance for drivers in <span class="ph">your service area</span>.</p>
+          <p style="color:var(--muted)">24/7 towing and roadside assistance in Cape Coral, Fort Myers and across Florida. Since 2019.</p>
         </div>
         <div><h3>Contact</h3><ul>
-          <li><a href="tel:+15555550142" data-call class="num"><span class="ph">(555) 555-0142</span></a></li>
-          <li><span class="ph">dispatch@example.com</span></li>
-          <li><span class="ph">Street address, City, ST</span></li>
+          <li><a href="tel:+12398887001" data-call class="num">(239) 888-7001</a></li>
+          <li><a href="sms:+12398887001">Text (239) 888-7001</a></li>
+          <li><a href="mailto:alejostowing85@gmail.com">alejostowing85@gmail.com</a></li>
+          <li>Cape Coral &amp; Fort Myers, FL</li>
         </ul></div>
-        <div><h3>Hours</h3><div class="hours"><span>Towing</span><span class="ph">24 hours, every day</span><span>Office</span><span class="ph">Mon–Fri, 8–5</span></div></div>
+        <div><h3>Hours</h3><div class="hours"><span>Towing</span><span>24 hours, every day</span><span>Roadside</span><span>24 hours, every day</span></div></div>
         <div><h3>Site</h3><ul><li><a href="#services">Services</a></li><li><a href="#area">Service area</a></li><li><a href="#quote">Request a tow</a></li><li><a href="#faq">FAQ</a></li></ul></div>
       </div>
-      <div class="ftr-bottom"><span>© 2026 Alejos Towing</span><span><span class="ph">License / USDOT number</span> · <a href="#top">Privacy</a></span></div>
+      <div class="ftr-bottom"><span>© 2026 Alejos Towing</span><span><span class="ph">USDOT #</span> · Insured through Progressive · <a href="#top">Privacy</a></span></div>
     </div>
   </footer>
 
   <nav class="actionbar" id="actionbar" aria-label="Quick actions">
-    <a class="btn btn-call" href="tel:+15555550142" data-call><svg class="ico"><use href="#i-phone"/></svg>Call now</a>
+    <a class="btn btn-call" href="tel:+12398887001" data-call><svg class="ico"><use href="#i-phone"/></svg>Call now</a>
     <a class="btn btn-ghost" href="#quote" style="background:var(--surface)">Request a tow</a>
   </nav>
 </div>
@@ -680,24 +689,28 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
   // Toast
   var toastT;
   function toast(msg){var old=document.querySelector('.toast');if(old)old.remove();var t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;site.appendChild(t);clearTimeout(toastT);toastT=setTimeout(function(){t.remove()},3600)}
-  // Preview: the number is a placeholder, so say so instead of dialing it.
-  document.querySelectorAll('[data-call]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();toast('Preview: the real Alejos number goes here once confirmed.')})});
 
   // Hide the action bar when the form is on screen (it has its own button)
   var bar=document.getElementById('actionbar'),q=document.getElementById('quote');
-  if('IntersectionObserver' in window){var vis={};var io=new IntersectionObserver(function(es){es.forEach(function(en){vis[en.target.id]=en.isIntersecting});bar.classList.toggle('away',!!(vis['quote']||vis['hero-cta']))},{threshold:.25});io.observe(q);io.observe(document.getElementById('hero-cta'))}
+  if('IntersectionObserver' in window){
+    // Hide the bar while the hero buttons or any part of the request form are on screen, so it never covers them.
+    var vis={};var upd=function(es){es.forEach(function(en){vis[en.target.id]=en.isIntersecting});bar.classList.toggle('away',!!(vis['quote']||vis['hero-cta']))};
+    new IntersectionObserver(upd,{threshold:.5}).observe(document.getElementById('hero-cta'));
+    new IntersectionObserver(upd,{threshold:0,rootMargin:'0px 0px -90px 0px'}).observe(q);
+  }
 
   // Quick picker prefills the form
   var issue=document.getElementById('f-issue');
   document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){issue.value=c.dataset.issue;clearErr(issue);q.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});setTimeout(function(){document.getElementById('f-loc').focus({preventScroll:true})},450)})});
 
   // Location
+  var gps=null;
   var locBtn=document.getElementById('loc-btn'),locIn=document.getElementById('f-loc'),locHint=document.getElementById('loc-hint');
   locBtn.addEventListener('click',function(){
     var fail=function(){locHint.textContent="Couldn't get your location. Type an address, cross streets, or the nearest exit.";locHint.style.color='var(--danger)';locIn.focus()};
     if(!navigator.geolocation)return fail();
     locHint.textContent='Finding you…';locHint.style.color='';
-    navigator.geolocation.getCurrentPosition(function(p){locIn.value='GPS '+p.coords.latitude.toFixed(5)+', '+p.coords.longitude.toFixed(5);clearErr(locIn);locHint.textContent='Location added. Add a landmark if you can.'},fail,{enableHighAccuracy:true,timeout:9000});
+    navigator.geolocation.getCurrentPosition(function(p){gps=p.coords.latitude.toFixed(5)+','+p.coords.longitude.toFixed(5);if(!locIn.value.trim())locIn.value='My current location (GPS)';clearErr(locIn);locHint.textContent='Location added. Add a landmark if you can.'},fail,{enableHighAccuracy:true,timeout:9000});
   });
 
   // Validation
@@ -711,22 +724,28 @@ select.input{appearance:none;background-image:linear-gradient(45deg,transparent 
   var ph=form.elements.phone;
   ph.addEventListener('input',function(){var d=ph.value.replace(/\D/g,'').slice(0,11);if(d.length===11&&d[0]==='1')d=d.slice(1);if(d.length>6)ph.value='('+d.slice(0,3)+') '+d.slice(3,6)+'-'+d.slice(6,10);else if(d.length>3)ph.value='('+d.slice(0,3)+') '+d.slice(3);});
 
-  var sbtn=document.getElementById('submit-btn'),ok=document.getElementById('res-ok'),bad=document.getElementById('res-bad');
+  var sbtn=document.getElementById('submit-btn'),sbtnHTML=sbtn.innerHTML,ok=document.getElementById('res-ok');
+  document.getElementById('copy-msg').addEventListener('click',function(){var t=document.getElementById('msg-text').textContent;var done=function(){toast('Copied. Paste it into a text to (239) 888-7001.')};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){selectMsg()})}else selectMsg()});
+  function selectMsg(){var r=document.createRange();r.selectNodeContents(document.getElementById('msg-text'));var sel=getSelection();sel.removeAllRanges();sel.addRange(r);toast('Text selected. Copy it and send it to (239) 888-7001.')}
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var errs=[];Object.keys(rules).forEach(function(n){var m=check(form.elements[n]);if(m)errs.push({id:form.elements[n].id,m:m})});
     if(errs.length){sum.hidden=false;sum.innerHTML='<b>Please fix '+(errs.length===1?'this':'these '+errs.length)+' before sending:</b><ul style="margin:6px 0 0;padding-left:20px">'+errs.map(function(x){return '<li><a href="#'+x.id+'">'+x.m+'</a></li>'}).join('')+'</ul>';sum.focus();return}
     sum.hidden=true;
-    sbtn.disabled=true;sbtn.innerHTML='<span class="spinner" aria-hidden="true"></span>Sending…';
-    setTimeout(function(){
-      sbtn.disabled=false;sbtn.textContent='Send request';
-      form.hidden=true;
-      if(document.getElementById('sim').value==='fail'){bad.hidden=false;bad.focus()}
-      else{var okT=document.getElementById('ok-text');okT.textContent='A dispatcher will call you at ';var nb=document.createElement('b');nb.style.whiteSpace='nowrap';nb.textContent=ph.value;okT.append(nb,' shortly. Keep your phone nearby.');ok.hidden=false;ok.focus()}
-    },1300);
+    var f=form.elements, lines=['Tow request from alejostowing website','What happened: '+f.issue.value,'Location: '+f.location.value];
+    if(gps)lines.push('Map: https://maps.google.com/?q='+gps);
+    lines.push('Name: '+f.name.value.trim(),'Callback: '+f.phone.value);
+    if(f.vehicle.value.trim())lines.push('Vehicle: '+f.vehicle.value.trim());
+    if(f.destination.value.trim())lines.push('Take it to: '+f.destination.value.trim());
+    if(f.notes.value.trim())lines.push('Notes: '+f.notes.value.trim());
+    var body=lines.join('\n'), href='sms:+12398887001?&body='+encodeURIComponent(body);
+    document.getElementById('msg-text').textContent=body;
+    document.getElementById('sms-again').href=href;
+    sbtn.disabled=true;sbtn.innerHTML='<span class="spinner" aria-hidden="true"></span>Opening Messages…';
+    setTimeout(function(){sbtn.disabled=false;sbtn.innerHTML=sbtnHTML;form.hidden=true;ok.hidden=false;ok.focus()},700);
+    try{window.location.href=href}catch(err){}
   });
   sum.addEventListener('click',function(e){var a=e.target.closest('a');if(a){e.preventDefault();var el=document.getElementById(a.getAttribute('href').slice(1));el.focus()}});
-  bad.querySelector('[data-back]').addEventListener('click',function(){bad.hidden=true;form.hidden=false;sbtn.focus()});
-  ok.querySelector('[data-reset]').addEventListener('click',function(){form.reset();ok.hidden=true;form.hidden=false;issue.focus()});
+  ok.querySelector('[data-reset]').addEventListener('click',function(){form.reset();gps=null;ok.hidden=true;form.hidden=false;issue.focus()});
 })();
 </script>

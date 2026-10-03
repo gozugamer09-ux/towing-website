@@ -1,6 +1,6 @@
 # Alejos Towing website: tools record
 
-Last updated 2026-10-03. Costs are in USD and were checked from general knowledge, not from live price pages; I re-check each one before anything is bought.
+Last updated 2026-10-03 (evening). Costs are in USD and were checked from general knowledge, not from live price pages; I re-check each one before anything is bought.
 
 ## 1. Development tools (installed and tested in Claude's build environment)
 
@@ -25,8 +25,8 @@ Planned for the real site build (free, installed once the repository exists): **
 | GitHub repository | Version history, backups, deploys | Free | **Waiting on Yordan** to create an empty repo |
 | Cloudflare Pages (recommended host) | Hosting, HTTPS, global CDN, preview links per change | Free tier | Needs Yordan's free Cloudflare account |
 | Domain name | e.g. alejostowing.com | About $10–15 per year | Not bought. Needs Yordan's decision |
-| Quote form delivery | Send requests to an email inbox | Free tiers exist (e.g. Resend about 3,000 emails/month, Web3Forms) | Not set up. Needs the destination email |
-| Text-message alerts for new requests (optional) | Dispatcher's phone gets a text for each request | Twilio: roughly $1–2/month for a number plus about 1¢ per text | Not set up. Only if Yordan wants it |
+| Request form delivery | Opens a text message to (239) 888-7001 on the customer's own phone, with every detail and a GPS map link filled in | Free, no service needed | **Built and tested** (Yordan chose "straight to the company phone") |
+| Email copy of each request (optional) | Backup copy to alejostowing85@gmail.com | Free tiers exist (e.g. Web3Forms, Resend) | Not set up. Only if Yordan wants it |
 | Cloudflare Web Analytics | Visitor counts, no cookies, no banner needed | Free | Not set up |
 | Google Business Profile + Search Console | Shows up on Google Maps and search, reviews | Free | Needs Yordan's Google account |
 | Map | Service-area map | Free with OpenStreetMap/MapLibre; Google Maps API needs a billing account | Not chosen yet |

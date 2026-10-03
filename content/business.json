@@ -1,16 +1,92 @@
 {
-  "_note": "Single source of truth for business facts. The site reads this file; nothing else hard-codes these values. confirmed:false means placeholder: never launch with any false entries that are shown on the site.",
-  "name":        { "value": "Alejos Towing", "confirmed": true, "source": "Yordan, 2026-10-03" },
-  "phone":       { "value": null, "confirmed": false },
-  "sms":         { "value": null, "confirmed": false },
-  "email":       { "value": null, "confirmed": false },
-  "address":     { "value": null, "confirmed": false },
-  "hours":       { "value": null, "confirmed": false, "emergency_24_7": null },
-  "service_area":{ "value": [], "confirmed": false },
-  "services":    { "value": [], "confirmed": false },
-  "vehicles":    { "value": [], "confirmed": false },
-  "quote_form":  { "deliver_to": null, "confirmed": false },
-  "trust":       { "years_in_business": null, "licenses": [], "insurance": null, "certifications": [], "google_profile": null, "confirmed": false },
-  "reviews":     { "value": [], "confirmed": false },
-  "brand":       { "logo": null, "colors": null, "domain": null, "confirmed": false }
+  "_note": "Single source of truth for business facts. Only confirmed:true values may appear on the live site. Source for everything below unless noted: Yordan, project chat, 2026-10-03.",
+  "name": {
+    "value": "Alejos Towing",
+    "confirmed": true,
+    "open_question": "Styling: 'Alejos' or 'Alejo's' (Google owner replies use both)"
+  },
+  "phone": {
+    "value": "+12398887001",
+    "display": "(239) 888-7001",
+    "confirmed": true
+  },
+  "sms": {
+    "value": "+12398887001",
+    "confirmed": true
+  },
+  "email": {
+    "value": "alejostowing85@gmail.com",
+    "confirmed": true
+  },
+  "address": {
+    "value": null,
+    "confirmed": true,
+    "note": "No public address or base location yet"
+  },
+  "hours": {
+    "value": "24 hours, 7 days",
+    "emergency_24_7": true,
+    "confirmed": true
+  },
+  "service_area": {
+    "value": [
+      "Cape Coral",
+      "Fort Myers",
+      "Anywhere in Florida"
+    ],
+    "primary": [
+      "Cape Coral",
+      "Fort Myers"
+    ],
+    "confirmed": true
+  },
+  "services": {
+    "value": [
+      "Light, medium and heavy-duty towing",
+      "Flatbed towing",
+      "Roadside assistance: jump starts, lockouts, tire changes, fuel delivery",
+      "Winching",
+      "Accident recovery",
+      "Motorcycle towing",
+      "Long-distance towing",
+      "Junk car removal"
+    ],
+    "confirmed": true
+  },
+  "vehicles": {
+    "value": "Any vehicle under 20 ft",
+    "confirmed": true,
+    "open_question": "Heavy-duty is listed too; does 'under 20 ft' apply to all jobs?"
+  },
+  "quote_form": {
+    "deliver_to": "Text message to +12398887001, composed on the customer's phone",
+    "confirmed": true,
+    "open_question": "Also email a copy to alejostowing85@gmail.com?"
+  },
+  "trust": {
+    "founded": 2019,
+    "licensed": true,
+    "usdot_registered": true,
+    "usdot_number": null,
+    "insurance": "Insured through Progressive",
+    "confirmed": true,
+    "open_question": "USDOT number to show in footer; Google rating, review count and profile link"
+  },
+  "languages": {
+    "value": null,
+    "confirmed": false,
+    "note": "Reviews and owner replies are mostly Spanish; confirm Spanish-speaking service"
+  },
+  "reviews": {
+    "file": "content/reviews.json"
+  },
+  "payment": {
+    "value": [
+      "Card",
+      "Cash",
+      "Zelle"
+    ],
+    "confirmed": true,
+    "source": "Yordan, thread, 2026-10-03"
+  }
 }
