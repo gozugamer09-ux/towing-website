@@ -8,6 +8,7 @@ import Footer from '../components/Footer.astro';
 import ActionBar from '../components/ActionBar.astro';
 import { biz, PREVIEW, DESCRIPTION } from '../lib/site';
 import { langOf, alternates, href, UI } from '../lib/i18n';
+import { PHOTO_CSS } from '../lib/photos';
 
 const lang = langOf(Astro.url);
 const t = UI[lang];
@@ -83,6 +84,7 @@ const jsonLd = [business, ...schema];
     <meta name="twitter:card" content="summary_large_image" />
     <Font cssVariable="--font-overpass" preload />
     <Font cssVariable="--font-public-sans" preload />
+    <style is:inline set:html={PHOTO_CSS}></style>
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd.length === 1 ? jsonLd[0] : jsonLd)} />
   </head>
   <body>

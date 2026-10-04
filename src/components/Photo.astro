@@ -24,6 +24,6 @@ const steps = fit.length < widths.length ? [...fit, p.src.width] : fit;
   fetchpriority={eager ? 'high' : undefined}
   decoding={eager ? undefined : 'async'}
   class="photo"
-  style={p.pos && `object-position: ${p.pos}`}
+  data-photo={p.pos && id}
   pictureAttributes={className ? { class: className } : {}}
 />

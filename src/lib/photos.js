@@ -86,5 +86,12 @@ export function photo(id, lang) {
   return { id, src, pos: p.pos, ...p[lang] };
 }
 
+// The crops (`pos`) as CSS for the page's <head> (src/layouts/Base.astro): the HTML check allows
+// no inline styles. Photo.astro marks each cropped photo with data-photo.
+export const PHOTO_CSS = Object.entries(PHOTOS)
+  .filter(([, p]) => p.pos)
+  .map(([id, p]) => `.photo[data-photo="${id}"]{object-position:${p.pos}}`)
+  .join('');
+
 // The home page's job gallery, in order. The first one is shown large on wide screens.
 export const GALLERY = ['classic-car-loading', 'ford-model-t', 'box-truck', 'backhoe', 'forklift', 'track-loader', 'nissan-titan', 'sports-car', 'jeep-wrangler-side'];
