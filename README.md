@@ -11,9 +11,10 @@ The website for Alejos Towing (24/7 towing and roadside help, Cape Coral and For
 | `src/views/` | One file per page (home, services, service area, reviews, request, FAQ, privacy, 404), with its English and Spanish wording at the top. |
 | `src/pages/` | Page addresses: English at `/`, Spanish under `/es/`. Each file just shows a view. |
 | `src/lib/i18n.js` | The two languages: page addresses in each, and the shared interface wording (header, footer, buttons). |
-| `src/components/` | Reusable parts: header, footer, hero sign, request form, map, cards. |
+| `src/components/` | Reusable parts: header, footer, photo sign, job gallery, request form, map, cards. |
+| `src/assets/photos/`, `src/lib/photos.js` | Yordan's truck photos and their descriptions in both languages. How to add one: `docs/DESIGN.md`, "Photos". |
 | `src/styles/global.css` | The whole design system (colors, type, components). Rules in `docs/DESIGN.md`. |
-| `public/` | Icons, share image, web manifest. Regenerate with `npm run icons`. |
+| `public/` | Icons, share images (English and Spanish), web manifest. Regenerate with `npm run icons`. |
 | `scripts/` | Generators for the Florida map data and the icons. Development only. |
 | `tests/site.mjs` | Checks every page at phone, tablet and desktop sizes, plus the request journey. |
 | `docs/AGENT-WORKFLOW.md` | How a change is requested, tested, published, reported and rolled back (ready for Friday). |

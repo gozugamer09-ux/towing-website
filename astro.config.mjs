@@ -26,6 +26,11 @@ export default defineConfig({
   integrations: [...(SITE_URL ? [sitemap({ filter: (page) => !page.includes('/404') })] : []), spanish404],
   trailingSlash: 'always',
   build: { inlineStylesheets: 'always' },
+  // Photos: AVIF at quality 40 looks the same as 50 on these phone photos and is a third smaller;
+  // the WebP copy only reaches browsers without AVIF.
+  image: {
+    service: { entrypoint: 'astro/assets/services/sharp', config: { avif: { quality: 40, chromaSubsampling: '4:2:0' }, webp: { quality: 60 } } },
+  },
   fonts: [
     {
       provider: fontProviders.local(),

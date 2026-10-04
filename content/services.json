@@ -1,9 +1,10 @@
 {
-  "_note": "Service pages, in English with the Spanish wording in each service's \"es\" object (\"es.slug\" is the Spanish page address). Every service here was confirmed by Yordan on 2026-10-03. Descriptions are general and avoid prices, times or guarantees; any such claim needs Yordan's confirmation first. Box trucks and RVs: Yordan, 2026-10-04, 'yes so long as the tires fit on the truck'.",
+  "_note": "Service pages, in English with the Spanish wording in each service's \"es\" object (\"es.slug\" is the Spanish page address). Every service here was confirmed by Yordan on 2026-10-03. Descriptions are general and avoid prices, times or guarantees; any such claim needs Yordan's confirmation first. Box trucks and RVs: Yordan, 2026-10-04, 'yes so long as the tires fit on the truck'. \"photo\" names one of Yordan's own photos (src/lib/photos.js) shown on the service's page and card.",
   "services": [
     {
       "slug": "towing",
       "icon": "truck",
+      "photo": "jeep-wrangler",
       "title": "Towing, light to heavy-duty",
       "nav": "Towing",
       "ask": "Need a tow now?",
@@ -43,6 +44,7 @@
     {
       "slug": "flatbed-towing",
       "icon": "flatbed",
+      "photo": "ford-model-t",
       "title": "Flatbed towing",
       "nav": "Flatbed",
       "ask": "Need a flatbed now?",
@@ -84,6 +86,7 @@
     {
       "slug": "roadside-assistance",
       "icon": "battery",
+      "photo": "truck-highway-side",
       "title": "Roadside assistance",
       "nav": "Roadside help",
       "ask": "Need roadside help now?",
@@ -123,6 +126,7 @@
     {
       "slug": "winching",
       "icon": "hill",
+      "photo": "classic-car-loading",
       "title": "Winching & recovery",
       "nav": "Winching",
       "ask": "Stuck right now?",
@@ -164,6 +168,7 @@
     {
       "slug": "accident-recovery",
       "icon": "alert",
+      "photo": "wrecked-car",
       "title": "Accident recovery",
       "nav": "Accident recovery",
       "ask": "Been in an accident?",
@@ -199,6 +204,7 @@
     {
       "slug": "motorcycle-towing",
       "icon": "moto",
+      "photo": "flatbed-empty",
       "title": "Motorcycle towing",
       "nav": "Motorcycles",
       "ask": "Need your bike towed?",
@@ -234,6 +240,7 @@
     {
       "slug": "long-distance-towing",
       "icon": "route",
+      "photo": "truck-palm-tree",
       "title": "Long-distance towing",
       "nav": "Long distance",
       "ask": "Need a long-distance tow?",
@@ -272,6 +279,7 @@
     {
       "slug": "junk-car-removal",
       "icon": "junk",
+      "photo": "old-pickup",
       "title": "Junk car removal",
       "nav": "Junk cars",
       "ask": "Got a junk car to clear out?",

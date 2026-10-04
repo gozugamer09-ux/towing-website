@@ -14,7 +14,8 @@ None of these is sent to website visitors. All free and open source.
 | axe-core | Accessibility scan (WCAG), including color contrast | 0 problems on all 16 pages, phone and desktop |
 | Lighthouse 12 | Speed, accessibility, best practices and search basics on a simulated slow phone connection | Production build, 2026-10-04: home 99/100/100/100, towing page 100/100/100/100, request page 100/100/100/100 |
 | html-validate | HTML correctness | 0 errors on every page (one rule switched off in `.htmlvalidate.json`: phone numbers are kept on one line with CSS instead) |
-| sharp | Makes the icons and the link-preview image; will resize real photos | In use (`npm run icons`) |
+| sharp | Makes the icons and the link-preview images; turns Yordan's photos into AVIF/WebP at three sizes during every build | In use (`npm run icons`, `npm run build`) |
+| ImageMagick | Prepared Yordan's photos once: resized to 1600px, cropped one, blurred a customer's license plate | Used in the build environment only; not needed to build or run the site |
 | us-atlas, topojson-client, d3-geo | Draw the Florida service-area map from US Census boundaries | Used once to generate `src/data/florida.json` (`npm run map`) |
 
 ## 2. What visitors download
@@ -22,6 +23,7 @@ None of these is sent to website visitors. All free and open source.
 | Item | Size | Notes |
 |---|---|---|
 | Page HTML (includes all CSS, the icon set and the map) | Home page about 20KB compressed; other pages about 14KB | One request per page, nothing blocks the first paint |
+| Photos (AVIF, WebP for older browsers) | 15–65KB each on a typical phone; the home page's first photo 56KB (112KB on the sharpest phone screens) | Only the first photo loads at once; the rest load as they scroll into view |
 | Fonts: Overpass and Public Sans (Fontsource, open font license) | 39KB + 27KB, cached after the first page | Self-hosted, preloaded, with size-matched fallbacks |
 | JavaScript | About 5KB for the request form, plus a small inline script for the menu and phone action bar | No framework |
 | Third parties | None | No trackers, no cookies, no ads, no outside requests |

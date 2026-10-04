@@ -25,7 +25,8 @@ const site = Astro.site;       // only set when SITE_URL is configured (producti
 const alt = alternates(Astro.url.pathname);
 const other = lang === 'es' ? 'en' : 'es';
 const canonical = site && translated ? new URL(Astro.url.pathname, site).href : undefined;
-const ogImage = site ? new URL('/og.png', site).href : '/og.png';
+const ogPath = lang === 'es' ? '/og-es.png' : '/og.png'; // share image in the page's language (scripts/make-icons.mjs)
+const ogImage = site ? new URL(ogPath, site).href : ogPath;
 
 const business = {
   '@context': 'https://schema.org',

@@ -1,6 +1,5 @@
 ---
 import Icon from './Icon.astro';
-import Pending from './Pending.astro';
 import { biz, tel, sms, servicesFor, paymentText } from '../lib/site';
 import { langOf, href, alternates, fill, UI } from '../lib/i18n';
 const lang = langOf(Astro.url);
@@ -43,7 +42,7 @@ const year = new Date().getFullYear();
     </div>
     <div class="ftr-bottom">
       <span>© {year} {biz.name}</span>
-      <span>{f.licensed} · {f.usdot} <Pending note="Waiting on the USDOT number">#0000000</Pending> · {fill(f.insured, { insurer: biz.insurer })}</span>
+      <span>{f.licensed} · {fill(f.usdot, { usdot: biz.usdot })} · {fill(f.insured, { insurer: biz.insurer })}</span>
     </div>
   </div>
 </footer>

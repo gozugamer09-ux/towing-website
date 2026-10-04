@@ -1,0 +1,29 @@
+---
+// One of Yordan's photos (src/lib/photos.js), described in the page's language. Astro turns it
+// into AVIF with a WebP fallback at a few widths; `sizes` tells the browser how wide it shows,
+// so phones download a small file. `eager` is for a photo in the first screen; `decorative` for
+// one that only illustrates a link that already says where it goes (screen readers skip it).
+// `class` goes on the <picture> box (for layout); the image inside has the class "photo".
+import { Picture } from 'astro:assets';
+import { photo } from '../lib/photos';
+import { langOf } from '../lib/i18n';
+const { id, sizes, widths = [480, 800, 1120], eager = false, decorative = false, class: className } = Astro.props;
+const p = photo(id, langOf(Astro.url));
+const fit = widths.filter((w) => w < p.src.width);
+const steps = fit.length < widths.length ? [...fit, p.src.width] : fit;
+---
+<Picture
+  src={p.src}
+  alt={decorative ? '' : p.alt}
+  formats={['avif']}
+  fallbackFormat="webp"
+  widths={steps}
+  width={Math.max(...steps)}
+  sizes={sizes}
+  loading={eager ? 'eager' : 'lazy'}
+  fetchpriority={eager ? 'high' : undefined}
+  decoding={eager ? undefined : 'async'}
+  class="photo"
+  style={p.pos && `object-position: ${p.pos}`}
+  pictureAttributes={className ? { class: className } : {}}
+/>

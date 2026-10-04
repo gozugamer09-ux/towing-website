@@ -3,7 +3,8 @@
 // Checks: page loads without errors, no sideways scrolling, one <h1>, title and description,
 // valid JSON-LD, every internal link resolves, every call/text link uses the company number,
 // touch targets are at least 44px on phones, axe accessibility scan, page language and the
-// language switch (English at /, Spanish under /es/), and the request journey in both languages.
+// language switch (English at /, Spanish under /es/), the request journey in both languages,
+// the language a first visit opens in, and that every photo loads at a sensible size.
 import { chromium } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import fs from 'node:fs';
@@ -222,6 +223,52 @@ console.log('language on arrival');
   await open(p3, '/');
   ok(at(p3) === '/', 'a phone set to English opens the English home');
   await ctx3.close();
+}
+
+console.log('photos');
+{
+  const ok = (c, m) => (c ? pass(m) : fail(m));
+  for (const [name, [w, h]] of Object.entries({ phone: sizes.phone, desktop: sizes.desktop })) {
+    const ctx = await browser.newContext({ viewport: { width: w, height: h }, hasTouch: name === 'phone', isMobile: name === 'phone' });
+    const p = await ctx.newPage();
+    for (const path of ['/', '/es/', '/services/', '/services/winching/']) {
+      await p.goto(url + path, { waitUntil: 'networkidle' });
+      if (path === '/' || path === '/es/') {
+        ok(await p.$eval('.hero img', (i) => i.loading === 'eager' && i.fetchPriority === 'high'), `${name} ${path}: the hero photo loads first`);
+        if (path === '/') {
+          const row = await p.$eval('.jobs', (e) => ({ scrolls: e.scrollWidth > e.clientWidth, stop: e.getAttribute('tabindex') }));
+          ok(name === 'phone' ? row.scrolls && row.stop === '0' : !row.scrolls && row.stop === null,
+            `${name}: job gallery ${name === 'phone' ? 'swipes sideways and can be scrolled from a keyboard' : 'fits in a grid with no extra tab stop'}`);
+        }
+      }
+      // Lazy photos load as they come near the screen: swipe along the gallery row, walk down the page,
+      // then give the last ones time to arrive before checking each photo. (Scrolls are instant: the
+      // site scrolls smoothly, which would leave the row behind.)
+      await p.$$eval('.jobs', async (rows) => {
+        const pause = (ms) => new Promise((ok) => setTimeout(ok, ms));
+        for (const r of rows) {
+          r.scrollIntoView({ block: 'center', behavior: 'instant' }); await pause(200);
+          for (let x = 0; x <= r.scrollWidth; x += 150) { r.scrollTo({ left: x, behavior: 'instant' }); await pause(80); }
+        }
+      });
+      const height = await p.evaluate(() => document.body.scrollHeight);
+      for (let y = 0; y < height; y += h / 2) { await p.evaluate((y) => scrollTo({ top: y, behavior: 'instant' }), y); await p.waitForTimeout(80); }
+      await p.waitForFunction(() => [...document.images].filter((i) => i.getBoundingClientRect().width > 0).every((i) => i.complete), null, { timeout: 15000 }).catch(() => {});
+      // naturalWidth of a photo picked from srcset is the width "sizes" promised for it, not the file's.
+      const imgs = await p.$$eval('img', (els) => els.map((i) => {
+        const r = i.getBoundingClientRect();
+        return { src: (i.currentSrc || i.src).split('/').pop(), alt: i.getAttribute('alt'), shown: r.width > 0, width: Math.round(r.width), loaded: i.complete && i.naturalWidth > 0, slot: i.naturalWidth };
+      }));
+      const shown = imgs.filter((i) => i.shown);
+      ok(shown.length > 0 && shown.every((i) => i.loaded), `${name} ${path}: all ${shown.length} photos load`);
+      ok(imgs.every((i) => i.alt !== null), `${name} ${path}: every photo has alt text (empty when it only decorates a link)`);
+      ok(shown.every((i) => i.src.endsWith('.avif')), `${name} ${path}: photos arrive as AVIF`);
+      // "sizes" must match the space each photo fills, or phones download files bigger (or blurrier) than needed.
+      const off = shown.filter((i) => i.slot < i.width * 0.9 || i.slot > i.width * 1.25);
+      ok(!off.length, `${name} ${path}: each photo's "sizes" matches the space it fills ${off.map((i) => `${i.src}: ${i.slot}px promised, ${i.width}px shown`).join(', ')}`);
+    }
+    await ctx.close();
+  }
 }
 
 console.log('keyboard (desktop)');

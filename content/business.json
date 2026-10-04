@@ -67,10 +67,11 @@
     "founded": 2019,
     "licensed": true,
     "usdot_registered": true,
-    "usdot_number": null,
+    "usdot_number": "3314605",
+    "usdot_source": "Yordan, project chat, 2026-10-04: 'dot 3314605' (also lettered on the truck doors)",
     "insurance": "Insured through Progressive",
     "confirmed": true,
-    "open_question": "USDOT number to show in footer; Google rating, review count and profile link",
+    "open_question": "Google rating, review count and profile link",
     "insurer": "Progressive"
   },
   "languages": {

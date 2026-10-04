@@ -13,6 +13,7 @@ A task is one clear outcome, written as:
 - Design rules: `docs/DESIGN.md`.
 - Page text that isn't a business fact: `content/services.json`, `content/faq.json`, `content/reviews.json` (each with its Spanish in `"es"`), and the page views in `src/views/`, which hold each page's English and Spanish wording side by side. `src/pages/` only maps addresses to views (English at `/`, Spanish under `/es/`).
 - The site is bilingual: a wording change is done in English and Spanish together (rules in `docs/DESIGN.md`, "Two languages").
+- Photos: `src/assets/photos/` with their descriptions in `src/lib/photos.js`; what may be shown and how to add one is in `docs/DESIGN.md`, "Photos".
 - Tools and costs: `TOOLS.md`.
 
 ## 3. Change and test
@@ -21,7 +22,8 @@ Work on a branch. Before anything is published, run:
 ```sh
 npm run check            # both builds; every page in both languages at 360/390/820/1440px: errors,
                          # layout, links, page language, call/text numbers, touch targets, axe;
-                         # the request journey in English and Spanish; HTML validity
+                         # the request journey in English and Spanish; every photo loads at a
+                         # sensible size; HTML validity
 npm test -- --shots      # screenshots of the preview build in screenshots/site/
 ```
 

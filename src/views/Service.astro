@@ -3,7 +3,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import ServiceSign from '../components/ServiceSign.astro';
+import PhotoSign from '../components/PhotoSign.astro';
 import FAQList from '../components/FAQList.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import { biz, tel, servicesFor, paymentText } from '../lib/site';
@@ -62,7 +62,8 @@ const schema = [
           <a class="btn btn-ghost btn-lg" href={requestHref}>{t.request}<Icon name="arrow" /></a>
         </div>
       </div>
-      <ServiceSign s={s} />
+      <PhotoSign id={s.photo} name={s.nav} note={s.tags.slice(0, 3)} class="svc-psign" eager
+        sizes="(min-width: 1180px) 346px, (min-width: 900px) 30vw, (min-width: 572px) 518px, calc(100vw - 54px)" />
     </div>
   </section>
 

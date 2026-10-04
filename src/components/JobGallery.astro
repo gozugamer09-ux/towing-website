@@ -1,0 +1,21 @@
+---
+// Yordan's trucks on real jobs (GALLERY in src/lib/photos.js), each captioned with what it carried.
+// Phones get a row to swipe through; wide screens a grid with the first photo large. The row is
+// focusable so it can be scrolled from a keyboard; site.js drops that when nothing needs scrolling.
+import Photo from './Photo.astro';
+import { GALLERY, photo } from '../lib/photos';
+import { langOf } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const { label } = Astro.props;
+const SIZES = ['(min-width: 1180px) 551px, (min-width: 900px) 47vw, (min-width: 436px) 340px, 78vw', '(min-width: 1180px) 268px, (min-width: 900px) 23vw, (min-width: 436px) 340px, 78vw'];
+---
+<ul class="jobs" aria-label={label} tabindex="0">
+  {GALLERY.map((id, n) => (
+    <li class="job">
+      <figure>
+        <Photo id={id} sizes={SIZES[n === 0 ? 0 : 1]} widths={n === 0 ? undefined : [480, 800]} />
+        <figcaption>{photo(id, lang).caption}</figcaption>
+      </figure>
+    </li>
+  ))}
+</ul>

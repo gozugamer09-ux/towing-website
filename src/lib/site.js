@@ -15,6 +15,7 @@ export const biz = {
   sms: business.sms.value,
   email: business.email.value,
   founded: business.trust.founded,
+  usdot: business.trust.usdot_number,
   insurer: business.trust.insurer,
   payment: business.payment.value,
 };

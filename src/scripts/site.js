@@ -1,4 +1,4 @@
-// Site-wide behavior: mobile menu, quick-action bar, map animation trigger.
+// Site-wide behavior: mobile menu, quick-action bar, language memory, map animation, job gallery.
 const menu = document.getElementById('sheet');
 const openBtn = document.querySelector('[data-menu-open]');
 if (menu && openBtn) {
@@ -56,4 +56,13 @@ document.addEventListener('click', (e) => {
 const map = document.querySelector('[data-map]');
 if (map && 'IntersectionObserver' in window) {
   new IntersectionObserver(([en]) => map.classList.toggle('live', en.isIntersecting)).observe(map);
+}
+
+// The job gallery is a sideways row on phones and a grid on wide screens. Only the row needs a
+// keyboard stop (to scroll it with the arrow keys), so drop it whenever everything already fits.
+const jobs = document.querySelector('.jobs');
+if (jobs) {
+  const fit = () => (jobs.scrollWidth > jobs.clientWidth + 1 ? jobs.setAttribute('tabindex', '0') : jobs.removeAttribute('tabindex'));
+  fit();
+  addEventListener('resize', fit);
 }

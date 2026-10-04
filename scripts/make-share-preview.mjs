@@ -1,7 +1,8 @@
 // Turns the preview build (dist-preview/) into a self-contained bundle (dist-artifact/) that can be
 // shared as a Claude artifact: links become relative ("services/towing/index.html"), fonts and
-// scripts are inlined, and the home page loses its <html>/<head>/<body> wrapper because the
-// artifact host adds its own. Run: npm run build:preview && node scripts/make-share-preview.mjs
+// scripts are inlined, photos are copied next to the pages (dist-artifact/_astro/), and the home
+// page loses its <html>/<head>/<body> wrapper because the artifact host adds its own.
+// Run: npm run build:preview && node scripts/make-share-preview.mjs
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -15,6 +16,7 @@ const font = (p) => {
   return fonts.get(p);
 };
 
+const images = new Set();
 const pages = [];
 (function walk(dir) {
   for (const f of fs.readdirSync(path.join(SRC, dir))) {
@@ -35,6 +37,9 @@ for (const page of pages) {
   // Fonts and the request-form script, inlined.
   html = html.replace(/url\("\/(_astro\/fonts\/[^"]+\.woff2)"\)/g, (_, p) => `url("${font(p)}")`);
   html = html.replace(/<script type="module" src="\/(_astro\/[^"]+\.js)"><\/script>/g, (_, p) => `<script type="module">${read(p).toString('utf8')}</script>`);
+  // Photos: "/_astro/truck.Ab12.avif 480w, ..." in src and srcset -> "../_astro/truck.Ab12.avif 480w, ...".
+  html = html.replace(/\b(src|srcset)="([^"]*\/_astro\/[^"]*)"/g, (_, attr, val) =>
+    `${attr}="${val.replace(/\/(_astro\/[^\s",]+\.(?:avif|webp|jpg|png))/g, (__, p) => (images.add(p), up + p))}"`);
   // Site links: "/services/towing/?x#y" -> "../services/towing/index.html?x#y" (relative to this page).
   html = html.replace(/href="\/([^"#?]*)([^"]*)"/g, (_, p, rest) => {
     const target = p === '' || p.endsWith('/') ? `${p}index.html` : p;
@@ -54,3 +59,6 @@ for (const page of pages) {
   fs.writeFileSync(out, html);
   console.log(page.padEnd(40), `${(html.length / 1024).toFixed(0)} KB`);
 }
+fs.mkdirSync(path.join(OUT, '_astro'), { recursive: true });
+for (const p of images) fs.copyFileSync(path.join(SRC, p), path.join(OUT, p));
+console.log(`${images.size} photo files copied to ${OUT}/_astro/`);

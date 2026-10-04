@@ -1,9 +1,11 @@
 ---
 import Icon from './Icon.astro';
-const { s, headingLevel = 3, showTags = true } = Astro.props;
+import Photo from './Photo.astro';
+const { s, headingLevel = 3, showTags = true, photo = false } = Astro.props;
 const H = `h${headingLevel}`;
 ---
-<article class="svc">
+<article class:list={['svc', { 'has-photo': photo }]}>
+  {photo && <Photo id={s.photo} decorative class="svc-photo" widths={[480, 800]} sizes="(min-width: 1180px) 268px, (min-width: 860px) 30vw, (min-width: 600px) 46vw, calc(100vw - 32px)" />}
   <span class="svc-ico"><Icon name={s.icon} /></span>
   <H><a href={s.href}>{s.title}</a></H>
   <p>{s.short}</p>
