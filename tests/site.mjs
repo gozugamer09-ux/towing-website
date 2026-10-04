@@ -196,6 +196,34 @@ console.log('request journey in Spanish (phone)');
   await ctx.close();
 }
 
+console.log('language on arrival');
+{
+  const ok = (c, m) => (c ? pass(m) : fail(m));
+  const at = (p) => new URL(p.url()).pathname;
+  // The redirect replaces the page while it loads, so wait for the address to settle.
+  const open = async (p, path) => { await p.goto(url + path).catch(() => {}); await p.waitForLoadState('networkidle'); await p.waitForTimeout(300); };
+  const ctx = await browser.newContext({ locale: 'es-US', viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+  const p = await ctx.newPage();
+  await open(p, '/');
+  ok(at(p) === '/es/', 'a phone set to Spanish opens the Spanish home');
+  await p.tap('.langbar a'); await p.waitForLoadState('networkidle'); await p.waitForTimeout(300);
+  ok(at(p) === '/', '"View in English" stays in English');
+  await open(p, '/');
+  ok(at(p) === '/', 'the language picked is remembered on the next visit');
+  await ctx.close();
+  const ctx2 = await browser.newContext({ locale: 'es-US' });
+  const p2 = await ctx2.newPage();
+  await open(p2, '/services/');
+  await p2.click('.hdr .brand'); await p2.waitForLoadState('networkidle'); await p2.waitForTimeout(300);
+  ok(at(p2) === '/', 'moving around the English pages never switches language');
+  await ctx2.close();
+  const ctx3 = await browser.newContext({ locale: 'en-US' });
+  const p3 = await ctx3.newPage();
+  await open(p3, '/');
+  ok(at(p3) === '/', 'a phone set to English opens the English home');
+  await ctx3.close();
+}
+
 console.log('keyboard (desktop)');
 {
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });

@@ -94,6 +94,17 @@ const jsonLd = [business, ...schema];
         <a href={alt[other]} hreflang={other} lang={t.langBar.lang} data-track={`lang-${other}`}>{t.langBar.link}<Icon name="arrow" /></a>
       </div>
     </nav>
+    {/* Someone arriving at the English home from outside the site, on a phone set to Spanish, gets the Spanish
+        home instead. A language they picked here before wins (site.js remembers it), and moving around the site
+        never switches language. Inline and above the header, so it runs before the page draws. */}
+    {lang === 'en' && Astro.url.pathname === '/' && (
+      <script is:inline>(function () {
+        var pick; try { pick = localStorage.getItem('lang'); } catch (e) {}
+        var phone = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+        var fromOutside = location.origin !== 'null' && document.referrer.indexOf(location.origin + '/') !== 0;
+        if (fromOutside && (pick ? pick === 'es' : /^es\b/i.test(phone))) location.replace(document.querySelector('.langbar a').href);
+      })();</script>
+    )}
     <Header />
     <main id="main">
       <slot />

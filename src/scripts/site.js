@@ -45,6 +45,13 @@ if (bar && 'IntersectionObserver' in window) {
   if (req) new IntersectionObserver(update, { threshold: 0, rootMargin: '0px 0px -90px 0px' }).observe(req);
 }
 
+// Remember a language the visitor picks (the language bar, menu and footer links carry hreflang),
+// so the home page opens in that language next time. See the script after the language bar in Base.astro.
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[hreflang]');
+  if (a) try { localStorage.setItem('lang', a.hreflang); } catch { /* storage blocked: nothing to remember */ }
+});
+
 // Start the map's route animation only while it's visible.
 const map = document.querySelector('[data-map]');
 if (map && 'IntersectionObserver' in window) {
