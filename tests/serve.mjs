@@ -16,8 +16,9 @@ export function serve(root, port = 0) {
         // Like Cloudflare Pages: the closest 404.html up the folder tree (es/404.html for /es/...).
         let dir = path.dirname(path.join(root, p.endsWith('/') ? p + 'x' : p));
         while (!fs.existsSync(path.join(dir, '404.html')) && dir.length > root.length) dir = path.dirname(dir);
+        const notFound = path.join(dir, '404.html');
         res.writeHead(404, { 'Content-Type': TYPES['.html'] });
-        return res.end(fs.readFileSync(path.join(dir, '404.html')));
+        return res.end(fs.existsSync(notFound) ? fs.readFileSync(notFound) : 'Not found'); // the share bundle has no 404 page
       }
       res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
       fs.createReadStream(file).pipe(res);
