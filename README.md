@@ -1,14 +1,16 @@
 # Alejos Towing website
 
-The website for Alejos Towing (24/7 towing and roadside help, Cape Coral and Fort Myers, anywhere in Florida). A static site built with [Astro](https://astro.build): fast pages, almost no JavaScript, and nothing that needs a server or an AI session to keep running.
+The website for Alejos Towing (24/7 towing and roadside help, Cape Coral and Fort Myers, anywhere in Florida), in English and Spanish. A static site built with [Astro](https://astro.build): fast pages, almost no JavaScript, and nothing that needs a server or an AI session to keep running.
 
 ## Where things are
 
 | Path | What it is |
 |---|---|
 | `content/business.json` | Single source of business facts. Each fact says whether Yordan confirmed it. |
-| `content/services.json`, `faq.json`, `reviews.json` | Service pages, questions and answers, Google reviews (original text plus labeled translation). |
-| `src/pages/` | One file per page (home, services, service area, reviews, request, FAQ, privacy, 404). |
+| `content/services.json`, `faq.json`, `reviews.json` | Service pages, questions and answers, Google reviews (original text plus labeled translation). Spanish wording sits in each item's `"es"` object. |
+| `src/views/` | One file per page (home, services, service area, reviews, request, FAQ, privacy, 404), with its English and Spanish wording at the top. |
+| `src/pages/` | Page addresses: English at `/`, Spanish under `/es/`. Each file just shows a view. |
+| `src/lib/i18n.js` | The two languages: page addresses in each, and the shared interface wording (header, footer, buttons). |
 | `src/components/` | Reusable parts: header, footer, hero sign, request form, map, cards. |
 | `src/styles/global.css` | The whole design system (colors, type, components). Rules in `docs/DESIGN.md`. |
 | `public/` | Icons, share image, web manifest. Regenerate with `npm run icons`. |

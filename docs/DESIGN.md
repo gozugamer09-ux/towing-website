@@ -69,7 +69,7 @@ Motion explains something or rewards a glance; nothing loops for attention excep
 ## Unconfirmed claims (placeholders)
 
 - Every business fact comes from `content/*.json`. A fact Yordan hasn't confirmed is marked there (`"pending": true`, `"confirmed": false`) or wrapped in `<Pending>` in a page.
-- **Preview builds** (`npm run build:preview`) show those claims highlighted in yellow with a "Needs confirming" tag, plus a preview notice bar, and tell search engines not to index the preview.
+- **Preview builds** (`npm run build:preview`) show those claims highlighted in yellow with a "Needs confirming" tag ("Falta confirmar" on Spanish pages), plus a preview notice bar, and tell search engines not to index the preview.
 - **Production builds** (`npm run build`) leave them out entirely. Nothing unconfirmed can reach the live site by accident.
 
 ## Writing
@@ -78,10 +78,27 @@ Motion explains something or rewards a glance; nothing loops for attention excep
 - No prices, arrival times, guarantees or certifications unless Yordan has confirmed them; reviews may say "fast" in the customer's own words.
 - Reviews are shown verbatim in the original language, with our English translation labeled as a translation. No star ratings that we can't source.
 
+## Two languages
+
+Yordan's customers mostly speak Spanish, and Spanish is the preferred language for calls and texts (confirmed 2026-10-04). The whole site exists in both languages:
+
+- English at the site root, Spanish under `/es/` with Spanish page addresses (`/es/pedir-grua/`, `/es/servicios/grua/`). `src/lib/i18n.js` holds the address table and the shared interface wording.
+- A slim green bar above the header links to the same page in the other language ("Hablamos español. Ver en español" / "View in English"); the phone menu and the footer repeat the link. Search engines get `hreflang` links once `SITE_URL` is set.
+- The request form writes its text message in the page's language, so a Spanish request arrives in Spanish.
+- Spanish pages show reviews in the customer's own words; English pages show our labeled translation.
+- **Every wording change is made in both languages in the same change.** Page wording sits at the top of each file in `src/views/` (`COPY.en` and `COPY.es`); services and FAQ answers carry their Spanish in an `"es"` object in `content/*.json`.
+
+Spanish style:
+
+- Formal "usted", plain and warm. Neutral US Spanish that Cuban, Puerto Rican, Mexican and South American customers all read easily.
+- Words chosen for Southwest Florida: "carro", "grúa", "goma" (with "llanta" once where it helps: "goma o llanta ponchada"), "winche", "pickup", "SUV", "paso de corriente", "la Florida".
+- Button labels are short verbs: "Llamar", "Pedir grúa", "Enviar por texto".
+- The business name "Alejos Towing", city names and highway names stay as they are.
+
 ## Photos
 
 None yet, on purpose: stock photos of other companies' trucks would undercut trust. When Yordan sends real photos (truck, driver, a job), they get resized and converted to AVIF/WebP with `sharp`, and go in the hero scene, the service pages and the reviews page.
 
 ## Accessibility checklist (automated in `tests/site.mjs`)
 
-One `<h1>` per page, skip link, visible focus ring, labeled form fields with an error summary that links to each problem, live messages for location lookup, decorative graphics hidden from screen readers, 44px touch targets, no sideways scrolling at 360px, axe scan with zero violations at phone and desktop sizes.
+One `<h1>` per page, the page's language set (`lang="en"` or `lang="es"`) with a working link to the other language, skip link, visible focus ring, labeled form fields with an error summary that links to each problem, live messages for location lookup, decorative graphics hidden from screen readers, 44px touch targets, no sideways scrolling at 360px, axe scan with zero violations at phone and desktop sizes.

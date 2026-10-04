@@ -1,0 +1,108 @@
+---
+// One service page. `s` is the service in the page's language (servicesFor(lang) in lib/site.js).
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ServiceSign from '../components/ServiceSign.astro';
+import FAQList from '../components/FAQList.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { biz, tel, servicesFor, paymentText } from '../lib/site';
+import { ISSUE_FOR_SERVICE } from '../lib/issues';
+import { langOf, href, fill, UI } from '../lib/i18n';
+
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const { s } = Astro.props;
+const services = servicesFor(lang);
+const i = services.findIndex((x) => x.id === s.id);
+const COPY = {
+  en: {
+    description: '{intro} 24/7 in Cape Coral, Fort Myers and across Florida. Call or text {phone}.',
+    handle: 'What we handle', faq: 'Questions about {service}',
+    hours: '24 hours, 7 days', area: 'Cape Coral, Fort Myers & all of Florida', accept: 'We accept {payment}',
+    byText: 'Send a request by text', morePlate: 'More services', moreH: 'We can also help with', all: 'All services',
+  },
+  es: {
+    description: '{intro} 24/7 en Cape Coral, Fort Myers y toda la Florida. Llame o escriba al {phone}.',
+    handle: 'Lo que cubrimos', faq: 'Preguntas frecuentes',
+    hours: '24 horas, 7 días', area: 'Cape Coral, Fort Myers y toda la Florida', accept: 'Aceptamos {payment}',
+    byText: 'Enviar solicitud por texto', morePlate: 'Más servicios', moreH: 'También le ayudamos con', all: 'Todos los servicios',
+  },
+};
+const c = COPY[lang];
+const vars = { service: s.nav.toLowerCase(), intro: s.intro, phone: biz.phoneDisplay, payment: paymentText(lang) };
+const issue = ISSUE_FOR_SERVICE[s.id];
+const requestHref = issue ? `${href('request', lang)}?issue=${issue}` : href('request', lang);
+const related = [1, 2, 3].map((k) => services[(i + k) % services.length]);
+const site = Astro.site;
+const schema = [
+  {
+    '@context': 'https://schema.org', '@type': 'Service', name: s.title, serviceType: s.title, description: s.intro, inLanguage: lang,
+    provider: site ? { '@id': new URL('/#business', site).href } : { '@type': 'AutomotiveBusiness', name: biz.name },
+    areaServed: [{ '@type': 'City', name: 'Cape Coral' }, { '@type': 'City', name: 'Fort Myers' }, { '@type': 'State', name: 'Florida' }],
+  },
+  ...(site ? [{
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.nav.home, item: new URL(href('home', lang), site).href },
+      { '@type': 'ListItem', position: 2, name: t.nav.services, item: new URL(href('services', lang), site).href },
+      { '@type': 'ListItem', position: 3, name: s.title, item: new URL(s.href, site).href },
+    ],
+  }] : []),
+];
+---
+<Base requestHref={requestHref} title={s.seoTitle} description={fill(c.description, vars)} schema={schema}>
+  <section class="page-head">
+    <div class="wrap page-head-grid">
+      <div>
+        <nav aria-label={t.breadcrumb}><ol class="crumbs"><li><a href={href('home', lang)}>{t.nav.home}</a></li><li><a href={href('services', lang)}>{t.nav.services}</a></li><li aria-current="page">{s.nav}</li></ol></nav>
+        <h1>{s.title}</h1>
+        <p class="lede">{s.intro}</p>
+        <div class="cta-row" data-hide-bar>
+          <a class="btn btn-call btn-lg" href={tel} data-track={`call-${s.id}`}><Icon name="phone" />{t.call} <span class="num">{biz.phoneDisplay}</span></a>
+          <a class="btn btn-ghost btn-lg" href={requestHref}>{t.request}<Icon name="arrow" /></a>
+        </div>
+      </div>
+      <ServiceSign s={s} />
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap detail-grid">
+      <div>
+        <h2 class="h-sub spaced">{c.handle}</h2>
+        <ul class="checks">
+          {s.includes.map((x) => <li><Icon name="check" /><span>{x}</span></li>)}
+        </ul>
+        <div class="tips">
+          {s.goodToKnow.map((tip) => <div class="tip"><h3>{tip.title}</h3><p>{tip.text}</p></div>)}
+        </div>
+        {s.faq.length > 0 && (
+          <div class="detail-faq">
+            <h2 class="h-sub spaced">{fill(c.faq, vars)}</h2>
+            <FAQList items={s.faq} />
+          </div>
+        )}
+      </div>
+      <aside class="side-card" aria-labelledby="side-h">
+        <b class="display side-title" id="side-h">{s.ask}</b>
+        <ul>
+          <li><Icon name="clock" />{c.hours}</li>
+          <li><Icon name="pin" />{c.area}</li>
+          <li><Icon name="card" />{fill(c.accept, vars)}</li>
+        </ul>
+        <a class="btn btn-light btn-lg" href={tel} data-track={`call-side-${s.id}`}><Icon name="phone" />{t.call} <span class="num">{biz.phoneDisplay}</span></a>
+        <a class="btn btn-ghost" href={requestHref}>{c.byText}</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec band" aria-labelledby="rel-h">
+    <div class="wrap">
+      <div class="sec-head"><span class="plate">{c.morePlate}</span><h2 id="rel-h">{c.moreH}</h2></div>
+      <div class="svc-grid compact">{related.map((r) => <ServiceCard s={r} />)}</div>
+      <p class="sec-foot"><a class="text-link" href={href('services', lang)}>{c.all}<Icon name="arrow" /></a></p>
+    </div>
+  </section>
+
+  <FinalCTA title={s.ask} />
+</Base>

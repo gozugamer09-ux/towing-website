@@ -1,9 +1,12 @@
 ---
 import Icon from './Icon.astro';
 import { tel } from '../lib/site';
-const { requestHref = '/request/' } = Astro.props;
+import { langOf, href, UI } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const { requestHref = href('request', lang) } = Astro.props;
 ---
-<nav class="actionbar" id="actionbar" aria-label="Quick actions">
-  <a class="btn btn-call" href={tel} data-track="call-bar"><Icon name="phone" />Call now</a>
-  <a class="btn btn-ghost" href={requestHref}>Request a tow</a>
+<nav class="actionbar" id="actionbar" aria-label={t.quickActions}>
+  <a class="btn btn-call" href={tel} data-track="call-bar"><Icon name="phone" />{t.callNow}</a>
+  <a class="btn btn-ghost" href={requestHref}>{t.request}</a>
 </nav>

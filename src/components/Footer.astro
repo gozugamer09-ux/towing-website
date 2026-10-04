@@ -1,48 +1,49 @@
 ---
 import Icon from './Icon.astro';
 import Pending from './Pending.astro';
-import { biz, tel, sms, services, paymentText } from '../lib/site';
+import { biz, tel, sms, servicesFor, paymentText } from '../lib/site';
+import { langOf, href, alternates, fill, UI } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = UI[lang], f = t.footer;
+const other = lang === 'es' ? 'en' : 'es';
 const year = new Date().getFullYear();
 ---
 <footer class="ftr">
   <div class="wrap">
     <div class="ftr-grid">
       <div class="ftr-brand">
-        <a class="brand" href="/"><span class="mark" aria-hidden="true"><Icon name="hook" /></span><span class="wordmark">{biz.name}<small>Towing &amp; roadside · 24/7</small></span></a>
-        <p>24/7 towing and roadside assistance in Cape Coral, Fort Myers and anywhere in Florida. Serving drivers since {biz.founded}.</p>
+        <a class="brand" href={href('home', lang)}><span class="mark" aria-hidden="true"><Icon name="hook" /></span><span class="wordmark">{biz.name}<small>{t.tagline}</small></span></a>
+        <p>{fill(f.blurb, { year: biz.founded })}</p>
       </div>
       <div class="ftr-contact">
-        <h2>Call or text, any hour</h2>
+        <h2>{f.contact}</h2>
         <ul>
           <li><a class="big-num num" href={tel} data-track="call-footer">{biz.phoneDisplay}</a></li>
-          <li><a href={sms()} data-track="text-footer">Send a text</a></li>
+          <li><a href={sms()} data-track="text-footer">{f.text}</a></li>
           <li><a href={`mailto:${biz.email}`}>{biz.email}</a></li>
-          <li>Cape Coral &amp; Fort Myers, FL</li>
+          <li>{f.city}</li>
         </ul>
       </div>
       <div>
-        <h2>Services</h2>
-        <ul>{services.map((s) => <li><a href={`/services/${s.slug}/`}>{s.nav}</a></li>)}</ul>
+        <h2>{f.services}</h2>
+        <ul>{servicesFor(lang).map((s) => <li><a href={s.href}>{s.nav}</a></li>)}</ul>
       </div>
       <div>
-        <h2>Help</h2>
+        <h2>{f.help}</h2>
         <ul>
-          <li><a href="/request/">Request a tow</a></li>
-          <li><a href="/service-area/">Service area</a></li>
-          <li><a href="/reviews/">Reviews</a></li>
-          <li><a href="/faq/">FAQ</a></li>
-          <li><a href="/privacy/">Privacy</a></li>
+          {['request', 'area', 'reviews', 'faq', 'privacy'].map((k) => <li><a href={href(k, lang)}>{t.nav[k]}</a></li>)}
+          <li><a href={alternates(Astro.url.pathname)[other]} hreflang={other} lang={other}>{other === 'es' ? 'Español' : 'English'}</a></li>
         </ul>
       </div>
       <div class="ftr-hours">
-        <h2>Hours &amp; payment</h2>
-        <p><b class="ftr-open">Open 24/7</b>Towing and roadside help, nights, weekends and holidays included.</p>
-        <p>We accept {paymentText}.</p>
+        <h2>{f.hours}</h2>
+        <p><b class="ftr-open">{f.open}</b>{f.hoursText}</p>
+        <p>{fill(f.accept, { payment: paymentText(lang) })}</p>
       </div>
     </div>
     <div class="ftr-bottom">
       <span>© {year} {biz.name}</span>
-      <span>Licensed · USDOT registered <Pending note="Waiting on the USDOT number">#0000000</Pending> · {biz.insurance}</span>
+      <span>{f.licensed} · {f.usdot} <Pending note="Waiting on the USDOT number">#0000000</Pending> · {fill(f.insured, { insurer: biz.insurer })}</span>
     </div>
   </div>
 </footer>

@@ -1,20 +1,23 @@
 ---
 // "What happened?" shortcuts. Each prefills the request form's first question.
-// On a page with the form (data-prefill), JS fills it in place; otherwise the link opens /request/.
+// On a page with the form (onPage), JS fills it in place; otherwise the link opens the request page.
 import Icon from './Icon.astro';
-import { ISSUES } from '../lib/issues';
-const { onPage = false, heading = 'What happened?' } = Astro.props;
+import { issuesFor } from '../lib/issues';
+import { langOf, href, UI } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const { onPage = false, heading = t.picker.heading } = Astro.props;
 
-const href = (v) => (onPage ? '#request' : `/request/?issue=${encodeURIComponent(v)}#request`);
+const link = (id) => (onPage ? '#request' : `${href('request', lang)}?issue=${id}#request`);
 ---
 <section class="picker" aria-labelledby="picker-h">
   <div class="wrap">
     <div class="picker-box">
       <h2 id="picker-h">{heading}</h2>
-      <p>Tap one and we'll start your request.</p>
+      <p>{t.picker.sub}</p>
       <div class="chips">
-        {ISSUES.map((i) => (
-          <a class="chip" href={href(i.value)} data-issue={i.value}><Icon name={i.icon} />{i.chip || i.label}</a>
+        {issuesFor(lang).map((i) => (
+          <a class="chip" href={link(i.id)} data-issue={i.id}><Icon name={i.icon} />{i.chip}</a>
         ))}
       </div>
     </div>

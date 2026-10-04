@@ -87,14 +87,22 @@ h3 { font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.01em; }
 .ph { background: color-mix(in srgb, var(--ph) 32%, transparent); box-shadow: inset 0 -2px 0 var(--ph); border-radius: 2px; padding-inline: 2px; color: var(--ink); }
 .ph-block { position: relative; outline: 2px dashed var(--ph); outline-offset: 4px; }
 .ph-block::after { content: "Needs confirming"; position: absolute; top: -12px; right: 10px; background: var(--ph); color: #1a1400; font: 700 10px/1 system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; padding: 4px 6px; border-radius: 3px; }
+:lang(es) .ph-block::after { content: "Falta confirmar"; }
 .preview-bar { background: #14171a; color: #e9ecef; font: 500 13px/1.35 system-ui, -apple-system, "Segoe UI", sans-serif; padding: 8px var(--gutter); text-align: center; }
 .preview-bar b { color: #ffd166; }
+
+/* Language bar: the other language, one tap away (written in that language) */
+.langbar { background: var(--accent-deep); color: #fff; font-size: .92rem; font-weight: 600; }
+.langbar-in { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 10px; min-height: 44px; }
+.langbar a { color: var(--signal); font-weight: 700; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; text-underline-offset: 3px; }
+.langbar a .ico { width: 1.05em; height: 1.05em; }
+.langbar a:focus-visible { outline-color: var(--signal); }
 
 /* Buttons */
 .btn {
   --h: 52px; display: inline-flex; align-items: center; justify-content: center; gap: .6em;
   min-height: var(--h); padding-inline: 22px; border-radius: var(--radius);
-  font: 700 1.0625rem/1.1 var(--font-body); text-decoration: none; white-space: nowrap;
+  font: 700 1.0625rem/1.1 var(--font-body); text-decoration: none; white-space: nowrap; text-align: center; text-wrap: balance;
   border: 2px solid transparent; cursor: pointer; -webkit-tap-highlight-color: transparent;
   transition: transform .12s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, color .2s ease;
 }
@@ -108,6 +116,9 @@ h3 { font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.01em; }
 .btn-light { background: #fff; color: var(--accent); }
 .btn-light:hover { background: #eef5f0; }
 .btn-lg { --h: 62px; font-size: 1.2rem; padding-inline: 26px; }
+@media (max-width: 374px) { .btn-lg { font-size: 1.12rem; padding-inline: 18px; } .cta-row .btn { white-space: normal; } }
+/* Full-width buttons in cards may wrap rather than push past the card (the phone number itself never breaks). */
+.side-card .btn, .callout .btn { white-space: normal; }
 .btn[disabled] { opacity: .75; cursor: progress; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
 .cta-row .btn { flex: 1 1 240px; }
@@ -126,6 +137,7 @@ h3 { font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.01em; }
 .mark .ico { width: 22px; height: 22px; stroke-width: 2.4; }
 .wordmark { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; letter-spacing: .02em; font-size: 1.15rem; line-height: 1; }
 .wordmark small { display: block; font: 600 .62rem/1.2 var(--font-body); letter-spacing: .16em; color: var(--muted); margin-top: 4px; }
+@media (max-width: 374px) { .hdr .wordmark small { font-size: .6rem; letter-spacing: .1em; } } /* one line on 360px phones */
 .nav { display: none; gap: 2px; }
 .nav a { text-decoration: none; font-weight: 600; font-size: .95rem; padding: 9px 12px; border-radius: 8px; color: var(--muted); transition: background-color .15s, color .15s; }
 .nav a:hover { color: var(--ink); background: var(--surface-2); }
@@ -135,6 +147,8 @@ h3 { font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.01em; }
 .icon-btn { width: 46px; height: 46px; display: grid; place-items: center; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
 .hdr-call-label { display: none; }
 @media (min-width: 1000px) { .nav { display: flex; } .menu-btn { display: none; } .hdr-call-label { display: inline; } }
+.nav a { white-space: nowrap; }
+@media (min-width: 1000px) and (max-width: 1099px) { .nav a { padding-inline: 9px; } } /* room for the longer Spanish labels */
 
 /* Mobile menu sheet */
 .sheet { position: fixed; inset: 0; z-index: 60; }
@@ -144,12 +158,15 @@ h3 { font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.01em; }
 .sheet a.navlink { display: flex; justify-content: space-between; align-items: center; font: 900 1.55rem/1.2 var(--font-display); letter-spacing: -0.01em; text-decoration: none; padding: 13px 2px; border-bottom: 1px solid var(--line); }
 .sheet a.navlink .ico { color: var(--accent); }
 .sheet .btn { margin-top: 14px; }
+.sheet a.sheet-lang { justify-self: center; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; margin-top: 4px; color: var(--accent); font-weight: 700; text-underline-offset: 3px; }
 @keyframes fade { from { opacity: 0; } }
 @keyframes drop { from { transform: translateY(-18px); opacity: 0; } }
 
 /* Hero */
 .hero { padding-block: clamp(26px, 6vw, 72px) clamp(36px, 6vw, 84px); overflow: hidden; }
 .hero-grid { display: grid; gap: clamp(28px, 5vw, 56px); align-items: center; }
+/* Grid columns never grow past the screen because of one wide item (a long button label or menu option). */
+.hero-grid > *, .page-head-grid > *, .detail-grid > *, .quote-grid > *, .area-grid > *, .split > *, .fgrid > * { min-width: 0; }
 @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.08fr .92fr; } }
 .status { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: .92rem; padding: 7px 13px 7px 11px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); }
 .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); flex: none; animation: pulse 2.4s infinite; }
@@ -370,7 +387,7 @@ h3 { font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.01em; }
 .input:hover { border-color: color-mix(in srgb, var(--ink) 40%, transparent); }
 .input:focus { outline: none; border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
 textarea.input { min-height: 96px; resize: vertical; }
-select.input { appearance: none; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 40px; }
+select.input { text-overflow: ellipsis; appearance: none; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 40px; }
 .field.invalid .input { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 4%, var(--surface)); }
 .err { color: var(--danger); font-size: .9rem; font-weight: 600; display: flex; gap: 6px; align-items: flex-start; }
 .err .ico { margin-top: 2px; width: 1.05em; height: 1.05em; }
@@ -434,6 +451,7 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
 .tip p { color: var(--muted); }
 .side-card { position: sticky; top: calc(var(--header-h) + 20px); background: var(--accent); color: #fff; border-radius: var(--radius); padding: 24px; display: grid; gap: 14px; box-shadow: inset 0 0 0 3px var(--accent), inset 0 0 0 5px rgb(255 255 255 / .9), var(--shadow); }
 .side-card .btn { width: 100%; }
+@media (max-width: 420px) { .side-card { padding: 20px; } .side-card .btn-lg { padding-inline: 16px; } }
 .side-card .side-title { font-size: 1.6rem; }
 .side-card .btn-ghost { color: #fff; border-color: rgb(255 255 255 / .55); }
 .side-card .btn-ghost:hover { background: rgb(255 255 255 / .1); border-color: #fff; }
@@ -512,5 +530,5 @@ select.input { appearance: none; background-image: linear-gradient(45deg, transp
   .sign-in::after { display: none; }
 }
 @media print {
-  .hdr, .actionbar, .final, .picker { display: none; }
+  .hdr, .langbar, .actionbar, .final, .picker { display: none; }
 }

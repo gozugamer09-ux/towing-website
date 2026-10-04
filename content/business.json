@@ -54,9 +54,9 @@
     "confirmed": true
   },
   "vehicles": {
-    "value": "Any vehicle under 20 ft",
+    "value": "Cars, SUVs, pickups, vans and motorcycles, light to heavy-duty; bigger vehicles over 20 ft (box trucks, RVs) as long as the tires fit on the truck",
     "confirmed": true,
-    "open_question": "Heavy-duty is listed too; does 'under 20 ft' apply to all jobs?"
+    "source": "Yordan, comment on the site report, 2026-10-04: 'yes so long as the tires fit on the truck'"
   },
   "quote_form": {
     "deliver_to": "Text message to +12398887001, composed on the customer's phone",
@@ -70,12 +70,18 @@
     "usdot_number": null,
     "insurance": "Insured through Progressive",
     "confirmed": true,
-    "open_question": "USDOT number to show in footer; Google rating, review count and profile link"
+    "open_question": "USDOT number to show in footer; Google rating, review count and profile link",
+    "insurer": "Progressive"
   },
   "languages": {
-    "value": null,
-    "confirmed": false,
-    "note": "Reviews and owner replies are mostly Spanish; confirm Spanish-speaking service"
+    "value": [
+      "Spanish",
+      "English"
+    ],
+    "preferred": "Spanish",
+    "confirmed": true,
+    "source": "Yordan, comment on the site report, 2026-10-04: 'yes actually spanish preferred'",
+    "note": "The site has a full Spanish version under /es/."
   },
   "reviews": {
     "file": "content/reviews.json"

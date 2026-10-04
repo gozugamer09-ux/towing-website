@@ -13,8 +13,11 @@ export function serve(root, port = 0) {
       if (p.endsWith('/')) file = path.join(file, 'index.html');
       if (!fs.existsSync(file) || fs.statSync(file).isDirectory()) {
         if (fs.existsSync(path.join(file, 'index.html'))) { res.writeHead(301, { Location: p + '/' }); return res.end(); }
+        // Like Cloudflare Pages: the closest 404.html up the folder tree (es/404.html for /es/...).
+        let dir = path.dirname(path.join(root, p.endsWith('/') ? p + 'x' : p));
+        while (!fs.existsSync(path.join(dir, '404.html')) && dir.length > root.length) dir = path.dirname(dir);
         res.writeHead(404, { 'Content-Type': TYPES['.html'] });
-        return res.end(fs.readFileSync(path.join(root, '404.html')));
+        return res.end(fs.readFileSync(path.join(dir, '404.html')));
       }
       res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
       fs.createReadStream(file).pipe(res);

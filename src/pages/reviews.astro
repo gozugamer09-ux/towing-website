@@ -1,24 +1,4 @@
 ---
-import Base from '../layouts/Base.astro';
-import Icon from '../components/Icon.astro';
-import ReviewCard from '../components/ReviewCard.astro';
-import FinalCTA from '../components/FinalCTA.astro';
-import Pending from '../components/Pending.astro';
-import { biz, tel, reviews } from '../lib/site';
+import View from '../views/Reviews.astro';
 ---
-<Base title="Customer Reviews" description={`What drivers say about ${biz.name}: ${reviews.length} Google reviews from customers in Cape Coral, Fort Myers and across Florida.`}>
-  <section class="page-head">
-    <div class="wrap">
-      <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="/">Home</a></li><li aria-current="page">Reviews</li></ol></nav>
-      <h1>What drivers say about us</h1>
-      <p class="lede">Real Google reviews from our customers. Most were written in Spanish, so each one shows our English translation with the original one tap away.</p>
-      <Pending block note="Need the Google profile link, rating and review count"><p class="rating-line">★ ?.? average from ?? Google reviews · Read and leave reviews on Google</p></Pending>
-    </div>
-  </section>
-  <section class="sec">
-    <div class="wrap">
-      <div class="reviews masonry">{reviews.map((r) => <ReviewCard r={r} />)}</div>
-    </div>
-  </section>
-  <FinalCTA title="Need us? We're up." text={`Call or text ${biz.phoneDisplay} any hour, day or night.`} />
-</Base>
+<View />

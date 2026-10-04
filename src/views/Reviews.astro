@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Pending from '../components/Pending.astro';
+import { biz, reviews } from '../lib/site';
+import { langOf, href, fill, UI } from '../lib/i18n';
+
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const COPY = {
+  en: {
+    title: 'Customer Reviews',
+    description: 'What drivers say about {name}: {n} Google reviews from customers in Cape Coral, Fort Myers and across Florida.',
+    h1: 'What drivers say about us',
+    lede: 'Real Google reviews from our customers. Most were written in Spanish, so each one shows our English translation with the original one tap away.',
+    rating: '★ ?.? average from ?? Google reviews · Read and leave reviews on Google',
+    finalTitle: "Need us? We're up.", finalText: 'Call or text {phone} any hour, day or night.',
+  },
+  es: {
+    title: 'Reseñas de Clientes',
+    description: 'Lo que dicen los conductores de {name}: {n} reseñas de Google de clientes en Cape Coral, Fort Myers y toda la Florida.',
+    h1: 'Lo que dicen de nosotros',
+    lede: 'Reseñas reales de Google, escritas por nuestros clientes con sus propias palabras.',
+    rating: '★ ?.? de promedio en ?? reseñas de Google · Leer y dejar reseñas en Google',
+    finalTitle: '¿Nos necesita? Aquí estamos.', finalText: 'Llame o escriba al {phone} a cualquier hora, de día o de noche.',
+  },
+};
+const c = COPY[lang];
+const vars = { name: biz.name, n: reviews.length, phone: biz.phoneDisplay };
+---
+<Base title={c.title} description={fill(c.description, vars)}>
+  <section class="page-head">
+    <div class="wrap">
+      <nav aria-label={t.breadcrumb}><ol class="crumbs"><li><a href={href('home', lang)}>{t.nav.home}</a></li><li aria-current="page">{t.nav.reviews}</li></ol></nav>
+      <h1>{c.h1}</h1>
+      <p class="lede">{c.lede}</p>
+      <Pending block note="Need the Google profile link, rating and review count"><p class="rating-line">{c.rating}</p></Pending>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="reviews masonry">{reviews.map((r) => <ReviewCard r={r} />)}</div>
+    </div>
+  </section>
+  <FinalCTA title={c.finalTitle} text={fill(c.finalText, vars)} />
+</Base>

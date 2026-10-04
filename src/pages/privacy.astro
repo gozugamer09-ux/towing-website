@@ -1,26 +1,4 @@
 ---
-import Base from '../layouts/Base.astro';
-import { biz, tel } from '../lib/site';
+import View from '../views/Privacy.astro';
 ---
-<Base title="Privacy" description={`How the ${biz.name} website handles your information.`}>
-  <section class="page-head">
-    <div class="wrap">
-      <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="/">Home</a></li><li aria-current="page">Privacy</li></ol></nav>
-      <h1>Privacy</h1>
-      <p class="lede">Short version: this website doesn't collect or store your personal information.</p>
-    </div>
-  </section>
-  <section class="sec">
-    <div class="wrap prose">
-      <h2>The request form</h2>
-      <p>When you use "Text my request", the website writes a text message on your own device and opens your messaging app. Nothing is sent until you press Send yourself, and the message goes straight from your phone to ours at <span class="num">{biz.phoneDisplay}</span>. The website does not save or transmit what you type.</p>
-      <p>If you tap "Use my location", your browser asks for permission first. Your location is only added to the text message so we can find you. It isn't stored by the website.</p>
-      <h2>How we use your details</h2>
-      <p>When you call, text or email us, we use your name, number, location and vehicle details only to help with your request. We don't sell your information.</p>
-      <h2>Cookies and tracking</h2>
-      <p>This website doesn't use advertising cookies or trackers.</p>
-      <h2>Questions</h2>
-      <p>Call or text <a href={tel} class="num">{biz.phoneDisplay}</a>, or email <a href={`mailto:${biz.email}`}>{biz.email}</a>.</p>
-    </div>
-  </section>
-</Base>
+<View />

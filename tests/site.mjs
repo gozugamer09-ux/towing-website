@@ -2,7 +2,8 @@
 // Usage: node tests/site.mjs [dist-preview|dist] [--shots]
 // Checks: page loads without errors, no sideways scrolling, one <h1>, title and description,
 // valid JSON-LD, every internal link resolves, every call/text link uses the company number,
-// touch targets are at least 44px on phones, axe accessibility scan, and the request journey.
+// touch targets are at least 44px on phones, axe accessibility scan, page language and the
+// language switch (English at /, Spanish under /es/), and the request journey in both languages.
 import { chromium } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import fs from 'node:fs';
@@ -48,23 +49,29 @@ for (const path of pages) {
     const res = await page.goto(url + path, { waitUntil: 'networkidle' });
     if (res.status() !== 200) fail(`${name}: HTTP ${res.status()}`);
     await page.waitForTimeout(300);
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+    // Compare with the intended width: phone emulation widens innerWidth to fit content that overflows.
+    const overflow = await page.evaluate((width) => document.documentElement.scrollWidth - width, w);
     if (overflow > 0) fail(`${name}: page scrolls sideways by ${overflow}px`);
     if (errors.length) fail(`${name}: errors ${JSON.stringify(errors)}`);
 
     if (name === 'phone') {
       const info = await page.evaluate(() => ({
         h1: document.querySelectorAll('h1').length,
+        lang: document.documentElement.lang,
+        switchTo: document.querySelector('.langbar a')?.getAttribute('href'),
         title: document.title,
         desc: document.querySelector('meta[name=description]')?.content || '',
         ld: [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent),
         links: [...document.querySelectorAll('a[href]')].map((a) => a.getAttribute('href')),
-        small: [...document.querySelectorAll('.btn, .chip, .icon-btn, .loc-btn, .faq summary, .nav a, .navlink')]
+        small: [...document.querySelectorAll('.btn, .chip, .icon-btn, .loc-btn, .faq summary, .nav a, .navlink, .langbar a')]
           .filter((el) => el.offsetParent !== null)
           .map((el) => ({ t: (el.textContent || el.getAttribute('aria-label') || '').trim().slice(0, 30), h: el.getBoundingClientRect().height, w: el.getBoundingClientRect().width }))
           .filter((r) => r.h < 44 || r.w < 44),
       }));
       if (info.h1 !== 1) fail(`expected one h1, found ${info.h1}`);
+      const es = path.startsWith('/es/');
+      if (info.lang !== (es ? 'es' : 'en')) fail(`page language is "${info.lang}"`);
+      if (!info.switchTo || info.switchTo.startsWith('/es/') === es) fail(`language switch goes to ${info.switchTo}`);
       if (!info.title || !info.desc) fail('missing title or description');
       if (titles.has(info.title)) fail(`duplicate title with ${titles.get(info.title)}`); else titles.set(info.title, path);
       for (const s of info.ld) { try { JSON.parse(s); } catch { fail('invalid JSON-LD'); } }
@@ -103,7 +110,9 @@ console.log('internal links');
     if (r.status() !== 200) fail(`link ${l} -> HTTP ${r.status()}`);
   }
   const missing = await ctx.request.get(url + '/no-such-page/');
-  if (missing.status() !== 404) fail('unknown page should return 404');
+  if (missing.status() !== 404 || !(await missing.text()).includes('<html lang="en"')) fail('unknown page should return the English 404');
+  const missingEs = await ctx.request.get(url + '/es/no-existe/');
+  if (missingEs.status() !== 404 || !(await missingEs.text()).includes('<html lang="es"')) fail('unknown Spanish page should return the Spanish 404');
   pass(`${linkTargets.size} internal link targets checked`);
   await ctx.close();
 }
@@ -121,7 +130,7 @@ console.log('request journey (phone)');
   ok(!(await p.$eval('#actionbar', (e) => e.classList.contains('away'))), 'action bar appears after scrolling past the hero');
   await p.tap('[data-menu-open]'); ok(await p.isVisible('#sheet'), 'menu opens');
   await p.keyboard.press('Escape'); ok(!(await p.isVisible('#sheet')), 'Escape closes the menu');
-  await p.tap('.chip[data-issue="Flat tire"]'); await p.waitForTimeout(900);
+  await p.tap('.chip[data-issue="flat-tire"]'); await p.waitForTimeout(900);
   ok((await p.$eval('#rf-issue', (e) => e.value)) === 'Flat tire', 'quick-pick fills in what happened');
   ok((await p.evaluate(() => document.activeElement.id)) === 'rf-loc', 'focus moves to the location field');
   ok(await p.$eval('#actionbar', (e) => e.classList.contains('away')), 'action bar hides while the form is on screen');
@@ -154,11 +163,37 @@ console.log('request journey (phone)');
   const ctx2 = await browser.newContext({ viewport: { width: 390, height: 844 } });
   const p2 = await ctx2.newPage();
   await p2.addInitScript(() => { navigator.geolocation.getCurrentPosition = (s, e) => e({ code: 1 }); });
-  await p2.goto(url + '/request/?issue=Accident', { waitUntil: 'networkidle' });
+  await p2.goto(url + '/request/?issue=accident', { waitUntil: 'networkidle' });
   ok((await p2.$eval('#rf-issue', (e) => e.value)) === 'Accident', 'links from other pages preselect what happened');
   await p2.click('#rf-locbtn'); await p2.waitForTimeout(300);
   ok((await p2.textContent('#rf-lochint')).includes("Couldn't"), 'denied location explains what to type instead');
   await ctx2.close();
+}
+
+console.log('request journey in Spanish (phone)');
+{
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true, geolocation: { latitude: 26.5629, longitude: -81.9495 }, permissions: ['geolocation'] });
+  const p = await ctx.newPage();
+  const errors = [];
+  p.on('pageerror', (e) => errors.push(e.message));
+  const ok = (c, m) => (c ? pass(m) : fail(m));
+  await p.goto(url + '/es/', { waitUntil: 'networkidle' });
+  await p.tap('.chip[data-issue="flat-tire"]'); await p.waitForTimeout(900);
+  ok((await p.$eval('#rf-issue', (e) => e.value)) === 'Goma ponchada', 'quick-pick fills in what happened, in Spanish');
+  await p.click('#rf-submit'); await p.waitForTimeout(200);
+  ok((await p.textContent('#rf-errors')).includes('Corrija estos 3 datos'), 'the list of what to fix is in Spanish');
+  await p.click('#rf-locbtn'); await p.waitForTimeout(600);
+  ok((await p.textContent('#rf-lochint')).includes('Ubicación agregada'), 'location message is in Spanish');
+  await p.fill('#rf-name', 'Prueba'); await p.fill('#rf-phone', '2395550199');
+  await p.click('#rf-submit'); await p.waitForTimeout(1400);
+  const msg = await p.textContent('#rf-msg');
+  ok(msg.startsWith('Solicitud de grúa') && msg.includes('Qué pasó: Goma ponchada') && msg.includes('Mapa: https://maps.google.com/?q=26.56290,-81.94950'), 'the text is written in Spanish with the map pin');
+  ok((await p.getAttribute('#rf-sms', 'href')).startsWith('sms:+12398887001?&body='), 'Messages link is addressed to (239) 888-7001');
+  ok(decodeURIComponent(await p.getAttribute('#rf-mail', 'href')).includes('subject=Solicitud de grúa: Goma ponchada'), 'email fallback subject is in Spanish');
+  ok(!errors.length, `no script errors during the Spanish journey ${errors.join(' ')}`);
+  await p.goto(url + '/es/pedir-grua/?issue=accident', { waitUntil: 'networkidle' });
+  ok((await p.$eval('#rf-issue', (e) => e.value)) === 'Accidente', 'links from Spanish pages preselect what happened');
+  await ctx.close();
 }
 
 console.log('keyboard (desktop)');

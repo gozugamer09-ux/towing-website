@@ -4,6 +4,9 @@
 // Two label sets: the full set for wide maps, and a larger, sparser set for phone-width maps
 // (switched with a container query in global.css, so the labels stay readable).
 import fl from '../data/florida.json';
+import { biz } from '../lib/site';
+import { langOf, fill, UI } from '../lib/i18n';
+const { map } = UI[langOf(Astro.url)];
 const c = fl.cities;
 const base = [(c['Cape Coral'][0] + c['Fort Myers'][0]) / 2, (c['Cape Coral'][1] + c['Fort Myers'][1]) / 2];
 const destinations = ['Tampa', 'Orlando', 'Miami', 'Jacksonville', 'Tallahassee', 'Pensacola', 'West Palm Beach', 'Sarasota', 'Naples'];
@@ -33,8 +36,8 @@ const { caption = true } = Astro.props;
 ---
 <figure class="fl-map" data-map>
   <svg viewBox={fl.viewBox} role="img" aria-labelledby="fl-title fl-desc">
-    <title id="fl-title">Alejos Towing service area</title>
-    <desc id="fl-desc">Map of Florida. The main area is Lee County, around Cape Coral and Fort Myers. Routes reach Tampa, Orlando, Miami, Jacksonville, Tallahassee, Pensacola and the rest of the state.</desc>
+    <title id="fl-title">{fill(map.title, { name: biz.name })}</title>
+    <desc id="fl-desc">{map.desc}</desc>
     <path class="fl-state" d={fl.state} />
     <path class="fl-lee" d={fl.lee} />
     {destinations.map((d) => <path class="fl-route" d={curve(c[d])} />)}
@@ -53,9 +56,9 @@ const { caption = true } = Astro.props;
   </svg>
   {caption && (
     <figcaption class="fl-legend">
-      <span><i class="lg-lee"></i>Lee County, our main area</span>
-      <span><i class="lg-base"></i>Cape Coral &amp; Fort Myers</span>
-      <span><i class="lg-route"></i>Long-distance, anywhere in Florida</span>
+      <span><i class="lg-lee"></i>{map.legend[0]}</span>
+      <span><i class="lg-base"></i>{map.legend[1]}</span>
+      <span><i class="lg-route"></i>{map.legend[2]}</span>
     </figcaption>
   )}
 </figure>

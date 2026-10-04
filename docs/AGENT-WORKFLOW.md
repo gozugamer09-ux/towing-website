@@ -11,15 +11,17 @@ A task is one clear outcome, written as:
 ## 2. Information
 - Business facts: `content/business.json` (only `confirmed: true` values may appear on the live site).
 - Design rules: `docs/DESIGN.md`.
-- Page text that isn't a business fact: `content/services.json`, `content/faq.json`, `content/reviews.json`, and the page files in `src/pages/`.
+- Page text that isn't a business fact: `content/services.json`, `content/faq.json`, `content/reviews.json` (each with its Spanish in `"es"`), and the page views in `src/views/`, which hold each page's English and Spanish wording side by side. `src/pages/` only maps addresses to views (English at `/`, Spanish under `/es/`).
+- The site is bilingual: a wording change is done in English and Spanish together (rules in `docs/DESIGN.md`, "Two languages").
 - Tools and costs: `TOOLS.md`.
 
 ## 3. Change and test
 Work on a branch. Before anything is published, run:
 
 ```sh
-npm run check            # both builds; every page at 360/390/820/1440px: errors, layout, links,
-                         # call/text numbers, touch targets, axe; the request journey; HTML validity
+npm run check            # both builds; every page in both languages at 360/390/820/1440px: errors,
+                         # layout, links, page language, call/text numbers, touch targets, axe;
+                         # the request journey in English and Spanish; HTML validity
 npm test -- --shots      # screenshots of the preview build in screenshots/site/
 ```
 

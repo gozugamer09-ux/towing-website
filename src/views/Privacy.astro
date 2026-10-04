@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import { biz, tel } from '../lib/site';
+import { langOf, href, fill, UI } from '../lib/i18n';
+
+const lang = langOf(Astro.url);
+const t = UI[lang];
+// {phone} and {email} become links or numbers below.
+const COPY = {
+  en: {
+    title: 'Privacy', description: 'How the {name} website handles your information.',
+    lede: "Short version: this website doesn't collect or store your personal information.",
+    sections: [
+      ['The request form', [
+        'When you use "Text my request", the website writes a text message on your own device and opens your messaging app. Nothing is sent until you press Send yourself, and the message goes straight from your phone to ours at {phone}. The website does not save or transmit what you type.',
+        'If you tap "Use my location", your browser asks for permission first. Your location is only added to the text message so we can find you. It isn\'t stored by the website.',
+      ]],
+      ['How we use your details', ["When you call, text or email us, we use your name, number, location and vehicle details only to help with your request. We don't sell your information."]],
+      ['Cookies and tracking', ["This website doesn't use advertising cookies or trackers."]],
+      ['Questions', ['Call or text {tel}, or email {email}.']],
+    ],
+  },
+  es: {
+    title: 'Privacidad', description: 'Cómo maneja su información la página web de {name}.',
+    lede: 'En resumen: esta página web no recopila ni guarda su información personal.',
+    sections: [
+      ['El formulario de solicitud', [
+        'Cuando usa "Enviar por texto", la página escribe un mensaje de texto en su propio teléfono y abre su aplicación de mensajes. No se envía nada hasta que usted mismo presiona Enviar, y el mensaje va directo de su teléfono al nuestro, al {phone}. La página no guarda ni transmite lo que usted escribe.',
+        'Si toca "Usar mi ubicación", su navegador le pide permiso primero. Su ubicación solo se agrega al mensaje de texto para que podamos encontrarlo. La página no la guarda.',
+      ]],
+      ['Cómo usamos sus datos', ['Cuando nos llama, nos escribe o nos manda un correo, usamos su nombre, número, ubicación y datos del vehículo solo para atender su solicitud. No vendemos su información.']],
+      ['Cookies y rastreo', ['Esta página no usa cookies de publicidad ni rastreadores.']],
+      ['Preguntas', ['Llame o escriba al {tel}, o mande un correo a {email}.']],
+    ],
+  },
+};
+const c = COPY[lang];
+const vars = {
+  phone: `<span class="num">${biz.phoneDisplay}</span>`,
+  tel: `<a href="${tel}" class="num">${biz.phoneDisplay}</a>`,
+  email: `<a href="mailto:${biz.email}">${biz.email}</a>`,
+};
+---
+<Base title={c.title} description={fill(c.description, { name: biz.name })}>
+  <section class="page-head">
+    <div class="wrap">
+      <nav aria-label={t.breadcrumb}><ol class="crumbs"><li><a href={href('home', lang)}>{t.nav.home}</a></li><li aria-current="page">{t.nav.privacy}</li></ol></nav>
+      <h1>{c.title}</h1>
+      <p class="lede">{c.lede}</p>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap prose">
+      {c.sections.map(([h, ps]) => <><h2>{h}</h2>{ps.map((p) => <p set:html={fill(p, vars)} />)}</>)}
+    </div>
+  </section>
+</Base>
