@@ -1,46 +1,60 @@
 # Alejos Towing website: tools record
 
-Last updated 2026-10-03 (evening). Costs are in USD and were checked from general knowledge, not from live price pages; I re-check each one before anything is bought.
+Last updated 2026-10-04. Costs are in USD and come from general knowledge, not live price pages; each one gets re-checked with Yordan before anything is bought.
 
-## 1. Development tools (installed and tested in Claude's build environment)
+## 1. Development tools (installed and tested in the build environment)
 
-These live only in the development environment. None of them is shipped to website visitors. All free.
+None of these is sent to website visitors. All free and open source.
 
 | Tool | Purpose | Status |
 |---|---|---|
-| Node 22, npm, Python 3, git | Build scripts, version control | Pre-installed, working |
-| Playwright 1.56 + Chromium | Drives a real browser: screenshots at phone (390px), tablet (820px) and desktop (1440px), touch and keyboard tests, the full request-a-tow journey | Installed, tested |
-| axe-core (@axe-core/playwright) | Automated WCAG accessibility checks, including color contrast | Installed, tested: 0 violations across all 3 directions |
-| Lighthouse | Performance, accessibility, SEO and best-practice scores on a throttled mobile profile | Installed, tested (preview: perf 89, a11y 100, best practices 96, SEO 90) |
-| sharp | Image resizing, cropping, AVIF/WebP conversion for photos | Installed, tested on screenshots |
-| html-validate | HTML correctness checks | Installed, not yet run |
-| Design skills in this environment (accessibility review, design critique, design system, UX copy, SEO audit) | Structured review passes | Available, used as checklists |
+| Node 22, npm, git | Build scripts, version history | Working |
+| Astro 7.3 (+ @astrojs/sitemap) | Builds the site into plain HTML and CSS, with almost no JavaScript | In use; 16 pages build in about 1.5 seconds |
+| Playwright 1.56 + Chromium | Real-browser checks of every page at 360, 390, 820 and 1440px wide, the request journey, keyboard use, screenshots | In use (`npm test`) |
+| axe-core | Accessibility scan (WCAG), including color contrast | 0 problems on all 16 pages, phone and desktop |
+| Lighthouse 12 | Speed, accessibility, best practices and search basics on a simulated slow phone connection | Production build, 2026-10-04: home 99/100/100/100, towing page 100/100/100/100, request page 100/100/100/100 |
+| html-validate | HTML correctness | 0 errors on every page (one rule switched off in `.htmlvalidate.json`: phone numbers are kept on one line with CSS instead) |
+| sharp | Makes the icons and the link-preview image; will resize real photos | In use (`npm run icons`) |
+| us-atlas, topojson-client, d3-geo | Draw the Florida service-area map from US Census boundaries | Used once to generate `src/data/florida.json` (`npm run map`) |
 
-Planned for the real site build (free, installed once the repository exists): **Astro** static site framework (fast pages, no visitor-side framework weight), self-hosted fonts via **Fontsource**, **Lucide** icons (only the icons used are shipped).
+## 2. What visitors download
 
-## 2. Integrations (need an account, permission, or money)
+| Item | Size | Notes |
+|---|---|---|
+| Page HTML (includes all CSS, the icon set and the map) | Home page about 20KB compressed; other pages about 14KB | One request per page, nothing blocks the first paint |
+| Fonts: Overpass and Public Sans (Fontsource, open font license) | 39KB + 27KB, cached after the first page | Self-hosted, preloaded, with size-matched fallbacks |
+| JavaScript | About 5KB for the request form, plus a small inline script for the menu and phone action bar | No framework |
+| Third parties | None | No trackers, no cookies, no ads, no outside requests |
+
+## 3. Integrations (need an account, permission, or money)
 
 | Service | Purpose | Cost | Status |
 |---|---|---|---|
-| GitHub repository | Version history, backups, deploys | Free | **Waiting on Yordan** to create an empty repo |
-| Cloudflare Pages (recommended host) | Hosting, HTTPS, global CDN, preview links per change | Free tier | Needs Yordan's free Cloudflare account |
-| Domain name | e.g. alejostowing.com | About $10–15 per year | Not bought. Needs Yordan's decision |
-| Request form delivery | Opens a text message to (239) 888-7001 on the customer's own phone, with every detail and a GPS map link filled in | Free, no service needed | **Built and tested** (Yordan chose "straight to the company phone") |
-| Email copy of each request (optional) | Backup copy to alejostowing85@gmail.com | Free tiers exist (e.g. Web3Forms, Resend) | Not set up. Only if Yordan wants it |
-| Cloudflare Web Analytics | Visitor counts, no cookies, no banner needed | Free | Not set up |
-| Google Business Profile + Search Console | Shows up on Google Maps and search, reviews | Free | Needs Yordan's Google account |
-| Map | Service-area map | Free with OpenStreetMap/MapLibre; Google Maps API needs a billing account | Not chosen yet |
+| GitHub repository `gozugamer09-ux/towing-website` | Version history, backups, source for deploys | Free | Created by Yordan. The site is on branch `site/highway`, waiting for his approval to go to `main` |
+| Cloudflare Pages (recommended host) | Hosting, HTTPS, global CDN, a private preview link for every change, one-click rollback | Free tier | Needs Yordan's free Cloudflare account. Cache and security headers are ready in `public/_headers` |
+| Domain name (e.g. alejostowing.com) | The site's address | About $10–15 per year | Not bought. Needs Yordan's decision |
+| Request form | Opens a text to (239) 888-7001 on the customer's own phone, with every detail and an optional GPS map link | Free, no service | Built and tested in a browser; still needs one real test from a phone |
+| Email copy of each request (optional) | Backup copy to alejostowing85@gmail.com | Free tiers exist (e.g. Web3Forms) | Not set up. Only if Yordan wants it |
+| Cloudflare Web Analytics | Visitor counts without cookies or a consent banner | Free | Not set up; comes with the Cloudflare account |
+| Google Business Profile, Search Console | Google rating and review count for the site; search visibility | Free | Need Yordan's profile link (and the domain, for Search Console) |
+| Service-area map | Florida map with routes | Free | Done, built into the page; no Google Maps account or API key needed |
 
-**Connectors that failed to connect in this environment** (so not usable yet): Figma, Canva, Notion, Slack and several others returned a network-policy error. None is required; Figma or Canva would only matter if Yordan has brand files there.
+Connectors that failed to connect in this environment (Figma, Canva, Notion, Slack and others returned a network-policy error) are not needed for the site.
 
-## 3. Generated artifacts
+## 4. Generated artifacts
 
 | Artifact | Where |
 |---|---|
-| Homepage preview with 3 visual directions | https://claude.ai/artifact/CkV5aZ9LEXGV7aa7288KTg · source `website/preview/alejos-preview.html` |
-| Test scripts (screenshots, accessibility, customer journey) | `website/preview/*.mjs` |
-| Screenshots | `website/screenshots/` |
+| Clickable preview of the full site | https://claude.ai/artifact/CkV5aZ9LEXGV7aa7288KTg (earlier versions showed the three design directions) |
+| Screenshots of every page and size | `screenshots/site/` after `npm test -- --shots` (not stored in git) |
+| Design-direction preview | `design/preview/alejos-preview.html` |
+
+## 5. Running the site long term
+
+- **Hosting:** static files on Cloudflare Pages. No server, database or AI session to keep alive; the site stays up on its own.
+- **Yearly:** domain renewal (set to auto-renew).
+- **Optional, later:** a scheduled check that runs the test suite against the live site and reports problems, and the Friday connection described in `docs/AGENT-WORKFLOW.md`.
 
 ## Credentials rule
 
-API keys and passwords go in the hosting provider's encrypted environment settings, never in the repository or the website's public files.
+API keys and passwords go in the hosting provider's encrypted settings, never in the repository or the website's public files. The site currently needs none.

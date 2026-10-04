@@ -8,9 +8,9 @@ import { biz, tel, faqGroups } from '../lib/site';
 <Base title="Questions & Answers" description={`Answers about ${biz.name}: arrival times, prices, payment (card, cash, Zelle), where we tow and which vehicles we handle.`}>
   <section class="page-head">
     <div class="wrap">
-      <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li aria-current="page">FAQ</li></ol>
+      <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="/">Home</a></li><li aria-current="page">FAQ</li></ol></nav>
       <h1>Questions and answers</h1>
-      <p class="lede">Can't find your answer? Call or text <a href={tel} class="num" style="color:var(--ink);font-weight:700">{biz.phoneDisplay}</a>. Someone picks up 24/7.</p>
+      <p class="lede">Can't find your answer? Call or text <a href={tel} class="num strong-link">{biz.phoneDisplay}</a>. Someone picks up 24/7.</p>
     </div>
   </section>
   <section class="sec">

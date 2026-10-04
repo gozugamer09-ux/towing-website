@@ -9,25 +9,17 @@ const { heading = 'Send your request by text.', headingLevel = 2 } = Astro.props
 const H = `h${headingLevel}`;
 ---
 <div class="quote-grid" id="request">
-  <div style="display:grid;gap:22px;align-content:start">
-    <div class="sec-head" style="margin:0">
-      <span class="plate">Request a tow</span>
-      <H id="request-h">{heading}</H>
-      <p class="lede">Fill this in and your phone opens a text to {biz.name} with everything written out. Press Send and we'll get right back to you.</p>
-    </div>
-    <ul class="next-steps">
-      <li><Icon name="msg" /><span>Your request goes to <b class="num">{biz.phoneDisplay}</b> as a normal text from your phone.</span></li>
-      <li><Icon name="locate" /><span>Tap <b>Use my location</b> and we get a map pin, so we find you fast.</span></li>
-      <li><Icon name="clock" /><span>We answer 24 hours a day, 7 days a week.</span></li>
-    </ul>
-    <div class="callout">
-      <b class="display" style="font-size:1.5rem">In a dangerous spot?</b>
-      <p>Call instead. It's faster, and we can stay on the line. If anyone is hurt, call 911 first.</p>
-      <a class="btn btn-light btn-lg" href={tel} data-track="call-form"><Icon name="phone" />Call <span class="num">{biz.phoneDisplay}</span></a>
-    </div>
+  <div class="sec-head q-head">
+    <span class="plate">Request a tow</span>
+    <H id="request-h">{heading}</H>
+    <p class="lede">Fill this in and your phone opens a text to {biz.name} with everything written out. Press Send and we'll get right back to you.</p>
   </div>
-
-  <div class="form-card">
+  <div class="callout q-danger">
+    <b class="display">In a dangerous spot?</b>
+    <p>Call instead. It's faster, and we can stay on the line. If anyone is hurt, call 911 first.</p>
+    <a class="btn btn-light btn-lg" href={tel} data-track="call-form"><Icon name="phone" />Call <span class="num">{biz.phoneDisplay}</span></a>
+  </div>
+  <div class="form-card q-form">
     <form id="rf" novalidate aria-labelledby="request-h" data-sms={biz.sms} data-email={biz.email} data-phone-display={biz.phoneDisplay}>
       <div class="err-summary" id="rf-errors" tabindex="-1" role="alert" hidden></div>
       <div class="fgrid">
@@ -42,14 +34,14 @@ const H = `h${headingLevel}`;
         <div class="field full">
           <label for="rf-loc">Where is the vehicle?</label>
           <div class="loc-row">
-            <input class="input" id="rf-loc" name="location" autocomplete="street-address" placeholder="Address, cross streets, or highway and exit" required />
-            <button class="loc-btn" type="button" id="rf-locbtn" aria-label="Use my location" aria-describedby="rf-lochint"><Icon name="locate" /><span>Use my location</span></button>
+            <input class="input" id="rf-loc" name="location" type="text" autocomplete="off" placeholder="Address or cross streets" required />
+            <button class="loc-btn" type="button" id="rf-locbtn" aria-describedby="rf-lochint"><Icon name="locate" /><span>Use my location</span></button>
           </div>
           <p class="hint" id="rf-lochint" aria-live="polite">On a highway? The nearest exit or mile marker is perfect.</p>
         </div>
         <div class="field">
           <label for="rf-name">Your name</label>
-          <input class="input" id="rf-name" name="name" autocomplete="name" required />
+          <input class="input" id="rf-name" name="name" type="text" autocomplete="name" required />
         </div>
         <div class="field">
           <label for="rf-phone">Phone number</label>
@@ -57,11 +49,11 @@ const H = `h${headingLevel}`;
         </div>
         <div class="field">
           <label for="rf-vehicle">Vehicle <span class="opt">(optional)</span></label>
-          <input class="input" id="rf-vehicle" name="vehicle" placeholder="e.g. 2016 Honda Civic" />
+          <input class="input" id="rf-vehicle" name="vehicle" type="text" placeholder="e.g. 2016 Honda Civic" />
         </div>
         <div class="field">
           <label for="rf-dest">Where should it go? <span class="opt">(optional)</span></label>
-          <input class="input" id="rf-dest" name="destination" placeholder="Home, a shop, or not sure" />
+          <input class="input" id="rf-dest" name="destination" type="text" placeholder="Home, a shop, or not sure" />
         </div>
         <div class="field full">
           <label for="rf-notes">Anything else? <span class="opt">(optional)</span></label>
@@ -87,6 +79,11 @@ const H = `h${headingLevel}`;
       <button class="linkish" type="button" id="rf-new">Start a new request</button>
     </div>
   </div>
+  <ul class="next-steps q-notes">
+    <li><Icon name="msg" /><span>Your request goes to <b class="num">{biz.phoneDisplay}</b> as a normal text from your phone.</span></li>
+    <li><Icon name="locate" /><span>Tap <b>Use my location</b> and we get a map pin, so we find you fast.</span></li>
+    <li><Icon name="clock" /><span>We answer 24 hours a day, 7 days a week.</span></li>
+  </ul>
 </div>
 
 <script>

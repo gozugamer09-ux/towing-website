@@ -21,13 +21,19 @@ export const biz = {
   payment: business.payment.value,
 };
 
+// "card, cash and Zelle": payment methods as they read mid-sentence.
+export const paymentText = biz.payment
+  .map((p) => (p === 'Zelle' ? p : p.toLowerCase()))
+  .join(', ').replace(/, ([^,]*)$/, ' and $1');
+
 export const tel = `tel:${biz.phone}`;
 export const sms = (body) => `sms:${biz.sms}${body ? `?&body=${encodeURIComponent(body)}` : ''}`;
 
 export const services = servicesData.services;
 export const serviceBySlug = Object.fromEntries(services.map((s) => [s.slug, s]));
 
-export const reviews = reviewsData.reviews;
+// Reviews waiting on Yordan's confirmation only appear in preview builds.
+export const reviews = reviewsData.reviews.filter((r) => PREVIEW || !r.pending);
 export const featuredReviews = reviewsData.featured.map((id) => reviews.find((r) => r.id === id));
 
 // FAQ items: pending answers only appear in preview builds.

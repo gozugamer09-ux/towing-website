@@ -13,9 +13,9 @@ const current = (href) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
 <header class="hdr">
   <div class="wrap hdr-in">
-    <a class="brand" href="/" aria-label={`${biz.name} home`}>
+    <a class="brand" href="/">
       <span class="mark" aria-hidden="true"><Icon name="hook" /></span>
-      <span class="wordmark">{biz.name}<small>Towing &amp; roadside · 24/7</small></span>
+      <span class="wordmark">{biz.name}<small aria-hidden="true">Towing &amp; roadside · 24/7</small></span>
     </a>
     <nav class="nav" aria-label="Main">
       {links.map((l) => <a href={l.href} aria-current={current(l.href) ? 'page' : undefined}>{l.label}</a>)}

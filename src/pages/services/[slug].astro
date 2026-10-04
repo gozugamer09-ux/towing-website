@@ -2,9 +2,10 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
+import ServiceSign from '../../components/ServiceSign.astro';
 import FAQList from '../../components/FAQList.astro';
 import FinalCTA from '../../components/FinalCTA.astro';
-import { biz, tel, services, PREVIEW } from '../../lib/site';
+import { biz, tel, services, paymentText, PREVIEW } from '../../lib/site';
 
 export function getStaticPaths() {
   return services.map((s) => ({ params: { slug: s.slug }, props: { s } }));
@@ -32,21 +33,24 @@ const schema = [
 ---
 <Base requestHref={requestHref} title={s.seoTitle} description={`${s.intro} 24/7 in Cape Coral, Fort Myers and across Florida. Call or text ${biz.phoneDisplay}.`} schema={schema}>
   <section class="page-head">
-    <div class="wrap">
-      <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li><a href="/services/">Services</a></li><li aria-current="page">{s.nav}</li></ol>
-      <h1>{s.title}</h1>
-      <p class="lede">{s.intro}</p>
-      <div class="cta-row" data-hide-bar>
-        <a class="btn btn-call btn-lg" href={tel} data-track={`call-${s.slug}`}><Icon name="phone" />Call <span class="num">{biz.phoneDisplay}</span></a>
-        <a class="btn btn-ghost btn-lg" href={requestHref}>Request a tow<Icon name="arrow" /></a>
+    <div class="wrap page-head-grid">
+      <div>
+        <nav aria-label="Breadcrumb"><ol class="crumbs"><li><a href="/">Home</a></li><li><a href="/services/">Services</a></li><li aria-current="page">{s.nav}</li></ol></nav>
+        <h1>{s.title}</h1>
+        <p class="lede">{s.intro}</p>
+        <div class="cta-row" data-hide-bar>
+          <a class="btn btn-call btn-lg" href={tel} data-track={`call-${s.slug}`}><Icon name="phone" />Call <span class="num">{biz.phoneDisplay}</span></a>
+          <a class="btn btn-ghost btn-lg" href={requestHref}>Request a tow<Icon name="arrow" /></a>
+        </div>
       </div>
+      <ServiceSign s={s} />
     </div>
   </section>
 
   <section class="sec">
     <div class="wrap detail-grid">
       <div>
-        <h2 style="font-size:clamp(1.6rem,3.6vw,2.2rem);margin-bottom:20px">What we handle</h2>
+        <h2 class="h-sub spaced">What we handle</h2>
         <ul class="checks">
           {s.includes.map((x) => <li><Icon name="check" /><span>{x}</span></li>)}
           {s.slug === 'towing' && PREVIEW && <li><Icon name="check" /><span class="ph" title="Does this apply to heavy-duty jobs too?">Any vehicle under 20 feet</span></li>}
@@ -55,21 +59,21 @@ const schema = [
           {s.goodToKnow.map((t) => <div class="tip"><h3>{t.title}</h3><p>{t.text}</p></div>)}
         </div>
         {s.faq.length > 0 && (
-          <div style="margin-top:44px">
-            <h2 style="font-size:clamp(1.6rem,3.6vw,2.2rem);margin-bottom:20px">Questions about {s.nav.toLowerCase()}</h2>
+          <div class="detail-faq">
+            <h2 class="h-sub spaced">Questions about {s.nav.toLowerCase()}</h2>
             <FAQList items={s.faq} />
           </div>
         )}
       </div>
       <aside class="side-card" aria-label={`Get ${s.nav.toLowerCase()} now`}>
-        <b class="display" style="font-size:1.6rem">Need {s.nav.toLowerCase()} now?</b>
+        <b class="display side-title">Need {s.nav.toLowerCase()} now?</b>
         <ul>
           <li><Icon name="clock" />24 hours, 7 days</li>
           <li><Icon name="pin" />Cape Coral, Fort Myers &amp; all of Florida</li>
-          <li><Icon name="card" />Card, cash or Zelle</li>
+          <li><Icon name="card" />We accept {paymentText}</li>
         </ul>
         <a class="btn btn-light btn-lg" href={tel} data-track={`call-side-${s.slug}`}><Icon name="phone" />Call <span class="num">{biz.phoneDisplay}</span></a>
-        <a class="btn btn-ghost" style="color:#fff;border-color:rgb(255 255 255 / .55)" href={requestHref}>Send a request by text</a>
+        <a class="btn btn-ghost" href={requestHref}>Send a request by text</a>
       </aside>
     </div>
   </section>

@@ -12,7 +12,10 @@ const root = process.argv[2] && !process.argv[2].startsWith('--') ? process.argv
 const SHOTS = process.argv.includes('--shots');
 const TEL = 'tel:+12398887001', SMS = 'sms:+12398887001';
 const { server, url } = await serve(root);
-const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+// Use CHROME_PATH or the build environment's Chromium when present; otherwise Playwright's own browser (CI).
+const LOCAL_CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
+const executablePath = process.env.CHROME_PATH || (fs.existsSync(LOCAL_CHROME) ? LOCAL_CHROME : undefined);
+const browser = await chromium.launch({ executablePath });
 
 const pages = [];
 (function walk(dir, base = '') {
@@ -78,7 +81,15 @@ for (const path of pages) {
     }
     if (SHOTS && name !== 'small') {
       const slug = path === '/' ? 'home' : path.replace(/^\/|\/$/g, '').replace(/\//g, '_');
-      await page.screenshot({ path: `screenshots/site/${slug}-${name}.png`, fullPage: true });
+      // animations: 'disabled' shows entrance animations in their settled state. (A full-page capture
+      // briefly resizes the page, which would otherwise restart the service-page sign's drop-in.)
+      if (name === 'phone') {
+        // What a visitor sees on arrival.
+        await page.screenshot({ path: `screenshots/site/${slug}-phone-first.png`, animations: 'disabled' });
+      }
+      // The fixed action bar would be drawn mid-page in a full-page capture, so leave it out there.
+      await page.addStyleTag({ content: '#actionbar { visibility: hidden !important; }' });
+      await page.screenshot({ path: `screenshots/site/${slug}-${name}.png`, fullPage: true, animations: 'disabled' });
     }
     await ctx.close();
   }

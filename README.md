@@ -1,15 +1,38 @@
 # Alejos Towing website
 
-Source for the Alejos Towing website: design, content, tests and maintenance docs.
+The website for Alejos Towing (24/7 towing and roadside help, Cape Coral and Fort Myers, anywhere in Florida). A static site built with [Astro](https://astro.build): fast pages, almost no JavaScript, and nothing that needs a server or an AI session to keep running.
+
+## Where things are
 
 | Path | What it is |
 |---|---|
-| `content/business.json` | Single source of truth for business facts. Only `confirmed: true` values may go live. |
-| `design/preview/` | Design-direction preview (three switchable directions). |
-| `tests/` | Playwright screenshots, axe accessibility checks, customer-journey test. |
-| `docs/AGENT-WORKFLOW.md` | How tasks are received, tested, published, reported and rolled back (built for a future Friday connection). |
-| `TOOLS.md` | Tools, integrations and costs. |
+| `content/business.json` | Single source of business facts. Each fact says whether Yordan confirmed it. |
+| `content/services.json`, `faq.json`, `reviews.json` | Service pages, questions and answers, Google reviews (original text plus labeled translation). |
+| `src/pages/` | One file per page (home, services, service area, reviews, request, FAQ, privacy, 404). |
+| `src/components/` | Reusable parts: header, footer, hero sign, request form, map, cards. |
+| `src/styles/global.css` | The whole design system (colors, type, components). Rules in `docs/DESIGN.md`. |
+| `public/` | Icons, share image, web manifest. Regenerate with `npm run icons`. |
+| `scripts/` | Generators for the Florida map data and the icons. Development only. |
+| `tests/site.mjs` | Checks every page at phone, tablet and desktop sizes, plus the request journey. |
+| `docs/AGENT-WORKFLOW.md` | How a change is requested, tested, published, reported and rolled back (ready for Friday). |
+| `docs/DESIGN.md` | Design rules for the "Highway" look. |
+| `TOOLS.md` | Tools, services and costs. |
+| `design/preview/` | Archive of the three design directions explored before Highway was chosen. |
 
-Status: design direction under review. The production site (Astro, hosted on Cloudflare Pages) will be added here once the direction is chosen.
+## Commands
 
-Run tests: `npm install`, then `npm run test:journey` / `npm run test:visual`.
+```sh
+npm install              # once
+npm run dev              # local preview while editing, with unconfirmed claims highlighted
+npm run build:preview    # preview build in dist-preview/ (unconfirmed claims highlighted, not indexed)
+npm run build            # production build in dist/ (unconfirmed claims left out)
+npm test                 # check dist-preview/ (add "dist" to check production; add --shots for screenshots)
+npm run check            # everything GitHub checks on a pull request: both builds, all tests, HTML validity
+npm run share            # self-contained copy of the preview in dist-artifact/, for sharing as a Claude artifact
+```
+
+Set `SITE_URL` (for example `SITE_URL=https://alejostowing.com npm run build`) once the domain exists; that turns on canonical links, the sitemap and full URLs in the business data.
+
+## Status
+
+The full site is built and tested in preview. Before launch it needs: a host account (Cloudflare Pages, free), a domain, the remaining business confirmations listed in `content/business.json` (`open_question` entries), and one real test request sent from Yordan's phone.

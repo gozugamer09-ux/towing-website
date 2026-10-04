@@ -7,5 +7,5 @@ const H = `h${headingLevel}`;
   <span class="svc-ico"><Icon name={s.icon} /></span>
   <H><a href={`/services/${s.slug}/`}>{s.title}</a></H>
   <p>{s.short}</p>
-  {showTags && <ul class="tags" aria-label="Includes">{s.tags.map((t) => <li>{t}</li>)}</ul>}
+  {showTags && <ul class="tags">{s.tags.map((t) => <li>{t}</li>)}</ul>}
 </article>

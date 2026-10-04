@@ -1,14 +1,26 @@
 ---
 // Service-area map built from US Census boundaries (see scripts/make-florida.mjs).
-// Lee County (Cape Coral, Fort Myers) is the home base; dashed routes show statewide reach.
+// Lee County (Cape Coral, Fort Myers) is the main area; dashed routes show statewide reach.
+// Two label sets: the full set for wide maps, and a larger, sparser set for phone-width maps
+// (switched with a container query in global.css, so the labels stay readable).
 import fl from '../data/florida.json';
 const c = fl.cities;
 const base = [(c['Cape Coral'][0] + c['Fort Myers'][0]) / 2, (c['Cape Coral'][1] + c['Fort Myers'][1]) / 2];
 const destinations = ['Tampa', 'Orlando', 'Miami', 'Jacksonville', 'Tallahassee', 'Pensacola', 'West Palm Beach', 'Sarasota', 'Naples'];
-const labelPos = {
-  Tampa: ['end', -10, 4], Orlando: ['start', 10, 4], Miami: ['end', -10, 18], Jacksonville: ['start', 10, 5],
-  Tallahassee: ['middle', 0, -12], Pensacola: ['start', 8, -10], 'West Palm Beach': ['end', -10, -9], Sarasota: ['end', -10, 5], Naples: ['end', -10, 14],
+// [text-anchor, dx, dy] from each city's dot
+const labels = {
+  lg: {
+    Tampa: ['end', -10, 4], Orlando: ['start', 10, 4], Miami: ['end', -10, 18], Jacksonville: ['start', 10, 5],
+    Tallahassee: ['middle', 0, -12], Pensacola: ['start', 8, -10], 'West Palm Beach': ['end', -4, -16],
+    Sarasota: ['end', -10, 5], Naples: ['end', -10, 14],
+  },
+  sm: {
+    Tampa: ['end', -14, 8], Orlando: ['start', 14, 8], Miami: ['end', -14, 26], Jacksonville: ['end', -14, 8],
+    Tallahassee: ['middle', 0, -16], Pensacola: ['start', 2, 34],
+  },
 };
+// The base labels sit out in the Gulf, west of the marker, where nothing else is drawn.
+const baseLabels = { lg: [-30, -3, 18], sm: [-34, -6, 24] };
 // gentle curve from base to each city
 const curve = (to) => {
   const [x1, y1] = base, [x2, y2] = to;
@@ -16,33 +28,34 @@ const curve = (to) => {
   const k = 0.18;
   return `M${x1.toFixed(1)} ${y1.toFixed(1)} Q${(mx - dy * k).toFixed(1)} ${(my + dx * k).toFixed(1)} ${x2} ${y2}`;
 };
+const f = (n) => +n.toFixed(1);
 const { caption = true } = Astro.props;
 ---
 <figure class="fl-map" data-map>
   <svg viewBox={fl.viewBox} role="img" aria-labelledby="fl-title fl-desc">
     <title id="fl-title">Alejos Towing service area</title>
-    <desc id="fl-desc">Map of Florida. Home base is Lee County, around Cape Coral and Fort Myers. Routes reach Tampa, Orlando, Miami, Jacksonville, Tallahassee, Pensacola and the rest of the state.</desc>
+    <desc id="fl-desc">Map of Florida. The main area is Lee County, around Cape Coral and Fort Myers. Routes reach Tampa, Orlando, Miami, Jacksonville, Tallahassee, Pensacola and the rest of the state.</desc>
     <path class="fl-state" d={fl.state} />
     <path class="fl-lee" d={fl.lee} />
     {destinations.map((d) => <path class="fl-route" d={curve(c[d])} />)}
-    {destinations.map((d) => (
-      <g class="fl-city">
-        <circle cx={c[d][0]} cy={c[d][1]} r="5" />
-        <text x={c[d][0] + labelPos[d][1]} y={c[d][1] + labelPos[d][2]} text-anchor={labelPos[d][0]}>{d}</text>
+    {destinations.map((d) => <circle class="fl-dot" cx={c[d][0]} cy={c[d][1]} r="5" />)}
+    {Object.entries(labels).map(([size, set]) => (
+      <g class={`fl-labels ${size}`}>
+        {Object.entries(set).map(([d, [anchor, dx, dy]]) => <text x={f(c[d][0] + dx)} y={f(c[d][1] + dy)} text-anchor={anchor}>{d}</text>)}
+        <text class="fl-base-label" x={f(base[0] + baseLabels[size][0])} y={f(base[1] + baseLabels[size][1])} text-anchor="end">Cape Coral</text>
+        <text class="fl-base-label" x={f(base[0] + baseLabels[size][0])} y={f(base[1] + baseLabels[size][2])} text-anchor="end">Fort Myers</text>
       </g>
     ))}
     <g class="fl-base">
-      <circle class="halo" cx={base[0]} cy={base[1]} r="22" />
-      <circle class="core" cx={base[0]} cy={base[1]} r="9" />
-      <text x={base[0] + 18} y={base[1] + 30}>Cape Coral</text>
-      <text x={base[0] + 18} y={base[1] + 50}>Fort Myers</text>
+      <circle class="halo" cx={f(base[0])} cy={f(base[1])} r="22" />
+      <circle class="core" cx={f(base[0])} cy={f(base[1])} r="9" />
     </g>
   </svg>
   {caption && (
     <figcaption class="fl-legend">
-      <span><i style="background:color-mix(in srgb,#00653a 30%,transparent);outline:1.5px solid #00653a"></i>Home base: Lee County</span>
-      <span><i style="background:#ffc81a;border-radius:50%"></i>Cape Coral &amp; Fort Myers</span>
-      <span><i style="border-top:2px dashed #00653a;height:0;border-radius:0;width:18px"></i>Long-distance, statewide</span>
+      <span><i class="lg-lee"></i>Lee County, our main area</span>
+      <span><i class="lg-base"></i>Cape Coral &amp; Fort Myers</span>
+      <span><i class="lg-route"></i>Long-distance, anywhere in Florida</span>
     </figcaption>
   )}
 </figure>

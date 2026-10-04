@@ -14,7 +14,7 @@ const href = (v) => (onPage ? '#request' : `/request/?issue=${encodeURIComponent
       <p>Tap one and we'll start your request.</p>
       <div class="chips">
         {ISSUES.map((i) => (
-          <a class="chip" href={href(i.value)} data-issue={i.value}><Icon name={i.icon} />{i.label}</a>
+          <a class="chip" href={href(i.value)} data-issue={i.value}><Icon name={i.icon} />{i.chip || i.label}</a>
         ))}
       </div>
     </div>

@@ -10,8 +10,8 @@
     "icons": "node scripts/make-icons.mjs",
     "map": "node scripts/make-florida.mjs",
     "test": "node tests/site.mjs",
-    "test:visual": "node tests/run.mjs",
-    "test:journey": "node tests/wrap.mjs && node tests/journey.mjs"
+    "check": "npm run build:preview && node tests/site.mjs && npm run build && node tests/site.mjs dist && html-validate \"dist/**/*.html\"",
+    "share": "npm run build:preview && node scripts/make-share-preview.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",

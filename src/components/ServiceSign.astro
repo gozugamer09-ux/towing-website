@@ -1,0 +1,16 @@
+---
+// Each service page's header graphic: the service on a highway guide sign, matching the
+// homepage hero. Decorative, so hidden from screen readers. Shown on wide screens only.
+import Icon from './Icon.astro';
+const { s } = Astro.props;
+---
+<div class="svc-sign" aria-hidden="true">
+  <div class="sign">
+    <div class="sign-in">
+      <div class="sign-top"><span class="shield">24/7</span><Icon name={s.icon} class="svc-sign-ico" /></div>
+      <div class="sign-name">{s.nav}</div>
+      <div class="sign-exit"><span>{s.tags.slice(0, 3).map((t, n) => <>{n > 0 && <i class="sep" />}{t}</>)}</span><Icon name="arrow" /></div>
+    </div>
+  </div>
+  <div class="posts"><span></span><span></span></div>
+</div>
