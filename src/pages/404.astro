@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { biz, tel } from '../lib/site';
+---
+<Base title="Page not found" description="That page doesn't exist.">
+  <section class="lost">
+    <div class="wrap">
+      <div class="sign" aria-hidden="true">
+        <div class="sign-in">
+          <div class="sign-top"><span class="shield">404</span><span class="sign-sub">Wrong turn</span></div>
+          <div class="sign-name">Page<br />not found</div>
+          <div class="sign-exit"><span>Turn around</span><Icon name="arrow" /></div>
+        </div>
+      </div>
+      <h1 style="font-size:clamp(2.2rem,6vw,3.6rem)">That page took a wrong turn.</h1>
+      <p class="lede" style="margin-top:14px">If you need a tow, don't waste time here. Call us now, or head back to the homepage.</p>
+      <div class="cta-row" style="margin-top:24px">
+        <a class="btn btn-call btn-lg" href={tel}><Icon name="phone" />Call <span class="num">{biz.phoneDisplay}</span></a>
+        <a class="btn btn-ghost btn-lg" href="/">Go to the homepage</a>
+      </div>
+    </div>
+  </section>
+</Base>

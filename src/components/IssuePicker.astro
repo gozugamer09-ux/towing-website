@@ -1,0 +1,22 @@
+---
+// "What happened?" shortcuts. Each prefills the request form's first question.
+// On a page with the form (data-prefill), JS fills it in place; otherwise the link opens /request/.
+import Icon from './Icon.astro';
+import { ISSUES } from '../lib/issues';
+const { onPage = false, heading = 'What happened?' } = Astro.props;
+
+const href = (v) => (onPage ? '#request' : `/request/?issue=${encodeURIComponent(v)}#request`);
+---
+<section class="picker" aria-labelledby="picker-h">
+  <div class="wrap">
+    <div class="picker-box">
+      <h2 id="picker-h">{heading}</h2>
+      <p>Tap one and we'll start your request.</p>
+      <div class="chips">
+        {ISSUES.map((i) => (
+          <a class="chip" href={href(i.value)} data-issue={i.value}><Icon name={i.icon} />{i.label}</a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

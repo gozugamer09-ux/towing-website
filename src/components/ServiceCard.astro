@@ -1,0 +1,11 @@
+---
+import Icon from './Icon.astro';
+const { s, headingLevel = 3, showTags = true } = Astro.props;
+const H = `h${headingLevel}`;
+---
+<article class="svc">
+  <span class="svc-ico"><Icon name={s.icon} /></span>
+  <H><a href={`/services/${s.slug}/`}>{s.title}</a></H>
+  <p>{s.short}</p>
+  {showTags && <ul class="tags" aria-label="Includes">{s.tags.map((t) => <li>{t}</li>)}</ul>}
+</article>

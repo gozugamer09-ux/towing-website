@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import { biz, tel } from '../lib/site';
+const path = Astro.url.pathname;
+const links = [
+  { href: '/services/', label: 'Services' },
+  { href: '/service-area/', label: 'Service area' },
+  { href: '/reviews/', label: 'Reviews' },
+  { href: '/faq/', label: 'FAQ' },
+  { href: '/request/', label: 'Request a tow' },
+];
+const current = (href) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="/" aria-label={`${biz.name} home`}>
+      <span class="mark" aria-hidden="true"><Icon name="hook" /></span>
+      <span class="wordmark">{biz.name}<small>Towing &amp; roadside · 24/7</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      {links.map((l) => <a href={l.href} aria-current={current(l.href) ? 'page' : undefined}>{l.label}</a>)}
+    </nav>
+    <div class="hdr-actions">
+      <a class="btn btn-call" href={tel} data-track="call-header">
+        <Icon name="phone" /><span class="hdr-call-label num">{biz.phoneDisplay}</span><span class="sr-only">Call {biz.name} at {biz.phoneDisplay}</span>
+      </a>
+      <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet" data-menu-open><Icon name="menu" /></button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-bg" data-menu-close></div>
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="sheet-top">
+      <span class="wordmark">{biz.name}</span>
+      <button class="icon-btn" type="button" aria-label="Close menu" data-menu-close><Icon name="x" /></button>
+    </div>
+    <a class="navlink" href="/">Home<Icon name="arrow" /></a>
+    {links.map((l) => <a class="navlink" href={l.href} aria-current={current(l.href) ? 'page' : undefined}>{l.label}<Icon name="arrow" /></a>)}
+    <a class="btn btn-call btn-lg" href={tel} data-track="call-menu"><Icon name="phone" />Call <span class="num">{biz.phoneDisplay}</span></a>
+  </div>
+</div>

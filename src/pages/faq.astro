@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import FAQList from '../components/FAQList.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { biz, tel, faqGroups } from '../lib/site';
+---
+<Base title="Questions & Answers" description={`Answers about ${biz.name}: arrival times, prices, payment (card, cash, Zelle), where we tow and which vehicles we handle.`}>
+  <section class="page-head">
+    <div class="wrap">
+      <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li aria-current="page">FAQ</li></ol>
+      <h1>Questions and answers</h1>
+      <p class="lede">Can't find your answer? Call or text <a href={tel} class="num" style="color:var(--ink);font-weight:700">{biz.phoneDisplay}</a>. Someone picks up 24/7.</p>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      {faqGroups.map((g) => (
+        <div class="faq-group">
+          <h2>{g.title}</h2>
+          <FAQList items={g.items} />
+        </div>
+      ))}
+    </div>
+  </section>
+  <FinalCTA />
+</Base>

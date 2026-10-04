@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import FloridaMap from '../components/FloridaMap.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { biz, tel, reviews } from '../lib/site';
+const fernando = reviews.find((r) => r.id === 'fernando-p');
+const ysrael = reviews.find((r) => r.id === 'ysrael-a');
+---
+<Base title="Towing in Cape Coral, Fort Myers & All of Florida" description="Based in Southwest Florida. 24/7 towing and roadside help in Cape Coral, Fort Myers and Lee County, plus long-distance tows anywhere in Florida.">
+  <section class="page-head">
+    <div class="wrap">
+      <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li aria-current="page">Service area</li></ol>
+      <h1>Cape Coral, Fort Myers and anywhere in Florida</h1>
+      <p class="lede">Southwest Florida is home, and most of our calls come from Cape Coral and Fort Myers. When you need to go further, we tow anywhere in the state.</p>
+      <div class="cta-row" data-hide-bar>
+        <a class="btn btn-call btn-lg" href={tel} data-track="call-area"><Icon name="phone" />Call <span class="num">{biz.phoneDisplay}</span></a>
+        <a class="btn btn-ghost btn-lg" href="/request/">Request a tow<Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap area-grid">
+      <FloridaMap />
+      <div style="display:grid;gap:28px">
+        <div style="display:grid;gap:10px">
+          <h2 style="font-size:clamp(1.6rem,3.6vw,2.2rem)">Cape Coral &amp; Fort Myers</h2>
+          <p class="muted">Our home turf in Lee County. Breakdowns, flat tires, dead batteries, lockouts and accidents, around the clock, from neighborhood streets to US-41 and I-75.</p>
+        </div>
+        <div style="display:grid;gap:10px">
+          <h2 style="font-size:clamp(1.6rem,3.6vw,2.2rem)">Long-distance, statewide</h2>
+          <p class="muted">Broke down far from home, or moving a vehicle between cities? We tow anywhere in Florida, from Naples and Tampa to Orlando, Miami, Jacksonville and the Panhandle.</p>
+          <p><a class="text-link" href="/services/long-distance-towing/">Long-distance towing<Icon name="arrow" /></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec band" aria-labelledby="said-h">
+    <div class="wrap">
+      <div class="sec-head"><span class="plate">From our customers</span><h2 id="said-h">Across town or across the state</h2></div>
+      <div class="reviews">
+        {[fernando, ysrael].map((r) => (
+          <figure class="review">
+            <span class="qmark" aria-hidden="true">“</span>
+            <blockquote lang="en"><p>{r.en}</p></blockquote>
+            <figcaption><b>{r.author}</b> · Google review, translated from Spanish</figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="reviews-note"><a class="text-link" href="/reviews/">Read all reviews<Icon name="arrow" /></a></p>
+    </div>
+  </section>
+
+  <FinalCTA title="Wherever you are in Florida, call us." />
+</Base>

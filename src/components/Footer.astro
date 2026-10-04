@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import Pending from './Pending.astro';
+import { biz, tel, sms, services } from '../lib/site';
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div style="display:grid;gap:16px;align-content:start">
+        <a class="brand" href="/"><span class="mark" aria-hidden="true"><Icon name="hook" /></span><span class="wordmark">{biz.name}<small>Towing &amp; roadside · 24/7</small></span></a>
+        <p>24/7 towing and roadside assistance in Cape Coral, Fort Myers and anywhere in Florida. Serving drivers since {biz.founded}.</p>
+      </div>
+      <div>
+        <h2>Call or text, any hour</h2>
+        <ul>
+          <li><a class="big-num num" href={tel} data-track="call-footer">{biz.phoneDisplay}</a></li>
+          <li><a href={sms()} data-track="text-footer">Send a text</a></li>
+          <li><a href={`mailto:${biz.email}`}>{biz.email}</a></li>
+          <li>Cape Coral &amp; Fort Myers, FL</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Services</h2>
+        <ul>{services.map((s) => <li><a href={`/services/${s.slug}/`}>{s.nav}</a></li>)}</ul>
+      </div>
+      <div>
+        <h2>Hours &amp; payment</h2>
+        <div class="hours"><span>Towing</span><span>24 hours, every day</span><span>Roadside</span><span>24 hours, every day</span></div>
+        <p style="margin-top:14px">We accept {biz.payment.join(', ').replace(/, ([^,]*)$/, ' and $1')}.</p>
+        <ul style="margin-top:14px">
+          <li><a href="/service-area/">Service area</a></li>
+          <li><a href="/reviews/">Reviews</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-bottom">
+      <span>© {year} {biz.name}</span>
+      <span>Licensed · USDOT registered <Pending note="Waiting on the USDOT number">#0000000</Pending> · {biz.insurance} · <a href="/privacy/">Privacy</a></span>
+    </div>
+  </div>
+</footer>

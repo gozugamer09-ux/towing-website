@@ -1,0 +1,48 @@
+---
+// Service-area map built from US Census boundaries (see scripts/make-florida.mjs).
+// Lee County (Cape Coral, Fort Myers) is the home base; dashed routes show statewide reach.
+import fl from '../data/florida.json';
+const c = fl.cities;
+const base = [(c['Cape Coral'][0] + c['Fort Myers'][0]) / 2, (c['Cape Coral'][1] + c['Fort Myers'][1]) / 2];
+const destinations = ['Tampa', 'Orlando', 'Miami', 'Jacksonville', 'Tallahassee', 'Pensacola', 'West Palm Beach', 'Sarasota', 'Naples'];
+const labelPos = {
+  Tampa: ['end', -10, 4], Orlando: ['start', 10, 4], Miami: ['end', -10, 18], Jacksonville: ['start', 10, 5],
+  Tallahassee: ['middle', 0, -12], Pensacola: ['start', 8, -10], 'West Palm Beach': ['end', -10, -9], Sarasota: ['end', -10, 5], Naples: ['end', -10, 14],
+};
+// gentle curve from base to each city
+const curve = (to) => {
+  const [x1, y1] = base, [x2, y2] = to;
+  const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1;
+  const k = 0.18;
+  return `M${x1.toFixed(1)} ${y1.toFixed(1)} Q${(mx - dy * k).toFixed(1)} ${(my + dx * k).toFixed(1)} ${x2} ${y2}`;
+};
+const { caption = true } = Astro.props;
+---
+<figure class="fl-map" data-map>
+  <svg viewBox={fl.viewBox} role="img" aria-labelledby="fl-title fl-desc">
+    <title id="fl-title">Alejos Towing service area</title>
+    <desc id="fl-desc">Map of Florida. Home base is Lee County, around Cape Coral and Fort Myers. Routes reach Tampa, Orlando, Miami, Jacksonville, Tallahassee, Pensacola and the rest of the state.</desc>
+    <path class="fl-state" d={fl.state} />
+    <path class="fl-lee" d={fl.lee} />
+    {destinations.map((d) => <path class="fl-route" d={curve(c[d])} />)}
+    {destinations.map((d) => (
+      <g class="fl-city">
+        <circle cx={c[d][0]} cy={c[d][1]} r="5" />
+        <text x={c[d][0] + labelPos[d][1]} y={c[d][1] + labelPos[d][2]} text-anchor={labelPos[d][0]}>{d}</text>
+      </g>
+    ))}
+    <g class="fl-base">
+      <circle class="halo" cx={base[0]} cy={base[1]} r="22" />
+      <circle class="core" cx={base[0]} cy={base[1]} r="9" />
+      <text x={base[0] + 18} y={base[1] + 30}>Cape Coral</text>
+      <text x={base[0] + 18} y={base[1] + 50}>Fort Myers</text>
+    </g>
+  </svg>
+  {caption && (
+    <figcaption class="fl-legend">
+      <span><i style="background:color-mix(in srgb,#00653a 30%,transparent);outline:1.5px solid #00653a"></i>Home base: Lee County</span>
+      <span><i style="background:#ffc81a;border-radius:50%"></i>Cape Coral &amp; Fort Myers</span>
+      <span><i style="border-top:2px dashed #00653a;height:0;border-radius:0;width:18px"></i>Long-distance, statewide</span>
+    </figcaption>
+  )}
+</figure>

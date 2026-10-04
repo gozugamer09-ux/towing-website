@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro';
+const { r } = Astro.props;
+---
+<figure class="review">
+  <span class="qmark" aria-hidden="true">“</span>
+  <blockquote lang="en"><p>{r.en}</p></blockquote>
+  <details class="orig">
+    <summary>Read the original in Spanish <Icon name="chev" /></summary>
+    <p lang={r.lang}>{r.text}</p>
+  </details>
+  <figcaption><b>{r.author}</b> · Google review, translated from Spanish</figcaption>
+</figure>

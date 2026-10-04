@@ -1,0 +1,45 @@
+{
+  "_note": "FAQ answers. Items with \"pending\": true are not confirmed by Yordan yet: they show highlighted in preview builds and are left out of production builds. \"home\": true puts the question on the homepage.",
+  "groups": [
+    {
+      "title": "Getting help",
+      "items": [
+        { "q": "How fast can you get to me?", "home": true,
+          "a": "It depends on where you are. Tell us your location and we'll give you an arrival time when you call or text. We answer around the clock, including the middle of the night." },
+        { "q": "Are you really open 24/7?",
+          "a": "Yes. We take calls and texts 24 hours a day, 7 days a week, including nights and weekends." },
+        { "q": "Can I text instead of calling?", "home": true,
+          "a": "Yes. Text (239) 888-7001, or use the request form. It writes the text for you, including your GPS location if you allow it." },
+        { "q": "What should I do while I wait?",
+          "a": "Move yourself and your passengers away from traffic if you can, turn on your hazard lights and keep your phone nearby. If anyone is hurt, call 911 first." },
+        { "q": "Can I ride in the tow truck?", "pending": true,
+          "a": "Usually, yes, for one or two passengers. Let us know when you call." }
+      ]
+    },
+    {
+      "title": "Price and payment",
+      "items": [
+        { "q": "How much does a tow cost?", "home": true,
+          "a": "It depends on the distance, the vehicle and the situation. Call or text with where you are, where it's going and what you drive, and we'll give you a quote." },
+        { "q": "What payment do you take?", "home": true,
+          "a": "Card, cash and Zelle." },
+        { "q": "Do you work with insurance and roadside plans?", "pending": true,
+          "a": "Which insurers and roadside plans Alejos works with is still to be confirmed." }
+      ]
+    },
+    {
+      "title": "Area and vehicles",
+      "items": [
+        { "q": "Where do you tow?", "home": true,
+          "a": "Most of our calls come from Cape Coral and Fort Myers, but we tow anywhere in Florida, including long-distance tows between cities." },
+        { "q": "What vehicles do you tow?",
+          "a": "Cars, SUVs, pickups, vans and motorcycles, from light-duty to heavy-duty.",
+          "pendingA": "Any vehicle under 20 feet long." },
+        { "q": "Does my car need a flatbed?",
+          "a": "All-wheel-drive and 4x4 vehicles, lowered cars, classics, luxury cars and anything with drivetrain damage usually ride best on a flatbed. Tell us the vehicle and we'll recommend the safest option." },
+        { "q": "¿Hablan español?", "lang": "es", "pending": true,
+          "a": "Sí. Llámenos o escríbanos en español o en inglés." }
+      ]
+    }
+  ]
+}

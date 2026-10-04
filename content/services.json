@@ -1,0 +1,145 @@
+{
+  "_note": "Service pages. Every service here was confirmed by Yordan on 2026-10-03. Descriptions are general and avoid prices, times or guarantees; any such claim needs Yordan's confirmation first.",
+  "services": [
+    {
+      "slug": "towing",
+      "icon": "truck",
+      "title": "Towing, light to heavy-duty",
+      "nav": "Towing",
+      "short": "Light, medium and heavy-duty tows to your home, a shop or a dealer.",
+      "seoTitle": "24/7 Towing in Cape Coral & Fort Myers",
+      "intro": "Broken down, won't start, or not safe to drive? We tow cars, SUVs, pickups and work vans to wherever you choose: your driveway, your mechanic, a dealer or a body shop.",
+      "tags": ["Cars", "SUVs", "Pickups", "Vans"],
+      "includes": ["Light-duty towing for cars and small SUVs", "Medium-duty towing for full-size pickups, vans and larger SUVs", "Heavy-duty towing", "Tows to the shop, dealer, home or storage of your choice", "Day, night, weekend and holiday service"],
+      "goodToKnow": [
+        { "title": "Where should it go?", "text": "If you already have a mechanic, tell us the shop name. If not, we can take it home so you can decide later." },
+        { "title": "Keys and personal items", "text": "Bring your keys and anything you'll need from the car before it's loaded." }
+      ],
+      "faq": [
+        { "q": "Can you tow my car to my own mechanic?", "a": "Yes. Tell us the shop name or address and we'll take it there." },
+        { "q": "Do you tow at night?", "a": "Yes. We're available 24 hours a day, 7 days a week, including the middle of the night." }
+      ]
+    },
+    {
+      "slug": "flatbed-towing",
+      "icon": "flatbed",
+      "title": "Flatbed towing",
+      "nav": "Flatbed",
+      "short": "All four wheels off the ground for AWD, lowered and luxury vehicles.",
+      "seoTitle": "Flatbed Towing in Cape Coral & Fort Myers",
+      "intro": "A flatbed carries your whole vehicle on the deck, with no wheels rolling on the road. It's the safest way to move all-wheel-drive, lowered, classic and luxury cars, and anything with drivetrain damage.",
+      "tags": ["AWD & 4x4", "Lowered", "Classics", "Luxury"],
+      "includes": ["All-wheel-drive and 4x4 vehicles", "Lowered and low-clearance cars", "Classic, exotic and luxury vehicles", "Vehicles with transmission or drivetrain damage", "Vehicles that can't roll"],
+      "goodToKnow": [
+        { "title": "Not sure you need a flatbed?", "text": "Tell us the year, make and model. We'll tell you which way is safest for your vehicle." }
+      ],
+      "faq": [
+        { "q": "Does my car need a flatbed?", "a": "All-wheel-drive and 4x4 vehicles, lowered or low-clearance cars, classics and luxury cars, and vehicles with drivetrain damage usually ride best on a flatbed. If you're not sure, tell us the vehicle and we'll recommend the safest option." }
+      ]
+    },
+    {
+      "slug": "roadside-assistance",
+      "icon": "battery",
+      "title": "Roadside assistance",
+      "nav": "Roadside help",
+      "short": "Jump starts, lockouts, tire changes and fuel, right where you are.",
+      "seoTitle": "Roadside Assistance in Cape Coral & Fort Myers",
+      "intro": "Not every problem needs a tow. For a dead battery, a flat tire, keys locked inside or an empty tank, we come to you and get you moving again.",
+      "tags": ["Jump starts", "Lockouts", "Tire changes", "Fuel"],
+      "includes": ["Jump starts for dead batteries", "Lockout help when your keys are locked inside", "Tire changes using your spare", "Fuel delivery when you run out"],
+      "goodToKnow": [
+        { "title": "Flat tire?", "text": "Let us know if you have a working spare. If you don't, we can tow you to a tire shop instead." },
+        { "title": "Stay safe while you wait", "text": "Pull as far from traffic as you can, turn on your hazard lights, and stay out of the travel lanes." }
+      ],
+      "faq": [
+        { "q": "What if the jump start doesn't work?", "a": "If your car won't start after a jump, we can tow it to a shop or your home." },
+        { "q": "Can you help if I don't have a spare tire?", "a": "Yes. We can tow you to a tire shop or wherever you'd like." }
+      ]
+    },
+    {
+      "slug": "winching",
+      "icon": "hill",
+      "title": "Winching & recovery",
+      "nav": "Winching",
+      "short": "Out of ditches, sand, mud and tight spots without extra damage.",
+      "seoTitle": "Winch-Outs & Vehicle Recovery in Cape Coral & Fort Myers",
+      "intro": "Slid into a ditch, sunk in sand or mud, or stuck somewhere a tow truck can't simply back up to? We winch your vehicle out carefully and get it back on solid ground.",
+      "tags": ["Ditches", "Sand", "Mud", "Tight spots"],
+      "includes": ["Winch-outs from ditches and soft shoulders", "Vehicles stuck in sand or mud", "Recovery from tight or awkward spots", "A tow afterwards if the vehicle can't be driven"],
+      "goodToKnow": [
+        { "title": "Don't spin the wheels", "text": "Spinning usually digs the vehicle in deeper. Turn the engine off and call us." }
+      ],
+      "faq": [
+        { "q": "My car is stuck but not damaged. Do I still need a tow?", "a": "Often not. Many stuck vehicles can be winched out and driven away. If it can't be driven, we can tow it." }
+      ]
+    },
+    {
+      "slug": "accident-recovery",
+      "icon": "alert",
+      "title": "Accident recovery",
+      "nav": "Accident recovery",
+      "short": "Careful recovery and transport after a collision.",
+      "seoTitle": "Accident Towing & Recovery in Cape Coral & Fort Myers",
+      "intro": "After a crash, the last thing you need is a long wait. We recover and transport damaged vehicles carefully and take them to the body shop, home or lot you choose.",
+      "tags": ["Collisions", "Disabled vehicles"],
+      "includes": ["Recovery of vehicles damaged in a collision", "Transport to a body shop, home or storage", "Careful loading to avoid further damage"],
+      "goodToKnow": [
+        { "title": "Safety first", "text": "If anyone is hurt or the road is blocked, call 911 first. Call us once everyone is safe." }
+      ],
+      "faq": [
+        { "q": "Can you take my car to my insurance company's shop?", "a": "Yes. Tell us the shop's name or address and we'll take it there." }
+      ]
+    },
+    {
+      "slug": "motorcycle-towing",
+      "icon": "moto",
+      "title": "Motorcycle towing",
+      "nav": "Motorcycles",
+      "short": "Bikes strapped down properly and moved with care.",
+      "seoTitle": "Motorcycle Towing in Cape Coral & Fort Myers",
+      "intro": "Motorcycles need proper tie-downs and a careful hand. Whether it's a breakdown, a flat or a bike that's not safe to ride, we load it securely and take it where you need it.",
+      "tags": ["Street", "Cruisers", "Sport bikes"],
+      "includes": ["Breakdowns and flat tires", "Bikes that aren't safe to ride", "Transport to a shop, dealer or home"],
+      "goodToKnow": [
+        { "title": "Tell us the bike", "text": "Year, make and model help us bring the right straps and set up for your bike." }
+      ],
+      "faq": [
+        { "q": "Do you tow motorcycles?", "a": "Yes. We tow motorcycles across Cape Coral, Fort Myers and the rest of Florida." }
+      ]
+    },
+    {
+      "slug": "long-distance-towing",
+      "icon": "route",
+      "title": "Long-distance towing",
+      "nav": "Long distance",
+      "short": "From Cape Coral to Miami, Tampa or anywhere in Florida.",
+      "seoTitle": "Long-Distance Towing Across Florida",
+      "intro": "Broke down far from home, bought a car in another city, or moving a vehicle across the state? We tow anywhere in Florida.",
+      "tags": ["Statewide", "Relocations", "Vehicle purchases"],
+      "includes": ["Tows between cities anywhere in Florida", "Breakdowns far from home", "Vehicles bought or sold out of town", "Relocations"],
+      "goodToKnow": [
+        { "title": "Plan ahead if you can", "text": "For a planned move, send the pickup and drop-off addresses and the vehicle, and we'll arrange a time." }
+      ],
+      "faq": [
+        { "q": "How far will you tow?", "a": "Anywhere in Florida. Call or text with the pickup and drop-off locations for a quote." }
+      ]
+    },
+    {
+      "slug": "junk-car-removal",
+      "icon": "junk",
+      "title": "Junk car removal",
+      "nav": "Junk cars",
+      "short": "Old or wrecked car taking up space? We'll haul it away.",
+      "seoTitle": "Junk Car Removal in Cape Coral & Fort Myers",
+      "intro": "An old, wrecked or non-running car taking up your driveway or yard? We'll come and haul it away.",
+      "tags": ["Wrecks", "Non-running", "Old vehicles"],
+      "includes": ["Non-running and wrecked vehicles", "Removal from driveways, yards and lots"],
+      "goodToKnow": [
+        { "title": "What to send us", "text": "Year, make and model, where the car is, and whether it rolls and has all its wheels." }
+      ],
+      "faq": [
+        { "q": "Does the car need to run?", "a": "No. We remove non-running and wrecked vehicles." }
+      ]
+    }
+  ]
+}

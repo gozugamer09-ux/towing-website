@@ -1,0 +1,9 @@
+---
+import Icon from './Icon.astro';
+import { tel } from '../lib/site';
+const { requestHref = '/request/' } = Astro.props;
+---
+<nav class="actionbar" id="actionbar" aria-label="Quick actions">
+  <a class="btn btn-call" href={tel} data-track="call-bar"><Icon name="phone" />Call now</a>
+  <a class="btn btn-ghost" href={requestHref}>Request a tow</a>
+</nav>

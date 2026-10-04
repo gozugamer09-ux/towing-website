@@ -1,0 +1,240 @@
+---
+// Tow request form. Submitting opens the customer's own Messages app with a text to the
+// company phone, fully written out (plus a Google Maps link if they share GPS location).
+// Nothing is stored or sent by the website itself.
+import Icon from './Icon.astro';
+import { biz, tel } from '../lib/site';
+import { ISSUES, OTHER_ISSUES } from '../lib/issues';
+const { heading = 'Send your request by text.', headingLevel = 2 } = Astro.props;
+const H = `h${headingLevel}`;
+---
+<div class="quote-grid" id="request">
+  <div style="display:grid;gap:22px;align-content:start">
+    <div class="sec-head" style="margin:0">
+      <span class="plate">Request a tow</span>
+      <H id="request-h">{heading}</H>
+      <p class="lede">Fill this in and your phone opens a text to {biz.name} with everything written out. Press Send and we'll get right back to you.</p>
+    </div>
+    <ul class="next-steps">
+      <li><Icon name="msg" /><span>Your request goes to <b class="num">{biz.phoneDisplay}</b> as a normal text from your phone.</span></li>
+      <li><Icon name="locate" /><span>Tap <b>Use my location</b> and we get a map pin, so we find you fast.</span></li>
+      <li><Icon name="clock" /><span>We answer 24 hours a day, 7 days a week.</span></li>
+    </ul>
+    <div class="callout">
+      <b class="display" style="font-size:1.5rem">In a dangerous spot?</b>
+      <p>Call instead. It's faster, and we can stay on the line. If anyone is hurt, call 911 first.</p>
+      <a class="btn btn-light btn-lg" href={tel} data-track="call-form"><Icon name="phone" />Call <span class="num">{biz.phoneDisplay}</span></a>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <form id="rf" novalidate aria-labelledby="request-h" data-sms={biz.sms} data-email={biz.email} data-phone-display={biz.phoneDisplay}>
+      <div class="err-summary" id="rf-errors" tabindex="-1" role="alert" hidden></div>
+      <div class="fgrid">
+        <div class="field full">
+          <label for="rf-issue">What happened?</label>
+          <select class="input" id="rf-issue" name="issue" required>
+            <option value="">Choose one</option>
+            {ISSUES.map((i) => <option value={i.value}>{i.label}</option>)}
+            {OTHER_ISSUES.map((v) => <option>{v}</option>)}
+          </select>
+        </div>
+        <div class="field full">
+          <label for="rf-loc">Where is the vehicle?</label>
+          <div class="loc-row">
+            <input class="input" id="rf-loc" name="location" autocomplete="street-address" placeholder="Address, cross streets, or highway and exit" required />
+            <button class="loc-btn" type="button" id="rf-locbtn" aria-label="Use my location" aria-describedby="rf-lochint"><Icon name="locate" /><span>Use my location</span></button>
+          </div>
+          <p class="hint" id="rf-lochint" aria-live="polite">On a highway? The nearest exit or mile marker is perfect.</p>
+        </div>
+        <div class="field">
+          <label for="rf-name">Your name</label>
+          <input class="input" id="rf-name" name="name" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="rf-phone">Phone number</label>
+          <input class="input" id="rf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(239) 555-0123" required />
+        </div>
+        <div class="field">
+          <label for="rf-vehicle">Vehicle <span class="opt">(optional)</span></label>
+          <input class="input" id="rf-vehicle" name="vehicle" placeholder="e.g. 2016 Honda Civic" />
+        </div>
+        <div class="field">
+          <label for="rf-dest">Where should it go? <span class="opt">(optional)</span></label>
+          <input class="input" id="rf-dest" name="destination" placeholder="Home, a shop, or not sure" />
+        </div>
+        <div class="field full">
+          <label for="rf-notes">Anything else? <span class="opt">(optional)</span></label>
+          <textarea class="input" id="rf-notes" name="notes" placeholder="Keys with you? Does it roll? Anyone waiting with it?"></textarea>
+        </div>
+      </div>
+      <div class="form-foot">
+        <button class="btn btn-call btn-lg" type="submit" id="rf-submit"><Icon name="msg" />Text my request</button>
+        <p class="hint">Opens your Messages app, addressed to <span class="num">{biz.phoneDisplay}</span>. We only use your number to help with this request.</p>
+      </div>
+    </form>
+
+    <div class="result" id="rf-done" tabindex="-1" hidden>
+      <span class="result-ico"><Icon name="msg" /></span>
+      <h3>Almost done: press Send</h3>
+      <p>Your Messages app should be open with your request written out to <span class="num">{biz.phoneDisplay}</span>. Press <b>Send</b> and we'll reply right away.</p>
+      <div class="msg-preview"><div class="msg-to">To: {biz.name} · <span class="num">{biz.phoneDisplay}</span></div><pre id="rf-msg"></pre></div>
+      <div class="actions">
+        <a class="btn btn-call" id="rf-sms" href={`sms:${biz.sms}`} data-track="text-request"><Icon name="msg" />Open Messages again</a>
+        <button class="btn btn-ghost" type="button" id="rf-copy"><Icon name="copy" />Copy text</button>
+      </div>
+      <p>Messages didn't open, or you're on a computer? Call <a href={tel} class="num" data-track="call-fallback"><b>{biz.phoneDisplay}</b></a>, <a id="rf-mail" href={`mailto:${biz.email}`}>email the request</a>, or copy the text and send it from your phone.</p>
+      <button class="linkish" type="button" id="rf-new">Start a new request</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { toast } from '../scripts/toast.js';
+
+  const form = document.getElementById('rf');
+  if (form) {
+    const $ = (id) => document.getElementById(id);
+    const SMS = form.dataset.sms, EMAIL = form.dataset.email, PHONE = form.dataset.phoneDisplay;
+    const issue = $('rf-issue'), loc = $('rf-loc'), locBtn = $('rf-locbtn'), locHint = $('rf-lochint');
+    const phone = $('rf-phone'), submit = $('rf-submit'), done = $('rf-done'), summary = $('rf-errors');
+    const submitHTML = submit.innerHTML;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let gps = null;
+
+    // Preselect from ?issue= (links from other pages) and from same-page quick-pick chips.
+    const fromUrl = new URLSearchParams(location.search).get('issue');
+    if (fromUrl && [...issue.options].some((o) => o.value === fromUrl)) issue.value = fromUrl;
+    document.querySelectorAll('.chip[data-issue]').forEach((chip) => {
+      chip.addEventListener('click', (e) => {
+        e.preventDefault();
+        issue.value = chip.dataset.issue;
+        clearErr(issue);
+        $('request').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+        setTimeout(() => loc.focus({ preventScroll: true }), reduced ? 0 : 450);
+      });
+    });
+
+    // GPS location (optional). Adds a Google Maps link to the text.
+    locBtn.addEventListener('click', () => {
+      const fail = () => {
+        locHint.textContent = "Couldn't get your location. Type an address, cross streets or the nearest exit.";
+        locHint.className = 'hint bad';
+        locBtn.classList.remove('got');
+        loc.focus();
+      };
+      if (!('geolocation' in navigator)) return fail();
+      locHint.textContent = 'Finding you…';
+      locHint.className = 'hint';
+      navigator.geolocation.getCurrentPosition((p) => {
+        gps = `${p.coords.latitude.toFixed(5)},${p.coords.longitude.toFixed(5)}`;
+        if (!loc.value.trim()) loc.value = 'My current location (GPS pin)';
+        clearErr(loc);
+        locBtn.classList.add('got');
+        locHint.textContent = 'Location added. A landmark or cross street helps too.';
+        locHint.className = 'hint good';
+      }, fail, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
+    });
+
+    // Validation
+    const rules = {
+      issue: (v) => (v ? '' : 'Choose what happened.'),
+      location: (v) => (v.trim().length >= 3 ? '' : 'Tell us where the vehicle is.'),
+      name: (v) => (v.trim() ? '' : 'Enter your name.'),
+      phone: (v) => { const d = v.replace(/\D/g, ''); return d.length === 10 || (d.length === 11 && d[0] === '1') ? '' : 'Enter a 10-digit phone number so we can call you back.'; },
+    };
+    const fieldOf = (el) => el.closest('.field');
+    function setErr(el, msg) {
+      const f = fieldOf(el);
+      let e = f.querySelector('.err');
+      f.classList.add('invalid');
+      el.setAttribute('aria-invalid', 'true');
+      if (!e) { e = document.createElement('p'); e.className = 'err'; e.id = el.id + '-err'; f.appendChild(e); }
+      e.innerHTML = '<svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg>';
+      e.append(msg);
+      el.setAttribute('aria-describedby', [e.id, el.id === 'rf-loc' ? 'rf-lochint' : ''].filter(Boolean).join(' '));
+    }
+    function clearErr(el) {
+      const f = fieldOf(el), e = f.querySelector('.err');
+      f.classList.remove('invalid');
+      el.removeAttribute('aria-invalid');
+      if (el.id === 'rf-loc') el.setAttribute('aria-describedby', 'rf-lochint'); else el.removeAttribute('aria-describedby');
+      if (e) e.remove();
+    }
+    const check = (el) => { const m = rules[el.name](el.value); m ? setErr(el, m) : clearErr(el); return m; };
+    Object.keys(rules).forEach((n) => {
+      const el = form.elements[n];
+      el.addEventListener('blur', () => { if (el.value) check(el); });
+      el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { if (fieldOf(el).classList.contains('invalid')) check(el); });
+    });
+    phone.addEventListener('input', () => {
+      let d = phone.value.replace(/\D/g, '').slice(0, 11);
+      if (d.length === 11 && d[0] === '1') d = d.slice(1);
+      if (d.length > 6) phone.value = `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6, 10)}`;
+      else if (d.length > 3) phone.value = `(${d.slice(0, 3)}) ${d.slice(3)}`;
+    });
+    summary.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (a) { e.preventDefault(); $(a.getAttribute('href').slice(1)).focus(); }
+    });
+
+    function buildMessage() {
+      const f = form.elements, v = (n) => f[n].value.trim();
+      const lines = ['Tow request (from the Alejos Towing website)', `What happened: ${f.issue.value}`, `Location: ${v('location')}`];
+      if (gps) lines.push(`Map: https://maps.google.com/?q=${gps}`);
+      lines.push(`Name: ${v('name')}`, `Callback: ${f.phone.value}`);
+      if (v('vehicle')) lines.push(`Vehicle: ${v('vehicle')}`);
+      if (v('destination')) lines.push(`Take it to: ${v('destination')}`);
+      if (v('notes')) lines.push(`Notes: ${v('notes')}`);
+      return lines.join('\n');
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const errs = Object.keys(rules).map((n) => ({ id: form.elements[n].id, m: check(form.elements[n]) })).filter((x) => x.m);
+      if (errs.length) {
+        summary.hidden = false;
+        summary.innerHTML = `<b>Please fix ${errs.length === 1 ? 'this' : `these ${errs.length}`} before sending:</b><ul>${errs.map((x) => `<li><a href="#${x.id}">${x.m}</a></li>`).join('')}</ul>`;
+        summary.focus();
+        return;
+      }
+      summary.hidden = true;
+      const body = buildMessage();
+      const smsHref = `sms:${SMS}?&body=${encodeURIComponent(body)}`;
+      $('rf-msg').textContent = body;
+      $('rf-sms').href = smsHref;
+      $('rf-mail').href = `mailto:${EMAIL}?subject=${encodeURIComponent('Tow request: ' + form.elements.issue.value)}&body=${encodeURIComponent(body)}`;
+      submit.disabled = true;
+      submit.innerHTML = '<span class="spinner" aria-hidden="true"></span>Opening Messages…';
+      setTimeout(() => {
+        submit.disabled = false;
+        submit.innerHTML = submitHTML;
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
+      }, 700);
+      try { window.location.href = smsHref; } catch (err) { /* the result screen offers call, email and copy */ }
+    });
+
+    $('rf-copy').addEventListener('click', () => {
+      const text = $('rf-msg').textContent;
+      const select = () => {
+        const r = document.createRange(); r.selectNodeContents($('rf-msg'));
+        const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        toast(`Text selected. Copy it and send it to ${PHONE}.`);
+      };
+      if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text).then(() => toast(`Copied. Paste it into a text to ${PHONE}.`), select);
+      else select();
+    });
+    $('rf-new').addEventListener('click', () => {
+      form.reset();
+      gps = null;
+      locBtn.classList.remove('got');
+      locHint.textContent = 'On a highway? The nearest exit or mile marker is perfect.';
+      locHint.className = 'hint';
+      done.hidden = true;
+      form.hidden = false;
+      issue.focus();
+    });
+  }
+</script>

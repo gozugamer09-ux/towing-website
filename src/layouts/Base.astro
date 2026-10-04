@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import { Font } from 'astro:assets';
+import Icons from '../components/Icons.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ActionBar from '../components/ActionBar.astro';
+import { biz, PREVIEW, SITE_DESCRIPTION } from '../lib/site';
+
+const {
+  title,                       // page-specific part; the home page passes a full title
+  description = SITE_DESCRIPTION,
+  fullTitle = false,
+  schema = [],                 // extra JSON-LD objects for this page
+  requestHref = '/request/',
+} = Astro.props;
+
+const pageTitle = fullTitle ? title : `${title} | ${biz.name}`;
+const site = Astro.site;       // only set when SITE_URL is configured (production)
+const canonical = site ? new URL(Astro.url.pathname, site).href : undefined;
+const ogImage = site ? new URL('/og.png', site).href : '/og.png';
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'AutomotiveBusiness',
+  ...(site && { '@id': new URL('/#business', site).href, url: site.href, image: ogImage, logo: new URL('/icon-512.png', site).href }),
+  name: biz.name,
+  description: SITE_DESCRIPTION,
+  telephone: '+1-239-888-7001',
+  email: biz.email,
+  foundingDate: String(biz.founded),
+  paymentAccepted: 'Cash, Credit Card, Zelle',
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00', closes: '23:59',
+  }],
+  areaServed: [
+    { '@type': 'City', name: 'Cape Coral', containedInPlace: { '@type': 'State', name: 'Florida' } },
+    { '@type': 'City', name: 'Fort Myers', containedInPlace: { '@type': 'State', name: 'Florida' } },
+    { '@type': 'State', name: 'Florida' },
+  ],
+};
+const jsonLd = [business, ...schema];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {PREVIEW && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#00653a" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={biz.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <Font cssVariable="--font-overpass" preload />
+    <Font cssVariable="--font-public-sans" preload />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd.length === 1 ? jsonLd[0] : jsonLd)} />
+  </head>
+  <body>
+    <Icons />
+    <a class="skip" href="#main">Skip to content</a>
+    {PREVIEW && <aside class="preview-bar" aria-label="Preview notice"><b>Preview build.</b> Highlighted items still need Yordan's confirmation and are left out of the live site.</aside>}
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <ActionBar requestHref={requestHref} />
+    <script>import '../scripts/site.js';</script>
+  </body>
+</html>

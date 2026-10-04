@@ -1,0 +1,15 @@
+---
+import Icon from './Icon.astro';
+import { biz, tel } from '../lib/site';
+const { title = 'Need a tow right now?', text = 'Call or text any hour of the day or night. We cover Cape Coral, Fort Myers and anywhere in Florida.', requestHref = '/request/' } = Astro.props;
+---
+<section class="final" aria-labelledby="final-h">
+  <div class="wrap final-in">
+    <h2 id="final-h">{title}</h2>
+    <p>{text}</p>
+    <div class="cta-row">
+      <a class="btn btn-signal btn-lg" href={tel} data-track="call-final"><Icon name="phone" />Call <span class="num">{biz.phoneDisplay}</span></a>
+      <a class="btn btn-ghost btn-lg" href={requestHref}>Request a tow<Icon name="arrow" /></a>
+    </div>
+  </div>
+</section>
