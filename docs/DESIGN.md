@@ -84,7 +84,7 @@ Yordan's customers mostly speak Spanish, and Spanish is the preferred language f
 
 - English at the site root, Spanish under `/es/` with Spanish page addresses (`/es/pedir-grua/`, `/es/servicios/grua/`). `src/lib/i18n.js` holds the address table and the shared interface wording.
 - A slim green bar above the header links to the same page in the other language ("Hablamos español. Ver en español" / "View in English"); the phone menu and the footer repeat the link. Search engines get `hreflang` links once `SITE_URL` is set.
-- The home page opens in the phone's language: someone arriving at `/` from outside the site with a phone set to Spanish gets `/es/`. A language the visitor picked before wins (remembered in the browser), and links within the site never switch language. Search engines see the English home. (Pending Yordan's pick between this, English first and Spanish first; asked 2026-10-04.)
+- The home page opens in the phone's language: someone arriving at `/` from outside the site with a phone set to Spanish gets `/es/`. A language the visitor picked before wins (remembered in the browser), and links within the site never switch language. Search engines see the English home. (Yordan chose this over English first or Spanish first, 2026-10-04.)
 - The request form writes its text message in the page's language, so a Spanish request arrives in Spanish.
 - Spanish pages show reviews in the customer's own words; English pages show our labeled translation.
 - **Every wording change is made in both languages in the same change.** Page wording sits at the top of each file in `src/views/` (`COPY.en` and `COPY.es`); services and FAQ answers carry their Spanish in an `"es"` object in `content/*.json`.
