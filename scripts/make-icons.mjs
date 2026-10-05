@@ -25,17 +25,18 @@ const page_ = (c) => `<!doctype html><html><head><style>
 @font-face{font-family:Overpass;src:url(data:font/woff2;base64,${overpass}) format('woff2');font-weight:100 900}
 @font-face{font-family:'Public Sans';src:url(data:font/woff2;base64,${publicSans}) format('woff2');font-weight:100 900}
 *{box-sizing:border-box;margin:0}
-body{width:1200px;height:630px;background:#f3f5f1;font-family:'Public Sans';display:grid;grid-template-columns:1fr 470px;gap:52px;align-items:center;padding:44px 60px;color:#0d1912}
+body{position:relative;width:1200px;height:630px;background:#fbf8f6;font-family:'Public Sans';display:grid;grid-template-columns:1fr 470px;gap:52px;align-items:center;padding:44px 60px;color:#1c1412}
+body::after{content:'';position:absolute;left:0;right:0;bottom:0;height:12px;background:linear-gradient(#c8102e 0 6px,#ff8c1a 6px 12px)}
 h1{font:900 ${c.size}px/1 Overpass;letter-spacing:-.02em;text-wrap:balance}
-h1 em{font-style:normal;color:#00653a}
-p{font-size:28px;color:#45554b;margin-top:22px;line-height:1.35}
-.call{display:inline-block;margin-top:28px;background:#00653a;color:#fff;font:800 38px/1 'Public Sans';padding:20px 28px;border-radius:12px}
-.sign{background:#00653a;border-radius:20px;padding:10px;box-shadow:0 18px 40px rgba(13,25,18,.18)}
+h1 em{font-style:italic;color:#c8102e}
+p{font-size:28px;color:#5b4f4a;margin-top:22px;line-height:1.35}
+.call{display:inline-block;margin-top:28px;background:#c8102e;color:#fff;font:800 38px/1 'Public Sans';padding:20px 28px;border-radius:12px}
+.sign{background:#c8102e;border-radius:20px;padding:10px;box-shadow:0 18px 40px rgba(40,18,12,.2)}
 .in{position:relative;overflow:hidden;border:4px solid #fff;border-radius:12px}
 .in img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-bottom:4px solid #fff}
-.shield{position:absolute;top:14px;left:14px;background:#ffc81a;color:#1a1400;font:900 30px/1 Overpass;padding:13px 15px 15px;border-radius:9px 9px 22px 22px;box-shadow:0 3px 10px rgba(0,0,0,.3)}
+.shield{position:absolute;top:14px;left:14px;background:#ff8c1a;color:#1f1300;font:900 30px/1 Overpass;padding:13px 15px 15px;border-radius:9px 9px 22px 22px;box-shadow:0 3px 10px rgba(0,0,0,.3)}
 .plate{display:flex;justify-content:space-between;align-items:center;padding:16px 22px 18px;color:#fff}
-.name{font:900 46px/1 Overpass;text-transform:uppercase}
+.name{font:italic 900 46px/1 Overpass;text-transform:uppercase}
 .exit{font:800 17px/1 Overpass;letter-spacing:.1em;text-transform:uppercase;margin-top:8px;opacity:.92}
 .arrow{width:62px;height:62px;flex:none;stroke:#fff;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;transform:rotate(-45deg)}
 </style></head><body>

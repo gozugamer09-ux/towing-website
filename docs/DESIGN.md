@@ -1,6 +1,6 @@
-# Design guide: the "Highway" look
+# Design guide: the "Highway" look, in Alejo's colors
 
-Chosen by Yordan on 2026-10-03 from three directions (the other two, "Night Shift" and "Truck Door", are archived in `design/preview/`). Anyone changing the site, person or agent, keeps to these rules so the site stays consistent as it grows.
+Chosen by Yordan on 2026-10-03 from three directions (the other two, "Night Shift" and "Truck Door", are archived in `design/preview/`). On 2026-10-05 Yordan asked for it to be more personal and easier on the eye, in the company's own colors, so it now wears the trucks' livery: the red of the trucks, the orange of their light bars and the black of the door lettering. The layout, the features and the road-sign motifs stayed. Anyone changing the site, person or agent, keeps to these rules so the site stays consistent as it grows.
 
 ## Who it is for
 
@@ -9,7 +9,7 @@ A driver who is stressed, outdoors, on a phone, maybe at night or in bright sun.
 Rules that follow from that:
 
 - **Call and request are always one tap away.** Hero buttons on arrival; a fixed bottom bar on phones once the hero buttons scroll away (it hides while the request form is on screen); the call button in the header on wider screens.
-- **One light theme.** Dark text on light backgrounds reads best in sunlight. No dark mode toggle. Two bands break from it on purpose and hold little text: the asphalt band behind the job photos and the green final banner.
+- **One light theme.** Dark text on light backgrounds reads best in sunlight. No dark mode toggle. Two bands break from it on purpose and hold little text: the asphalt band behind the job photos and the red final banner.
 - **Big targets.** Buttons are 52 to 62px tall; nothing tappable is under 44px (the test suite checks this).
 - **The form asks only what dispatch needs.** Four required fields; the rest are optional and labeled so.
 
@@ -19,37 +19,41 @@ All colors live as CSS variables at the top of `src/styles/global.css`.
 
 | Token | Value | Use |
 |---|---|---|
-| `--accent` | `#00653a` | Guide-sign green: primary buttons, signs, plates, links |
-| `--accent-deep` | `#004428` | Map base labels, pressed states |
-| `--signal` | `#ffc81a` | Reflective yellow: the 24/7 shield, the call button on green, quote marks, tip borders |
-| `--road` | `#2b2f2c` | Asphalt: the band behind the home page's job gallery |
-| `--bg` / `--surface` / `--surface-2` | `#f3f5f1` / `#fff` / `#e8ece6` | Page, cards, quiet fills |
-| `--ink` / `--muted` | `#0d1912` / `#45554b` | Text |
-| `--danger` / `--ok` | `#b3261e` / `#0f7a3e` | Form errors and success |
-| `--focus` | `#1a56db` | Keyboard focus ring (blue, so it never blends into green) |
+| `--accent` | `#c8102e` | Truck red: primary buttons, signs, plates, links |
+| `--accent-deep` | `#860a1e` | Map base labels, pressed states |
+| `--accent-tint` | `#fcedef` | Light red: icon tiles, hover fills |
+| `--signal` | `#ff8c1a` | Light-bar orange: the 24/7 shield, the call button on red, quote marks, tip borders, lane lines |
+| `--road` | `#1f1b1a` | Asphalt and lettering black: the job gallery band, the language bar, the footer |
+| `--bg` / `--surface` / `--surface-2` | `#fbf8f6` / `#fff` / `#f2ece8` | Page (a warm white), cards, quiet fills |
+| `--ink` / `--muted` | `#1c1412` / `#5b4f4a` | Text |
+| `--danger` / `--ok` | `#b42318` / `#12804a` | Form errors; success and the "open now" dot |
+| `--focus` | `#1a56db` | Keyboard focus ring (blue, so it never blends into red; white on red panels) |
+| `--livery` | red over orange, 3px each | The trucks' pinstripes (see motifs) |
 | `--ph` | `#f5b800` | Preview-only highlight for unconfirmed claims |
 
-Yellow is never used for text on white. Green text on white and white text on green both pass WCAG AA (axe checks every page).
+Orange is never used for text on white. Red text on white and white text on red both pass WCAG AA (5.9:1), and so does the orange link on the black language bar (axe checks every page).
 
 ## Type
 
 - **Overpass** (display, weight 900): an open-source typeface inspired by Highway Gothic, the lettering on US road signs. Headings, sign text, big numbers.
 - **Public Sans** (body): the US government's open-source text face, built for plain, legible reading.
+- Brand words lean like the lettering on the truck doors: the wordmark, the hero's "Alejos", sign plates and the final banner's heading are slanted (`font-style: italic`). The browser slants the upright Overpass, so no extra font file loads.
 - Both are self-hosted variable fonts (Latin subset, 39KB and 27KB), preloaded, with size-matched fallbacks so text doesn't jump when they load.
 - Headings use `text-wrap: balance`; phone numbers never break (`.num`).
 
 ## Signature motifs
 
-Each one comes from real highway signage. Use them for the jobs listed, not as decoration.
+Each one comes from real highway signage or from the trucks themselves. Use them for the jobs listed, not as decoration.
 
 | Motif | Where | Class |
 |---|---|---|
-| Guide sign: green panel, white inset border | Photo signs (home hero, service pages), 404 sign, final banner, form callout, service side card | `.psign`, `.sign`, `.callout`, `.side-card`, `.final` |
+| Guide sign: red panel, white inset border | Photo signs (home hero, service pages), 404 sign, final banner, form callout, service side card | `.psign`, `.sign`, `.callout`, `.side-card`, `.final` |
 | Sign plate | Section eyebrows ("SERVICES", "HOW IT WORKS"), photo captions in the job gallery | `.plate`, `.job figcaption` |
-| Yellow 24/7 shield | Top corner of every sign | `.shield` |
+| Orange 24/7 shield | Top corner of every sign | `.shield` |
 | Mile-marker post | Step numbers | `.step::before` |
 | Exit arrow (rotated 45°) | Sign plates, final banner | `.psign-plate .ico`, `.sign-exit .ico`, `.final-arrow` |
 | Dashed lane lines | Edges of the asphalt gallery band, map routes | `.roadband`, `.fl-route` |
+| Pinstripes: red over orange, like the trucks' livery | Under the header; on wide screens trailing from behind the hero's photo sign like speed lines, and in from the right of full page heads that have no photo sign; the footer's orange top edge | `.hdr::after`, `.hero::before`, `.page-head::after`, `.ftr` |
 
 ## Motion
 
@@ -84,7 +88,7 @@ Motion explains something or rewards a glance; nothing loops for attention excep
 Yordan's customers mostly speak Spanish, and Spanish is the preferred language for calls and texts (confirmed 2026-10-04). The whole site exists in both languages:
 
 - English at the site root, Spanish under `/es/` with Spanish page addresses (`/es/pedir-grua/`, `/es/servicios/grua/`). `src/lib/i18n.js` holds the address table and the shared interface wording.
-- A slim green bar above the header links to the same page in the other language ("Hablamos español. Ver en español" / "View in English"); the phone menu and the footer repeat the link. Search engines get `hreflang` links once `SITE_URL` is set.
+- A slim black bar above the header links to the same page in the other language ("Hablamos español. Ver en español" / "View in English"); the phone menu and the footer repeat the link. Search engines get `hreflang` links once `SITE_URL` is set.
 - The home page opens in the phone's language: someone arriving at `/` from outside the site with a phone set to Spanish gets `/es/`. A language the visitor picked before wins (remembered in the browser), and links within the site never switch language. Search engines see the English home. (Yordan chose this over English first or Spanish first, 2026-10-04.)
 - The request form writes its text message in the page's language, so a Spanish request arrives in Spanish.
 - Spanish pages show reviews in the customer's own words; English pages show our labeled translation.
@@ -99,7 +103,7 @@ Spanish style:
 
 ## Photos
 
-Only Yordan's own photos of his trucks, never stock photos: a customer should see the truck that will pull up. He sent 64 photos and a video on 2026-10-04; 17 photos are on the site.
+Only Yordan's own photos of the company's trucks, never stock photos: a customer should see the truck that will pull up. Yordan sent 64 photos and a video on 2026-10-04; 17 photos are on the site.
 
 Where they go:
 

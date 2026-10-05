@@ -32,7 +32,7 @@ None of these is sent to website visitors. All free and open source.
 
 | Service | Purpose | Cost | Status |
 |---|---|---|---|
-| GitHub repository `gozugamer09-ux/towing-website` | Version history, backups, source for deploys | Free | Created by Yordan. The site is on branch `site/highway`, waiting for his approval to go to `main` |
+| GitHub repository `gozugamer09-ux/towing-website` | Version history, backups, source for deploys | Free | Created by Yordan. The site is on branch `site/highway`, waiting for Yordan's approval to go to `main` |
 | Cloudflare Pages (recommended host) | Hosting, HTTPS, global CDN, a private preview link for every change, one-click rollback | Free tier | Needs Yordan's free Cloudflare account. Cache and security headers are ready in `public/_headers` |
 | Domain name (e.g. alejostowing.com) | The site's address | About $10–15 per year | Not bought. Needs Yordan's decision |
 | Request form | Opens a text to (239) 888-7001 on the customer's own phone, with every detail and an optional GPS map link | Free, no service | Built and tested in a browser; still needs one real test from a phone |

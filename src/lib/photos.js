@@ -1,4 +1,4 @@
-// Yordan's own photos of his trucks on real jobs (sent 2026-10-04), in src/assets/photos/.
+// Yordan's own photos of the company's trucks on real jobs (sent 2026-10-04), in src/assets/photos/.
 // Each file is named by what it shows; this table gives its description in both languages.
 // `alt` is read by screen readers, `caption` labels it in the job gallery, and `pos` is the
 // part to keep in view when a layout crops it (CSS object-position).
