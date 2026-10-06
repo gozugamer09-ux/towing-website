@@ -18,6 +18,8 @@ export const biz = {
   usdot: business.trust.usdot_number,
   insurer: business.trust.insurer,
   payment: business.payment.value,
+  googleRating: business.reviews.google_rating.value,              // "5.0", or null while unknown
+  googleRatingConfirmed: business.reviews.google_rating.confirmed,
 };
 
 export const tel = `tel:${biz.phone}`;

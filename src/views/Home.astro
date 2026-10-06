@@ -38,7 +38,7 @@ const COPY = {
     trustPlate: 'Why drivers call us', trustH: 'Local, licensed, and there at 2&nbsp;a.m.',
     doorH: 'Look for our name on the door.',
     doorText: "Our trucks carry our name and our number, {phone}, on the door, so you know it's us when we pull up.",
-    allReviews: 'Read all {n} reviews', rating: '· Rated ★ ?.? on Google',
+    allReviews: 'Read all {n} reviews', rating: '· Rated ★ {rating} on Google',
     requestLabel: 'Request a tow',
     faqPlate: 'Questions', faqH: 'Good to know before you call.',
     faqLede: ["Can't find your answer? Call or text", 'Someone picks up 24/7.'], faqLink: 'All questions',
@@ -61,7 +61,7 @@ const COPY = {
     trustPlate: 'Por qué nos llaman', trustH: 'Locales, con licencia y disponibles a las 2 de la mañana.',
     doorH: 'Busque nuestro nombre en la puerta.',
     doorText: 'Nuestras grúas llevan nuestro nombre y nuestro número, {phone}, en la puerta, para que sepa que somos nosotros cuando lleguemos.',
-    allReviews: 'Leer las {n} reseñas', rating: '· Calificación ★ ?.? en Google',
+    allReviews: 'Leer las {n} reseñas', rating: '· Calificación ★ {rating} en Google',
     requestLabel: 'Pedir grúa',
     faqPlate: 'Preguntas', faqH: 'Bueno saber antes de llamar.',
     faqLede: ['¿No encuentra su respuesta? Llame o escriba al', 'Siempre contesta alguien, 24/7.'], faqLink: 'Todas las preguntas',
@@ -151,7 +151,7 @@ const c = COPY[lang];
       <div class="reviews">
         {featuredReviews.map((r) => <ReviewCard r={r} />)}
       </div>
-      <p class="reviews-note"><a class="text-link" href={href('reviews', lang)}>{c.allReviews.replace('{n}', String(reviews.length))}<Icon name="arrow" /></a> <Pending note="Need the Google profile link, rating and review count">{c.rating}</Pending></p>
+      <p class="reviews-note"><a class="text-link" href={href('reviews', lang)}>{c.allReviews.replace('{n}', String(reviews.length))}<Icon name="arrow" /></a> {biz.googleRatingConfirmed ? fill(c.rating, { rating: biz.googleRating }) : <Pending note="Yordan said five stars; check the exact rating on the Google profile">{fill(c.rating, { rating: biz.googleRating ?? '?.?' })}</Pending>}</p>
     </div>
   </section>
 

@@ -14,7 +14,7 @@ const COPY = {
     description: 'What drivers say about {name}: {n} Google reviews from customers in Cape Coral, Fort Myers and across Florida.',
     h1: 'What drivers say about us',
     lede: 'Real Google reviews from our customers. Most were written in Spanish, so each one shows our English translation with the original one tap away.',
-    rating: '★ ?.? average from ?? Google reviews · Read and leave reviews on Google',
+    rating: '★ {rating} average on Google', ratingMore: '· ?? reviews · Read and leave reviews on Google',
     finalTitle: "Need us? We're up.", finalText: 'Call or text {phone} any hour, day or night.',
   },
   es: {
@@ -22,7 +22,7 @@ const COPY = {
     description: 'Lo que dicen los conductores de {name}: {n} reseñas de Google de clientes en Cape Coral, Fort Myers y toda la Florida.',
     h1: 'Lo que dicen de nosotros',
     lede: 'Reseñas reales de Google, escritas por nuestros clientes con sus propias palabras.',
-    rating: '★ ?.? de promedio en ?? reseñas de Google · Leer y dejar reseñas en Google',
+    rating: '★ {rating} de promedio en Google', ratingMore: '· ?? reseñas · Leer y dejar reseñas en Google',
     finalTitle: '¿Nos necesita? Aquí estamos.', finalText: 'Llame o escriba al {phone} a cualquier hora, de día o de noche.',
   },
 };
@@ -35,7 +35,9 @@ const vars = { name: biz.name, n: reviews.length, phone: biz.phoneDisplay };
       <nav aria-label={t.breadcrumb}><ol class="crumbs"><li><a href={href('home', lang)}>{t.nav.home}</a></li><li aria-current="page">{t.nav.reviews}</li></ol></nav>
       <h1>{c.h1}</h1>
       <p class="lede">{c.lede}</p>
-      <Pending block note="Need the Google profile link, rating and review count"><p class="rating-line">{c.rating}</p></Pending>
+      {biz.googleRatingConfirmed
+        ? <p class="rating-line">{fill(c.rating, { rating: biz.googleRating })} <Pending note="Need the Google profile link and review count">{c.ratingMore}</Pending></p>
+        : <Pending block note="Need the Google profile link, the exact rating and the review count"><p class="rating-line">{fill(c.rating, { rating: biz.googleRating ?? '?.?' })} {c.ratingMore}</p></Pending>}
     </div>
   </section>
   <section class="sec">

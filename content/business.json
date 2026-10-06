@@ -71,7 +71,7 @@
     "usdot_source": "Yordan, project chat, 2026-10-04: 'dot 3314605' (also lettered on the truck doors)",
     "insurance": "Insured through Progressive",
     "confirmed": true,
-    "open_question": "Google rating, review count and profile link",
+    "open_question": "Google review count and profile link (the rating is under reviews)",
     "insurer": "Progressive"
   },
   "languages": {
@@ -85,7 +85,21 @@
     "note": "The site has a full Spanish version under /es/."
   },
   "reviews": {
-    "file": "content/reviews.json"
+    "file": "content/reviews.json",
+    "google_rating": {
+      "value": "5.0",
+      "confirmed": false,
+      "source": "Yordan, thread, 2026-10-06: 'We are ready in five stars. In Florida. In Google.' (voice typing; read as rated five stars on Google)",
+      "note": "Shown in previews only until the exact figure is checked on the Google profile: owners often say five stars for 4.8 or 4.9."
+    },
+    "google_review_count": {
+      "value": null,
+      "confirmed": false
+    },
+    "google_profile_url": {
+      "value": null,
+      "confirmed": false
+    }
   },
   "payment": {
     "value": [
