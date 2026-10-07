@@ -1,0 +1,9 @@
+---
+import Service from '../../views/Service.astro';
+import { servicesFor } from '../../lib/site';
+
+export function getStaticPaths() {
+  return servicesFor('en').map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+---
+<Service s={Astro.props.s} />

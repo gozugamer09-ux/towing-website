@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+import { PREVIEW } from '../lib/site';
+const { items, openFirst = false } = Astro.props;
+---
+<div class="faq">
+  {items.map((i, n) => (
+    <details open={openFirst && n === 0} class={i.pending ? 'ph-block' : undefined} lang={i.lang}>
+      <summary>{i.q}<Icon name="chev" /></summary>
+      <div class="ans">
+        {i.a}
+        {i.pendingA && PREVIEW && <> <span class="ph">{i.pendingA}</span></>}
+      </div>
+    </details>
+  ))}
+</div>

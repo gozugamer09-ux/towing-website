@@ -1,0 +1,354 @@
+{
+  "_note": "Service pages, in English with the Spanish wording in each service's \"es\" object (\"es.slug\" is the Spanish page address). Every service here was confirmed by Yordan on 2026-10-03. Descriptions are general and avoid prices, times or guarantees; any such claim needs Yordan's confirmation first. Box trucks and RVs: Yordan, 2026-10-04, 'yes so long as the tires fit on the truck'. Equipment hauling: Yordan, comment on the site report, 2026-10-07: 'yes' (forklifts, a backhoe and a track loader appear in the photos). \"photo\" names one of Yordan's own photos (src/lib/photos.js) shown on the service's page and card.",
+  "services": [
+    {
+      "slug": "towing",
+      "icon": "truck",
+      "photo": "jeep-wrangler",
+      "title": "Towing, light to heavy-duty",
+      "nav": "Towing",
+      "ask": "Need a tow now?",
+      "short": "Light, medium and heavy-duty tows to your home, a shop or a dealer.",
+      "seoTitle": "24/7 Towing in Cape Coral & Fort Myers",
+      "intro": "Broken down, won't start, or not safe to drive? We tow cars, SUVs, pickups and work vans to wherever you choose: your driveway, your mechanic, a dealer or a body shop.",
+      "tags": ["Cars", "SUVs", "Pickups", "Vans"],
+      "includes": ["Light-duty towing for cars and small SUVs", "Medium-duty towing for full-size pickups, vans and larger SUVs", "Heavy-duty towing", "Box trucks, RVs and other big vehicles, as long as the tires fit on our truck", "Tows to the shop, dealer, home or storage of your choice", "Day, night, weekend and holiday service"],
+      "goodToKnow": [
+        {"title": "Where should it go?", "text": "If you already have a mechanic, tell us the shop name. If not, we can take it home so you can decide later."},
+        {"title": "Keys and personal items", "text": "Bring your keys and anything you'll need from the car before it's loaded."}
+      ],
+      "faq": [
+        {"q": "Can you tow my car to my own mechanic?", "a": "Yes. Tell us the shop name or address and we'll take it there."},
+        {"q": "Do you tow at night?", "a": "Yes. We're available 24 hours a day, 7 days a week, including the middle of the night."}
+      ],
+      "es": {
+        "slug": "grua",
+        "title": "Servicio de grúa, de liviano a pesado",
+        "nav": "Grúa",
+        "ask": "¿Necesita una grúa ahora?",
+        "short": "Remolque liviano, mediano y pesado a su casa, al taller o al concesionario.",
+        "seoTitle": "Servicio de Grúa 24/7 en Cape Coral y Fort Myers",
+        "intro": "¿Se le averió el carro, no arranca o no es seguro manejarlo? Remolcamos carros, SUV, pickups y vans de trabajo a donde usted diga: su casa, su mecánico, el concesionario o el taller de carrocería.",
+        "tags": ["Carros", "SUV", "Pickups", "Vans"],
+        "includes": ["Remolque liviano para carros y SUV pequeñas", "Remolque mediano para pickups grandes, vans y SUV grandes", "Remolque pesado", "Camiones de caja, casas rodantes (RV) y otros vehículos grandes, siempre que las gomas quepan en nuestra grúa", "Lo llevamos al taller, concesionario, casa o depósito que usted elija", "Servicio de día y de noche, fines de semana y días festivos"],
+        "goodToKnow": [
+          {"title": "¿A dónde lo llevamos?", "text": "Si ya tiene mecánico, díganos el nombre del taller. Si no, lo podemos llevar a su casa para que decida después."},
+          {"title": "Llaves y cosas personales", "text": "Tenga sus llaves a mano y saque del carro lo que vaya a necesitar antes de que lo carguemos."}
+        ],
+        "faq": [
+          {"q": "¿Pueden llevar mi carro a mi propio mecánico?", "a": "Sí. Díganos el nombre o la dirección del taller y lo llevamos allí."},
+          {"q": "¿Remolcan de noche?", "a": "Sí. Estamos disponibles las 24 horas, los 7 días de la semana, incluso de madrugada."}
+        ]
+      }
+    },
+    {
+      "slug": "flatbed-towing",
+      "icon": "flatbed",
+      "photo": "ford-model-t",
+      "title": "Flatbed towing",
+      "nav": "Flatbed",
+      "ask": "Need a flatbed now?",
+      "short": "All four wheels off the ground for AWD, lowered and luxury vehicles.",
+      "seoTitle": "Flatbed Towing in Cape Coral & Fort Myers",
+      "intro": "A flatbed carries your whole vehicle on the deck, with no wheels rolling on the road. It's the safest way to move all-wheel-drive, lowered, classic and luxury cars, and anything with drivetrain damage.",
+      "tags": ["AWD & 4x4", "Lowered", "Classics", "Luxury"],
+      "includes": ["All-wheel-drive and 4x4 vehicles", "Lowered and low-clearance cars", "Classic, exotic and luxury vehicles", "Vehicles with transmission or drivetrain damage", "Vehicles that can't roll"],
+      "goodToKnow": [
+        {"title": "Not sure you need a flatbed?", "text": "Tell us the year, make and model. We'll tell you which way is safest for your vehicle."}
+      ],
+      "faq": [
+        {
+          "q": "Does my car need a flatbed?",
+          "a": "All-wheel-drive and 4x4 vehicles, lowered or low-clearance cars, classics and luxury cars, and vehicles with drivetrain damage usually ride best on a flatbed. If you're not sure, tell us the vehicle and we'll recommend the safest option."
+        }
+      ],
+      "es": {
+        "slug": "grua-de-plataforma",
+        "title": "Grúa de plataforma",
+        "nav": "Plataforma",
+        "ask": "¿Necesita una plataforma ahora?",
+        "short": "Las cuatro ruedas arriba de la plataforma, para AWD, carros rebajados y de lujo.",
+        "seoTitle": "Grúa de Plataforma en Cape Coral y Fort Myers",
+        "intro": "La plataforma carga su vehículo completo, sin ruedas rodando por la carretera. Es la forma más segura de mover carros con tracción integral (AWD), rebajados, clásicos y de lujo, y cualquier vehículo con daños en la transmisión.",
+        "tags": ["AWD y 4x4", "Rebajados", "Clásicos", "De lujo"],
+        "includes": ["Vehículos con tracción integral (AWD) y 4x4", "Carros rebajados o muy bajos", "Vehículos clásicos, exóticos y de lujo", "Vehículos con daños en la transmisión", "Vehículos que no ruedan"],
+        "goodToKnow": [
+          {"title": "¿No sabe si necesita plataforma?", "text": "Díganos el año, la marca y el modelo, y le decimos cuál es la forma más segura de mover su vehículo."}
+        ],
+        "faq": [
+          {
+            "q": "¿Mi carro necesita grúa de plataforma?",
+            "a": "Los vehículos con tracción integral o 4x4, los carros rebajados o muy bajos, los clásicos y de lujo, y los que tienen daños en la transmisión suelen viajar mejor en plataforma. Si no está seguro, díganos qué vehículo es y le recomendamos la opción más segura."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "roadside-assistance",
+      "icon": "battery",
+      "photo": "truck-highway-side",
+      "title": "Roadside assistance",
+      "nav": "Roadside help",
+      "ask": "Need roadside help now?",
+      "short": "Jump starts, lockouts, tire changes and fuel, right where you are.",
+      "seoTitle": "Roadside Assistance in Cape Coral & Fort Myers",
+      "intro": "Not every problem needs a tow. For a dead battery, a flat tire, keys locked inside or an empty tank, we come to you and get you moving again.",
+      "tags": ["Jump starts", "Lockouts", "Tire changes", "Fuel"],
+      "includes": ["Jump starts for dead batteries", "Lockout help when your keys are locked inside", "Tire changes using your spare", "Fuel delivery when you run out"],
+      "goodToKnow": [
+        {"title": "Flat tire?", "text": "Let us know if you have a working spare. If you don't, we can tow you to a tire shop instead."},
+        {"title": "Stay safe while you wait", "text": "Pull as far from traffic as you can, turn on your hazard lights, and stay out of the travel lanes."}
+      ],
+      "faq": [
+        {"q": "What if the jump start doesn't work?", "a": "If your car won't start after a jump, we can tow it to a shop or your home."},
+        {"q": "Can you help if I don't have a spare tire?", "a": "Yes. We can tow you to a tire shop or wherever you'd like."}
+      ],
+      "es": {
+        "slug": "asistencia-en-carretera",
+        "title": "Asistencia en carretera",
+        "nav": "Asistencia vial",
+        "ask": "¿Necesita asistencia ahora?",
+        "short": "Paso de corriente, llaves adentro, cambio de goma y gasolina, donde esté.",
+        "seoTitle": "Asistencia en Carretera en Cape Coral y Fort Myers",
+        "intro": "No todo problema necesita grúa. Si se le descargó la batería, se le ponchó una goma, dejó las llaves adentro o se quedó sin gasolina, vamos a donde esté y lo ponemos en marcha otra vez.",
+        "tags": ["Batería", "Llaves adentro", "Gomas", "Gasolina"],
+        "includes": ["Paso de corriente cuando la batería está descargada", "Ayuda cuando las llaves quedaron dentro del carro", "Cambio de goma con su goma de repuesto", "Entrega de gasolina cuando se queda sin combustible"],
+        "goodToKnow": [
+          {"title": "¿Goma ponchada?", "text": "Díganos si tiene una goma de repuesto en buen estado. Si no tiene, lo podemos remolcar a un taller de gomas."},
+          {"title": "Cuídese mientras espera", "text": "Aléjese del tráfico todo lo que pueda, encienda las luces de emergencia y no se quede en los carriles."}
+        ],
+        "faq": [
+          {"q": "¿Y si el carro no arranca con el paso de corriente?", "a": "Si no arranca después de pasarle corriente, lo podemos remolcar a un taller o a su casa."},
+          {"q": "¿Me pueden ayudar si no tengo goma de repuesto?", "a": "Sí. Lo podemos remolcar a un taller de gomas o a donde usted quiera."}
+        ]
+      }
+    },
+    {
+      "slug": "winching",
+      "icon": "hill",
+      "photo": "classic-car-loading",
+      "title": "Winching & recovery",
+      "nav": "Winching",
+      "ask": "Stuck right now?",
+      "short": "Out of ditches, sand, mud and tight spots without extra damage.",
+      "seoTitle": "Winch-Outs in Cape Coral & Fort Myers",
+      "intro": "Slid into a ditch, sunk in sand or mud, or stuck somewhere a tow truck can't simply back up to? We winch your vehicle out carefully and get it back on solid ground.",
+      "tags": ["Ditches", "Sand", "Mud", "Tight spots"],
+      "includes": ["Winch-outs from ditches and soft shoulders", "Vehicles stuck in sand or mud", "Recovery from tight or awkward spots", "A tow afterwards if the vehicle can't be driven"],
+      "goodToKnow": [
+        {"title": "Don't spin the wheels", "text": "Spinning usually digs the vehicle in deeper. Turn the engine off and call us."}
+      ],
+      "faq": [
+        {
+          "q": "My car is stuck but not damaged. Do I still need a tow?",
+          "a": "Often not. Many stuck vehicles can be winched out and driven away. If it can't be driven, we can tow it."
+        }
+      ],
+      "es": {
+        "slug": "winche",
+        "title": "Winche y rescate",
+        "nav": "Winche",
+        "ask": "¿Se quedó atascado?",
+        "short": "Lo sacamos de zanjas, arena, lodo y lugares difíciles sin causar más daños.",
+        "seoTitle": "Servicio de Winche en Cape Coral y Fort Myers",
+        "intro": "¿Se fue a una zanja, se hundió en la arena o el lodo, o quedó donde una grúa no puede llegar fácilmente? Sacamos su vehículo con el winche, con cuidado, y lo dejamos en terreno firme.",
+        "tags": ["Zanjas", "Arena", "Lodo", "Lugares difíciles"],
+        "includes": ["Rescate con winche de zanjas y orillas blandas", "Vehículos atascados en arena o lodo", "Rescate en lugares estrechos o difíciles", "Remolque después, si el vehículo no se puede manejar"],
+        "goodToKnow": [
+          {"title": "No acelere en el lugar", "text": "Si las ruedas patinan, el vehículo se entierra más. Apague el motor y llámenos."}
+        ],
+        "faq": [
+          {
+            "q": "Mi carro está atascado pero no está dañado. ¿Necesito grúa?",
+            "a": "Muchas veces no. Muchos vehículos atascados se sacan con el winche y siguen manejando. Si no se puede manejar, lo remolcamos."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "accident-recovery",
+      "icon": "alert",
+      "photo": "wrecked-car",
+      "title": "Accident recovery",
+      "nav": "Accident recovery",
+      "ask": "Been in an accident?",
+      "short": "Careful recovery and transport after a collision.",
+      "seoTitle": "Accident Towing in Cape Coral & Fort Myers",
+      "intro": "After a crash, the last thing you need is a long wait. We recover and transport damaged vehicles carefully and take them to the body shop, home or lot you choose.",
+      "tags": ["Collisions", "Disabled vehicles"],
+      "includes": ["Recovery of vehicles damaged in a collision", "Transport to a body shop, home or storage", "Careful loading to avoid further damage"],
+      "goodToKnow": [
+        {"title": "Safety first", "text": "If anyone is hurt or the road is blocked, call 911 first. Call us once everyone is safe."}
+      ],
+      "faq": [
+        {"q": "Can you take my car to my insurance company's shop?", "a": "Yes. Tell us the shop's name or address and we'll take it there."}
+      ],
+      "es": {
+        "slug": "accidentes",
+        "title": "Grúa para accidentes",
+        "nav": "Accidentes",
+        "ask": "¿Tuvo un accidente?",
+        "short": "Recuperación y traslado con cuidado después de un choque.",
+        "seoTitle": "Grúa para Accidentes en Cape Coral y Fort Myers",
+        "intro": "Después de un choque, lo último que necesita es una larga espera. Recuperamos y trasladamos vehículos dañados con cuidado y los llevamos al taller de carrocería, a su casa o al lote que usted elija.",
+        "tags": ["Choques", "Vehículos inmovilizados"],
+        "includes": ["Recuperación de vehículos dañados en un choque", "Traslado a un taller de carrocería, su casa o un depósito", "Carga cuidadosa para no causar más daños"],
+        "goodToKnow": [
+          {"title": "Primero, la seguridad", "text": "Si hay heridos o la vía está bloqueada, llame primero al 911. Llámenos cuando todos estén a salvo."}
+        ],
+        "faq": [
+          {"q": "¿Pueden llevar mi carro al taller de mi seguro?", "a": "Sí. Díganos el nombre o la dirección del taller y lo llevamos allí."}
+        ]
+      }
+    },
+    {
+      "slug": "motorcycle-towing",
+      "icon": "moto",
+      "photo": "flatbed-empty",
+      "title": "Motorcycle towing",
+      "nav": "Motorcycles",
+      "ask": "Need your bike towed?",
+      "short": "Bikes strapped down properly and moved with care.",
+      "seoTitle": "Motorcycle Towing in Cape Coral & Fort Myers",
+      "intro": "Motorcycles need proper tie-downs and a careful hand. Whether it's a breakdown, a flat or a bike that's not safe to ride, we load it securely and take it where you need it.",
+      "tags": ["Street", "Cruisers", "Sport bikes"],
+      "includes": ["Breakdowns and flat tires", "Bikes that aren't safe to ride", "Transport to a shop, dealer or home"],
+      "goodToKnow": [
+        {"title": "Tell us the bike", "text": "Year, make and model help us bring the right straps and set up for your bike."}
+      ],
+      "faq": [
+        {"q": "Do you tow motorcycles?", "a": "Yes. We tow motorcycles across Cape Coral, Fort Myers and the rest of Florida."}
+      ],
+      "es": {
+        "slug": "motos",
+        "title": "Remolque de motos",
+        "nav": "Motos",
+        "ask": "¿Necesita remolcar su moto?",
+        "short": "Motos bien amarradas y trasladadas con cuidado.",
+        "seoTitle": "Remolque de Motos en Cape Coral y Fort Myers",
+        "intro": "Una moto necesita buenos amarres y manos cuidadosas. Ya sea una avería, una goma ponchada o una moto que no es segura para manejar, la cargamos bien sujeta y la llevamos a donde la necesite.",
+        "tags": ["De calle", "Cruiser", "Deportivas"],
+        "includes": ["Averías y gomas ponchadas", "Motos que no es seguro manejar", "Traslado a un taller, concesionario o a su casa"],
+        "goodToKnow": [
+          {"title": "Díganos qué moto es", "text": "El año, la marca y el modelo nos ayudan a traer las correas adecuadas y prepararnos para su moto."}
+        ],
+        "faq": [
+          {"q": "¿Remolcan motos?", "a": "Sí. Remolcamos motos en Cape Coral, Fort Myers y el resto de la Florida."}
+        ]
+      }
+    },
+    {
+      "slug": "long-distance-towing",
+      "icon": "route",
+      "photo": "truck-palm-tree",
+      "title": "Long-distance towing",
+      "nav": "Long distance",
+      "ask": "Need a long-distance tow?",
+      "short": "From Cape Coral to Miami, Tampa or anywhere in Florida.",
+      "seoTitle": "Long-Distance Towing Across Florida",
+      "intro": "Broke down far from home, bought a car in another city, or moving a vehicle across the state? We tow anywhere in Florida.",
+      "tags": ["Statewide", "Relocations", "Vehicle purchases"],
+      "includes": ["Tows between cities anywhere in Florida", "Breakdowns far from home", "Vehicles bought or sold out of town", "Relocations"],
+      "goodToKnow": [
+        {"title": "Plan ahead if you can", "text": "For a planned move, send the pickup and drop-off addresses and the vehicle, and we'll arrange a time."}
+      ],
+      "faq": [
+        {"q": "How far will you tow?", "a": "Anywhere in Florida. Call or text with the pickup and drop-off locations for a quote."}
+      ],
+      "es": {
+        "slug": "larga-distancia",
+        "title": "Remolque de larga distancia",
+        "nav": "Larga distancia",
+        "ask": "¿Necesita llevarlo lejos?",
+        "short": "De Cape Coral a Miami, Tampa o cualquier lugar de la Florida.",
+        "seoTitle": "Grúa de Larga Distancia en Toda la Florida",
+        "intro": "¿Se le averió el carro lejos de casa, compró uno en otra ciudad o necesita moverlo de un lado a otro del estado? Remolcamos a cualquier lugar de la Florida.",
+        "tags": ["Todo el estado", "Mudanzas", "Compras de vehículos"],
+        "includes": ["Remolques entre ciudades en toda la Florida", "Averías lejos de casa", "Vehículos comprados o vendidos en otra ciudad", "Mudanzas"],
+        "goodToKnow": [
+          {
+            "title": "Si puede, planifique",
+            "text": "Para un traslado planificado, mándenos las direcciones de recogida y entrega y los datos del vehículo, y coordinamos la hora."
+          }
+        ],
+        "faq": [
+          {"q": "¿Hasta dónde remolcan?", "a": "A cualquier lugar de la Florida. Llame o escriba con el lugar de recogida y el destino, y le damos un precio."}
+        ]
+      }
+    },
+    {
+      "slug": "equipment-hauling",
+      "icon": "forklift",
+      "photo": "backhoe",
+      "title": "Equipment hauling",
+      "nav": "Equipment",
+      "ask": "Need a machine moved?",
+      "short": "Forklifts, backhoes, track loaders and other machines, moved on our flatbed.",
+      "seoTitle": "Equipment Hauling in Cape Coral & Fort Myers",
+      "intro": "Need a forklift, backhoe or compact track loader taken to a job site, a yard or a shop? We load it on our flatbed, strap it down and take it where it needs to go.",
+      "tags": ["Forklifts", "Backhoes", "Track loaders"],
+      "includes": ["Forklifts, backhoes and compact track loaders", "Other machines and equipment, as long as they fit on our truck", "Job sites, equipment yards, shops and warehouses", "Local moves and longer hauls anywhere in Florida"],
+      "goodToKnow": [
+        {"title": "What to send us", "text": "What the machine is (make and model if you have them), about how much it weighs, where it is and where it's going. A photo helps."},
+        {"title": "Getting it on the truck", "text": "Tell us if it runs and can drive onto the bed, or if it will need the winch."}
+      ],
+      "faq": [
+        {"q": "Can you move a forklift or a backhoe?", "a": "Yes. We haul forklifts, backhoes and compact track loaders on our flatbed. Tell us what it is and where it's going, and we'll confirm it fits on our truck."}
+      ],
+      "es": {
+        "slug": "transporte-de-maquinaria",
+        "title": "Transporte de maquinaria",
+        "nav": "Maquinaria",
+        "ask": "¿Necesita mover una máquina?",
+        "short": "Montacargas, retroexcavadoras, minicargadoras y otras máquinas, en nuestra grúa de plataforma.",
+        "seoTitle": "Transporte de Maquinaria en Cape Coral y Fort Myers",
+        "intro": "¿Necesita llevar un montacargas, una retroexcavadora o una minicargadora a una obra, un patio o un taller? Subimos la máquina a nuestra plataforma, la aseguramos y la llevamos a donde tiene que ir.",
+        "tags": ["Montacargas", "Retroexcavadoras", "Minicargadoras"],
+        "includes": ["Montacargas, retroexcavadoras y minicargadoras de orugas", "Otras máquinas y equipos, siempre que quepan en nuestra grúa", "Obras, patios de equipos, talleres y almacenes", "Traslados locales y viajes más largos a cualquier lugar de la Florida"],
+        "goodToKnow": [
+          {"title": "Qué mandarnos", "text": "Qué máquina es (marca y modelo si los tiene), más o menos cuánto pesa, dónde está y a dónde va. Una foto ayuda."},
+          {"title": "Para subirla a la grúa", "text": "Díganos si funciona y puede subir sola a la plataforma, o si hay que subirla con el winche."}
+        ],
+        "faq": [
+          {"q": "¿Pueden mover un montacargas o una retroexcavadora?", "a": "Sí. Transportamos montacargas, retroexcavadoras y minicargadoras de orugas en nuestra grúa de plataforma. Díganos qué es y a dónde va, y le confirmamos que cabe en nuestra grúa."}
+        ]
+      }
+    },
+    {
+      "slug": "junk-car-removal",
+      "icon": "junk",
+      "photo": "old-pickup",
+      "title": "Junk car removal",
+      "nav": "Junk cars",
+      "ask": "Got a junk car to clear out?",
+      "short": "Old or wrecked car taking up space? We'll haul it away.",
+      "seoTitle": "Junk Car Removal in Cape Coral & Fort Myers",
+      "intro": "An old, wrecked or non-running car taking up your driveway or yard? We'll come and haul it away.",
+      "tags": ["Wrecks", "Non-running", "Old vehicles"],
+      "includes": ["Non-running and wrecked vehicles", "Removal from driveways, yards and lots"],
+      "goodToKnow": [
+        {"title": "What to send us", "text": "Year, make and model, where the car is, and whether it rolls and has all its wheels."}
+      ],
+      "faq": [
+        {"q": "Does the car need to run?", "a": "No. We remove non-running and wrecked vehicles."}
+      ],
+      "es": {
+        "slug": "carros-chatarra",
+        "title": "Retiro de carros chatarra",
+        "nav": "Carros chatarra",
+        "ask": "¿Quiere deshacerse de un carro viejo?",
+        "short": "¿Un carro viejo o chocado ocupando espacio? Nos lo llevamos.",
+        "seoTitle": "Retiro de Carros Chatarra en Cape Coral y Fort Myers",
+        "intro": "¿Un carro viejo, chocado o que ya no funciona ocupando su entrada o su patio? Vamos y nos lo llevamos.",
+        "tags": ["Chocados", "No funcionan", "Viejos"],
+        "includes": ["Vehículos que no funcionan o están chocados", "Retiro desde entradas, patios y lotes"],
+        "goodToKnow": [
+          {"title": "Qué mandarnos", "text": "Año, marca y modelo, dónde está el carro, y si rueda y tiene todas sus ruedas."}
+        ],
+        "faq": [
+          {"q": "¿El carro tiene que funcionar?", "a": "No. Retiramos vehículos que no funcionan o están chocados."}
+        ]
+      }
+    }
+  ]
+}

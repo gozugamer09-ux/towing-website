@@ -1,0 +1,9 @@
+---
+import { biz } from '../lib/site';
+import { langOf, fill, UI } from '../lib/i18n';
+const t = UI[langOf(Astro.url)];
+const vars = { year: biz.founded, insurer: biz.insurer, usdot: biz.usdot };
+---
+<div class="facts">
+  {t.facts.map(([b, span]) => <div class="fact"><b>{fill(b, vars)}</b><span>{fill(span, vars)}</span></div>)}
+</div>

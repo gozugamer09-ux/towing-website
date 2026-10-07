@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import { biz, tel } from '../lib/site';
+import { langOf, href, alternates, fill, UI } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const path = Astro.url.pathname;
+const home = href('home', lang);
+const links = ['services', 'area', 'reviews', 'faq', 'request'].map((k) => ({ href: href(k, lang), label: t.nav[k] }));
+const current = (h) => path.startsWith(h);
+const other = lang === 'es' ? 'en' : 'es';
+const otherHref = alternates(path)[other];
+---
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href={home}>
+      <span class="mark" aria-hidden="true"><Icon name="hook" /></span>
+      <span class="wordmark">{biz.name}<small aria-hidden="true">{t.tagline}</small></span>
+    </a>
+    <nav class="nav" aria-label={t.mainNav}>
+      {links.map((l) => <a href={l.href} aria-current={current(l.href) ? 'page' : undefined}>{l.label}</a>)}
+    </nav>
+    <div class="hdr-actions">
+      <a class="btn btn-call" href={tel} data-track="call-header">
+        <Icon name="phone" /><span class="hdr-call-label num">{biz.phoneDisplay}</span><span class="sr-only">{fill(t.callAt, { name: biz.name, phone: biz.phoneDisplay })}</span>
+      </a>
+      <button class="icon-btn menu-btn" type="button" aria-label={t.openMenu} aria-expanded="false" aria-controls="sheet" data-menu-open><Icon name="menu" /></button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-bg" data-menu-close></div>
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-label={t.menu}>
+    <div class="sheet-top">
+      <span class="wordmark">{biz.name}</span>
+      <button class="icon-btn" type="button" aria-label={t.closeMenu} data-menu-close><Icon name="x" /></button>
+    </div>
+    <a class="navlink" href={home}>{t.nav.home}<Icon name="arrow" /></a>
+    {links.map((l) => <a class="navlink" href={l.href} aria-current={current(l.href) ? 'page' : undefined}>{l.label}<Icon name="arrow" /></a>)}
+    <a class="btn btn-call btn-lg" href={tel} data-track="call-menu"><Icon name="phone" />{t.call} <span class="num">{biz.phoneDisplay}</span></a>
+    <a class="sheet-lang" href={otherHref} hreflang={other} lang={other}>{t.langBar.link}<Icon name="arrow" /></a>
+  </div>
+</div>

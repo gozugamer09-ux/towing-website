@@ -1,0 +1,25 @@
+---
+// "What happened?" shortcuts. Each prefills the request form's first question.
+// On a page with the form (onPage), JS fills it in place; otherwise the link opens the request page.
+import Icon from './Icon.astro';
+import { issuesFor } from '../lib/issues';
+import { langOf, href, UI } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const { onPage = false, heading = t.picker.heading } = Astro.props;
+
+const link = (id) => (onPage ? '#request' : `${href('request', lang)}?issue=${id}#request`);
+---
+<section class="picker" aria-labelledby="picker-h">
+  <div class="wrap">
+    <div class="picker-box">
+      <h2 id="picker-h">{heading}</h2>
+      <p>{t.picker.sub}</p>
+      <div class="chips">
+        {issuesFor(lang).map((i) => (
+          <a class="chip" href={link(i.id)} data-issue={i.id}><Icon name={i.icon} />{i.chip}</a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

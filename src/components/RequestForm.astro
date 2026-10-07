@@ -1,0 +1,315 @@
+---
+// Tow request form. Submitting opens the customer's own Messages app with a text to the
+// company phone, fully written out (plus a Google Maps link if they share GPS location).
+// Nothing is stored or sent by the website itself. The text is written in the page's language.
+import Icon from './Icon.astro';
+import { biz, tel } from '../lib/site';
+import { issuesFor, otherIssuesFor } from '../lib/issues';
+import { langOf, fill, UI } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const vars = { name: biz.name, phone: `<span class="num">${biz.phoneDisplay}</span>` };
+
+const COPY = {
+  en: {
+    plate: 'Request a tow', heading: 'Send your request by text.',
+    lede: 'Fill this in and your phone opens a text to {name} with everything written out. Press Send and we\'ll get right back to you.',
+    danger: ['In a dangerous spot?', "Call instead. It's faster, and we can stay on the line. If anyone is hurt, call 911 first."],
+    issue: 'What happened?', choose: 'Choose one',
+    location: 'Where is the vehicle?', locPlaceholder: 'Address or cross streets', locButton: 'Use my location',
+    name: 'Your name', phone: 'Phone number', optional: '(optional)',
+    vehicle: 'Vehicle', vehiclePlaceholder: 'e.g. 2016 Honda Civic',
+    dest: 'Where should it go?', destPlaceholder: 'Home, a shop, or not sure',
+    notes: 'Anything else?', notesPlaceholder: 'Keys with you? Does it roll? Anyone waiting with it?',
+    submit: 'Text my request', submitHint: 'Opens your Messages app, addressed to {phone}. We only use your number to help with this request.',
+    doneTitle: 'Almost done: press Send',
+    doneText: 'Your Messages app should be open with your request written out to {phone}. Press <b>Send</b> and we\'ll reply right away.',
+    to: 'To:', again: 'Open Messages again', copy: 'Copy text',
+    fallback: ["Messages didn't open, or you're on a computer? Call", 'email the request', 'or copy the text and send it from your phone.'],
+    restart: 'Start a new request',
+    steps: [
+      'Your request goes to <b class="num">{number}</b> as a normal text from your phone.',
+      'Tap <b>Use my location</b> and we get a map pin, so we find you fast.',
+      'We answer 24 hours a day, 7 days a week.',
+    ],
+    // Used by the script below.
+    js: {
+      hint: 'On a highway? The nearest exit or mile marker is perfect.',
+      finding: 'Finding you…', gps: 'My current location (GPS pin)',
+      found: 'Location added. A landmark or cross street helps too.',
+      locFail: "Couldn't get your location. Type an address, cross streets or the nearest exit.",
+      errIssue: 'Choose what happened.', errLocation: 'Tell us where the vehicle is.', errName: 'Enter your name.',
+      errPhone: 'Enter a 10-digit phone number so we can call you back.',
+      fixOne: 'Please fix this before sending:', fixMany: 'Please fix these {n} before sending:',
+      opening: 'Opening Messages…',
+      copied: 'Copied. Paste it into a text to {phone}.', selected: 'Text selected. Copy it and send it to {phone}.',
+      msg: { title: 'Tow request (from the Alejos Towing website)', issue: 'What happened', location: 'Location', map: 'Map',
+        name: 'Name', callback: 'Callback', vehicle: 'Vehicle', dest: 'Take it to', notes: 'Notes', subject: 'Tow request' },
+    },
+  },
+  es: {
+    plate: 'Pedir grúa', heading: 'Envíe su solicitud por texto.',
+    lede: 'Llene esto y su teléfono abre un texto para {name} con todo ya escrito. Presione Enviar y le respondemos enseguida.',
+    danger: ['¿Está en un lugar peligroso?', 'Mejor llame. Es más rápido y podemos seguir en la línea con usted. Si hay heridos, llame primero al 911.'],
+    issue: '¿Qué pasó?', choose: 'Elija una opción',
+    location: '¿Dónde está el vehículo?', locPlaceholder: 'Dirección o esquina más cercana', locButton: 'Usar mi ubicación',
+    name: 'Su nombre', phone: 'Teléfono', optional: '(opcional)',
+    vehicle: 'Vehículo', vehiclePlaceholder: 'Ej.: Honda Civic 2016',
+    dest: '¿A dónde lo llevamos?', destPlaceholder: 'Su casa, un taller o no sabe',
+    notes: '¿Algo más?', notesPlaceholder: '¿Tiene las llaves? ¿El carro rueda? ¿Hay alguien esperando con él?',
+    submit: 'Enviar por texto', submitHint: 'Abre su aplicación de mensajes, dirigida al {phone}. Solo usamos su número para atender esta solicitud.',
+    doneTitle: 'Casi listo: presione Enviar',
+    doneText: 'Su aplicación de mensajes debería estar abierta con su solicitud escrita para el {phone}. Presione <b>Enviar</b> y le respondemos enseguida.',
+    to: 'Para:', again: 'Abrir Mensajes otra vez', copy: 'Copiar texto',
+    fallback: ['¿No se abrió Mensajes o está en una computadora? Llame al', 'envíe la solicitud por correo', 'o copie el texto y mándelo desde su teléfono.'],
+    restart: 'Empezar otra solicitud',
+    steps: [
+      'Su solicitud llega al <b class="num">{number}</b> como un texto normal desde su teléfono.',
+      'Toque <b>Usar mi ubicación</b> y recibimos un pin en el mapa para encontrarlo rápido.',
+      'Contestamos las 24 horas, los 7 días de la semana.',
+    ],
+    js: {
+      hint: '¿En la autopista? Díganos la salida más cercana o el marcador de milla.',
+      finding: 'Buscando su ubicación…', gps: 'Mi ubicación actual (pin GPS)',
+      found: 'Ubicación agregada. Un punto de referencia o una esquina también ayuda.',
+      locFail: 'No pudimos obtener su ubicación. Escriba una dirección, una esquina o la salida más cercana.',
+      errIssue: 'Elija qué pasó.', errLocation: 'Díganos dónde está el vehículo.', errName: 'Escriba su nombre.',
+      errPhone: 'Escriba un número de 10 dígitos para poder llamarle.',
+      fixOne: 'Corrija esto antes de enviar:', fixMany: 'Corrija estos {n} datos antes de enviar:',
+      opening: 'Abriendo Mensajes…',
+      copied: 'Copiado. Péguelo en un texto al {phone}.', selected: 'Texto seleccionado. Cópielo y envíelo al {phone}.',
+      msg: { title: 'Solicitud de grúa (desde la página web de Alejos Towing)', issue: 'Qué pasó', location: 'Ubicación', map: 'Mapa',
+        name: 'Nombre', callback: 'Teléfono', vehicle: 'Vehículo', dest: 'Llevarlo a', notes: 'Notas', subject: 'Solicitud de grúa' },
+    },
+  },
+};
+const c = COPY[lang];
+const { heading = c.heading, headingLevel = 2 } = Astro.props;
+const H = `h${headingLevel}`;
+---
+<div class="quote-grid" id="request">
+  <div class="sec-head q-head">
+    <span class="plate">{c.plate}</span>
+    <H id="request-h">{heading}</H>
+    <p class="lede">{fill(c.lede, vars)}</p>
+  </div>
+  <div class="callout q-danger">
+    <b class="display">{c.danger[0]}</b>
+    <p>{c.danger[1]}</p>
+    <a class="btn btn-light btn-lg" href={tel} data-track="call-form"><Icon name="phone" />{t.call} <span class="num">{biz.phoneDisplay}</span></a>
+  </div>
+  <div class="form-card q-form">
+    <form id="rf" novalidate aria-labelledby="request-h" data-sms={biz.sms} data-email={biz.email} data-phone-display={biz.phoneDisplay} data-t={JSON.stringify(c.js)}>
+      <div class="err-summary" id="rf-errors" tabindex="-1" role="alert" hidden></div>
+      <div class="fgrid">
+        <div class="field full">
+          <label for="rf-issue">{c.issue}</label>
+          <select class="input" id="rf-issue" name="issue" required>
+            <option value="">{c.choose}</option>
+            {[...issuesFor(lang), ...otherIssuesFor(lang)].map((i) => <option value={i.value} data-id={i.id}>{i.label}</option>)}
+          </select>
+        </div>
+        <div class="field full">
+          <label for="rf-loc">{c.location}</label>
+          <div class="loc-row">
+            <input class="input" id="rf-loc" name="location" type="text" autocomplete="off" placeholder={c.locPlaceholder} required />
+            <button class="loc-btn" type="button" id="rf-locbtn" aria-describedby="rf-lochint"><Icon name="locate" /><span>{c.locButton}</span></button>
+          </div>
+          <p class="hint" id="rf-lochint" aria-live="polite">{c.js.hint}</p>
+        </div>
+        <div class="field">
+          <label for="rf-name">{c.name}</label>
+          <input class="input" id="rf-name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="rf-phone">{c.phone}</label>
+          <input class="input" id="rf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(239) 555-0123" required />
+        </div>
+        <div class="field">
+          <label for="rf-vehicle">{c.vehicle} <span class="opt">{c.optional}</span></label>
+          <input class="input" id="rf-vehicle" name="vehicle" type="text" placeholder={c.vehiclePlaceholder} />
+        </div>
+        <div class="field">
+          <label for="rf-dest">{c.dest} <span class="opt">{c.optional}</span></label>
+          <input class="input" id="rf-dest" name="destination" type="text" placeholder={c.destPlaceholder} />
+        </div>
+        <div class="field full">
+          <label for="rf-notes">{c.notes} <span class="opt">{c.optional}</span></label>
+          <textarea class="input" id="rf-notes" name="notes" placeholder={c.notesPlaceholder}></textarea>
+        </div>
+      </div>
+      <div class="form-foot">
+        <button class="btn btn-call btn-lg" type="submit" id="rf-submit"><Icon name="msg" />{c.submit}</button>
+        <p class="hint" set:html={fill(c.submitHint, vars)} />
+      </div>
+    </form>
+
+    <div class="result" id="rf-done" tabindex="-1" hidden>
+      <span class="result-ico"><Icon name="msg" /></span>
+      <h3>{c.doneTitle}</h3>
+      <p set:html={fill(c.doneText, vars)} />
+      <div class="msg-preview"><div class="msg-to">{c.to} {biz.name} · <span class="num">{biz.phoneDisplay}</span></div><pre id="rf-msg"></pre></div>
+      <div class="actions">
+        <a class="btn btn-call" id="rf-sms" href={`sms:${biz.sms}`} data-track="text-request"><Icon name="msg" />{c.again}</a>
+        <button class="btn btn-ghost" type="button" id="rf-copy"><Icon name="copy" />{c.copy}</button>
+      </div>
+      <p>{c.fallback[0]} <a href={tel} class="num" data-track="call-fallback"><b>{biz.phoneDisplay}</b></a>, <a id="rf-mail" href={`mailto:${biz.email}`}>{c.fallback[1]}</a>, {c.fallback[2]}</p>
+      <button class="linkish" type="button" id="rf-new">{c.restart}</button>
+    </div>
+  </div>
+  <ul class="next-steps q-notes">
+    {['msg', 'locate', 'clock'].map((icon, n) => <li><Icon name={icon} /><span set:html={fill(c.steps[n], { number: biz.phoneDisplay })} /></li>)}
+  </ul>
+</div>
+
+<script>
+  import { toast } from '../scripts/toast.js';
+
+  const form = document.getElementById('rf');
+  if (form) {
+    const $ = (id) => document.getElementById(id);
+    const SMS = form.dataset.sms, EMAIL = form.dataset.email, PHONE = form.dataset.phoneDisplay;
+    const T = JSON.parse(form.dataset.t); // wording in the page's language
+    const fill = (str, vars) => str.replace(/\{(\w+)\}/g, (_, k) => vars[k]);
+    const issue = $('rf-issue'), loc = $('rf-loc'), locBtn = $('rf-locbtn'), locHint = $('rf-lochint');
+    const phone = $('rf-phone'), submit = $('rf-submit'), done = $('rf-done'), summary = $('rf-errors');
+    const submitHTML = submit.innerHTML;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let gps = null;
+
+    // Preselect from ?issue=<id> (links from other pages) and from same-page quick-pick chips.
+    const pick = (id) => { const o = [...issue.options].find((x) => x.dataset.id === id); if (o) issue.value = o.value; return !!o; };
+    pick(new URLSearchParams(location.search).get('issue'));
+    document.querySelectorAll('.chip[data-issue]').forEach((chip) => {
+      chip.addEventListener('click', (e) => {
+        e.preventDefault();
+        pick(chip.dataset.issue);
+        clearErr(issue);
+        $('request').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+        setTimeout(() => loc.focus({ preventScroll: true }), reduced ? 0 : 450);
+      });
+    });
+
+    // GPS location (optional). Adds a Google Maps link to the text.
+    locBtn.addEventListener('click', () => {
+      const fail = () => {
+        locHint.textContent = T.locFail;
+        locHint.className = 'hint bad';
+        locBtn.classList.remove('got');
+        loc.focus();
+      };
+      if (!('geolocation' in navigator)) return fail();
+      locHint.textContent = T.finding;
+      locHint.className = 'hint';
+      navigator.geolocation.getCurrentPosition((p) => {
+        gps = `${p.coords.latitude.toFixed(5)},${p.coords.longitude.toFixed(5)}`;
+        if (!loc.value.trim()) loc.value = T.gps;
+        clearErr(loc);
+        locBtn.classList.add('got');
+        locHint.textContent = T.found;
+        locHint.className = 'hint good';
+      }, fail, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
+    });
+
+    // Validation
+    const rules = {
+      issue: (v) => (v ? '' : T.errIssue),
+      location: (v) => (v.trim().length >= 3 ? '' : T.errLocation),
+      name: (v) => (v.trim() ? '' : T.errName),
+      phone: (v) => { const d = v.replace(/\D/g, ''); return d.length === 10 || (d.length === 11 && d[0] === '1') ? '' : T.errPhone; },
+    };
+    const fieldOf = (el) => el.closest('.field');
+    function setErr(el, msg) {
+      const f = fieldOf(el);
+      let e = f.querySelector('.err');
+      f.classList.add('invalid');
+      el.setAttribute('aria-invalid', 'true');
+      if (!e) { e = document.createElement('p'); e.className = 'err'; e.id = el.id + '-err'; f.appendChild(e); }
+      e.innerHTML = '<svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg>';
+      e.append(msg);
+      el.setAttribute('aria-describedby', [e.id, el.id === 'rf-loc' ? 'rf-lochint' : ''].filter(Boolean).join(' '));
+    }
+    function clearErr(el) {
+      const f = fieldOf(el), e = f.querySelector('.err');
+      f.classList.remove('invalid');
+      el.removeAttribute('aria-invalid');
+      if (el.id === 'rf-loc') el.setAttribute('aria-describedby', 'rf-lochint'); else el.removeAttribute('aria-describedby');
+      if (e) e.remove();
+    }
+    const check = (el) => { const m = rules[el.name](el.value); m ? setErr(el, m) : clearErr(el); return m; };
+    Object.keys(rules).forEach((n) => {
+      const el = form.elements[n];
+      el.addEventListener('blur', () => { if (el.value) check(el); });
+      el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', () => { if (fieldOf(el).classList.contains('invalid')) check(el); });
+    });
+    phone.addEventListener('input', () => {
+      let d = phone.value.replace(/\D/g, '').slice(0, 11);
+      if (d.length === 11 && d[0] === '1') d = d.slice(1);
+      if (d.length > 6) phone.value = `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6, 10)}`;
+      else if (d.length > 3) phone.value = `(${d.slice(0, 3)}) ${d.slice(3)}`;
+    });
+    summary.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (a) { e.preventDefault(); $(a.getAttribute('href').slice(1)).focus(); }
+    });
+
+    function buildMessage() {
+      const f = form.elements, v = (n) => f[n].value.trim(), m = T.msg;
+      const lines = [m.title, `${m.issue}: ${f.issue.value}`, `${m.location}: ${v('location')}`];
+      if (gps) lines.push(`${m.map}: https://maps.google.com/?q=${gps}`);
+      lines.push(`${m.name}: ${v('name')}`, `${m.callback}: ${f.phone.value}`);
+      if (v('vehicle')) lines.push(`${m.vehicle}: ${v('vehicle')}`);
+      if (v('destination')) lines.push(`${m.dest}: ${v('destination')}`);
+      if (v('notes')) lines.push(`${m.notes}: ${v('notes')}`);
+      return lines.join('\n');
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const errs = Object.keys(rules).map((n) => ({ id: form.elements[n].id, m: check(form.elements[n]) })).filter((x) => x.m);
+      if (errs.length) {
+        summary.hidden = false;
+        summary.innerHTML = `<b>${errs.length === 1 ? T.fixOne : fill(T.fixMany, { n: errs.length })}</b><ul>${errs.map((x) => `<li><a href="#${x.id}">${x.m}</a></li>`).join('')}</ul>`;
+        summary.focus();
+        return;
+      }
+      summary.hidden = true;
+      const body = buildMessage();
+      const smsHref = `sms:${SMS}?&body=${encodeURIComponent(body)}`;
+      $('rf-msg').textContent = body;
+      $('rf-sms').href = smsHref;
+      $('rf-mail').href = `mailto:${EMAIL}?subject=${encodeURIComponent(`${T.msg.subject}: ${form.elements.issue.value}`)}&body=${encodeURIComponent(body)}`;
+      submit.disabled = true;
+      submit.innerHTML = `<span class="spinner" aria-hidden="true"></span>${T.opening}`;
+      setTimeout(() => {
+        submit.disabled = false;
+        submit.innerHTML = submitHTML;
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
+      }, 700);
+      try { window.location.href = smsHref; } catch (err) { /* the result screen offers call, email and copy */ }
+    });
+
+    $('rf-copy').addEventListener('click', () => {
+      const text = $('rf-msg').textContent;
+      const select = () => {
+        const r = document.createRange(); r.selectNodeContents($('rf-msg'));
+        const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        toast(fill(T.selected, { phone: PHONE }));
+      };
+      if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text).then(() => toast(fill(T.copied, { phone: PHONE })), select);
+      else select();
+    });
+    $('rf-new').addEventListener('click', () => {
+      form.reset();
+      gps = null;
+      locBtn.classList.remove('got');
+      locHint.textContent = T.hint;
+      locHint.className = 'hint';
+      done.hidden = true;
+      form.hidden = false;
+      issue.focus();
+    });
+  }
+</script>

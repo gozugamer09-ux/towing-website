@@ -1,0 +1,119 @@
+---
+import '../styles/global.css';
+import { Font } from 'astro:assets';
+import Icons from '../components/Icons.astro';
+import Icon from '../components/Icon.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ActionBar from '../components/ActionBar.astro';
+import { biz, PREVIEW, DESCRIPTION } from '../lib/site';
+import { langOf, alternates, href, UI } from '../lib/i18n';
+import { PHOTO_CSS } from '../lib/photos';
+
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const {
+  title,                       // page-specific part; the home page passes a full title
+  description = DESCRIPTION[lang],
+  fullTitle = false,
+  schema = [],                 // extra JSON-LD objects for this page
+  requestHref = href('request', lang),
+  translated = true,           // false on pages with no counterpart (404): no canonical or hreflang
+} = Astro.props;
+
+const pageTitle = fullTitle ? title : `${title} | ${biz.name}`;
+const site = Astro.site;       // only set when SITE_URL is configured (production)
+const alt = alternates(Astro.url.pathname);
+const other = lang === 'es' ? 'en' : 'es';
+const canonical = site && translated ? new URL(Astro.url.pathname, site).href : undefined;
+const ogPath = lang === 'es' ? '/og-es.png' : '/og.png'; // share image in the page's language (scripts/make-icons.mjs)
+const ogImage = site ? new URL(ogPath, site).href : ogPath;
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'AutomotiveBusiness',
+  ...(site && { '@id': new URL('/#business', site).href, url: site.href, image: ogImage, logo: new URL('/icon-512.png', site).href }),
+  name: biz.name,
+  description: DESCRIPTION[lang],
+  telephone: '+1-239-888-7001',
+  email: biz.email,
+  foundingDate: String(biz.founded),
+  knowsLanguage: ['es', 'en'],
+  paymentAccepted: 'Cash, Credit Card, Zelle',
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00', closes: '23:59',
+  }],
+  areaServed: [
+    { '@type': 'City', name: 'Cape Coral', containedInPlace: { '@type': 'State', name: 'Florida' } },
+    { '@type': 'City', name: 'Fort Myers', containedInPlace: { '@type': 'State', name: 'Florida' } },
+    { '@type': 'State', name: 'Florida' },
+  ],
+};
+const jsonLd = [business, ...schema];
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {canonical && <link rel="alternate" hreflang="en" href={new URL(alt.en, site).href} />}
+    {canonical && <link rel="alternate" hreflang="es" href={new URL(alt.es, site).href} />}
+    {canonical && <link rel="alternate" hreflang="x-default" href={new URL(alt.en, site).href} />}
+    {PREVIEW && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#c8102e" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={biz.name} />
+    <meta property="og:locale" content={t.locale} />
+    <meta property="og:locale:alternate" content={UI[other].locale} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <Font cssVariable="--font-overpass" preload />
+    <Font cssVariable="--font-public-sans" preload />
+    <style is:inline set:html={PHOTO_CSS}></style>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd.length === 1 ? jsonLd[0] : jsonLd)} />
+  </head>
+  <body>
+    <Icons />
+    <a class="skip" href="#main">{t.skip}</a>
+    {PREVIEW && <aside class="preview-bar" aria-label={lang === 'es' ? 'Aviso de prueba' : 'Preview notice'}><b>{t.previewBar[0]}</b> {t.previewBar[1]}</aside>}
+    <nav class="langbar" aria-label={t.langBar.label}>
+      <div class="wrap langbar-in">
+        {t.langBar.note && <span lang={t.langBar.lang}>{t.langBar.note}</span>}
+        <a href={alt[other]} hreflang={other} lang={t.langBar.lang} data-track={`lang-${other}`}>{t.langBar.link}<Icon name="arrow" /></a>
+      </div>
+    </nav>
+    {/* Someone arriving at the English home from outside the site, on a phone set to Spanish, gets the Spanish
+        home instead. A language they picked here before wins (site.js remembers it), and moving around the site
+        never switches language. Inline and above the header, so it runs before the page draws. */}
+    {lang === 'en' && Astro.url.pathname === '/' && (
+      <script is:inline>(function () {
+        var pick; try { pick = localStorage.getItem('lang'); } catch (e) {}
+        var phone = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+        var fromOutside = location.origin !== 'null' && document.referrer.indexOf(location.origin + '/') !== 0;
+        if (fromOutside && (pick ? pick === 'es' : /^es\b/i.test(phone))) location.replace(document.querySelector('.langbar a').href);
+      })();</script>
+    )}
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <ActionBar requestHref={requestHref} />
+    <script>import '../scripts/site.js';</script>
+  </body>
+</html>

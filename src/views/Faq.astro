@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import FAQList from '../components/FAQList.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { biz, tel, faqFor } from '../lib/site';
+import { langOf, href, fill, UI } from '../lib/i18n';
+
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const COPY = {
+  en: {
+    title: 'Questions & Answers',
+    description: 'Answers about {name}: arrival times, prices, payment (card, cash, Zelle), where we tow and which vehicles we handle.',
+    h1: 'Questions and answers',
+    lede: ["Can't find your answer? Call or text", 'Someone picks up 24/7.'],
+  },
+  es: {
+    title: 'Preguntas Frecuentes',
+    description: 'Respuestas sobre {name}: tiempos de llegada, precios, formas de pago (tarjeta, efectivo, Zelle), dónde trabajamos y qué vehículos remolcamos.',
+    h1: 'Preguntas frecuentes',
+    lede: ['¿No encuentra su respuesta? Llame o escriba al', 'Siempre contesta alguien, 24/7.'],
+  },
+};
+const c = COPY[lang];
+---
+<Base title={c.title} description={fill(c.description, { name: biz.name })}>
+  <section class="page-head">
+    <div class="wrap">
+      <nav aria-label={t.breadcrumb}><ol class="crumbs"><li><a href={href('home', lang)}>{t.nav.home}</a></li><li aria-current="page">{t.nav.faq}</li></ol></nav>
+      <h1>{c.h1}</h1>
+      <p class="lede">{c.lede[0]} <a href={tel} class="num strong-link">{biz.phoneDisplay}</a>. {c.lede[1]}</p>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      {faqFor(lang).map((g) => (
+        <div class="faq-group">
+          <h2>{g.title}</h2>
+          <FAQList items={g.items} />
+        </div>
+      ))}
+    </div>
+  </section>
+  <FinalCTA />
+</Base>

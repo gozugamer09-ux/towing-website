@@ -1,0 +1,175 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import PhotoSign from '../components/PhotoSign.astro';
+import Photo from '../components/Photo.astro';
+import JobGallery from '../components/JobGallery.astro';
+import IssuePicker from '../components/IssuePicker.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Steps from '../components/Steps.astro';
+import FloridaMap from '../components/FloridaMap.astro';
+import TrustFacts from '../components/TrustFacts.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import RequestForm from '../components/RequestForm.astro';
+import FAQList from '../components/FAQList.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Pending from '../components/Pending.astro';
+import { biz, tel, sms, servicesFor, featuredReviews, homeFaqFor, reviews } from '../lib/site';
+import { langOf, href, fill, UI } from '../lib/i18n';
+
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const COPY = {
+  en: {
+    title: 'Alejos Towing | 24/7 Towing in Cape Coral & Fort Myers, FL',
+    status: 'Open now · 24 hours, 7 days',
+    h1: 'Stuck on the road? <em>Alejos</em> is on the way.',
+    lede: "Towing and roadside help in Cape Coral, Fort Myers and anywhere in Florida. Call or text at any hour, even at 2&nbsp;a.m., and we'll get a truck to you.",
+    textNote: ["Can't talk?", 'Text us', 'a photo and your location.'], textBody: 'Hi, I need a tow. I am at: ',
+    svcPlate: 'Services', svcH: 'Whatever stopped you, we can move it.',
+    svcLede: 'Cars, SUVs, pickups, vans and motorcycles, from a quick jump start to a heavy-duty tow. Box trucks and RVs too, as long as the tires fit on our truck.',
+    jobsPlate: 'On the job', jobsH: 'From a Ford Model\u00a0T to a backhoe.',
+    jobsLede: 'Classic cars, work trucks, heavy equipment and everyday rides, photographed on our own trucks.',
+    jobsLabel: 'Photos of our trucks on the job',
+    howPlate: 'How it works', howH: 'Three steps from stranded to sorted.',
+    areaPlate: 'Service area', areaH: 'Local to Southwest Florida. Towing all over the state.',
+    areaLede: "Most calls come from Cape Coral and Fort Myers, but we've picked drivers up on I-75 and taken them all the way to Miami.",
+    areas: ['Cape Coral', 'Fort Myers', 'Lee County', 'I-75 corridor', 'Anywhere in Florida'], areaLink: 'More about where we tow',
+    trustPlate: 'Why drivers call us', trustH: 'Local, licensed, and there at 2&nbsp;a.m.',
+    doorH: 'Look for our name on the door.',
+    doorText: "Our trucks carry our name and our number, {phone}, on the door, so you know it's us when we pull up.",
+    allReviews: 'Read all {n} reviews', rating: '· Rated ★ {rating} on Google',
+    requestLabel: 'Request a tow',
+    faqPlate: 'Questions', faqH: 'Good to know before you call.',
+    faqLede: ["Can't find your answer? Call or text", 'Someone picks up 24/7.'], faqLink: 'All questions',
+  },
+  es: {
+    title: 'Alejos Towing | Grúa 24/7 en Cape Coral y Fort Myers, FL',
+    status: 'Abierto ahora · 24 horas, 7 días',
+    h1: '¿Varado en la carretera? <em>Alejos</em> va en camino.',
+    lede: 'Grúa y asistencia en carretera en Cape Coral, Fort Myers y toda la Florida. Llame o escriba a cualquier hora, incluso a las 2 de la mañana, y le mandamos una grúa.',
+    textNote: ['¿No puede hablar?', 'Mándenos un texto', 'con una foto y su ubicación.'], textBody: 'Hola, necesito una grúa. Estoy en: ',
+    svcPlate: 'Servicios', svcH: 'Lo que sea que lo detuvo, lo movemos.',
+    svcLede: 'Carros, SUV, pickups, vans y motos, desde un simple paso de corriente hasta un remolque pesado. También camiones de caja y casas rodantes, siempre que las gomas quepan en nuestra grúa.',
+    jobsPlate: 'En el trabajo', jobsH: 'Desde un Ford Modelo\u00a0T hasta una retroexcavadora.',
+    jobsLede: 'Carros clásicos, camiones de trabajo, equipo pesado y carros de todos los días, fotografiados en nuestras propias grúas.',
+    jobsLabel: 'Fotos de nuestras grúas en el trabajo',
+    howPlate: 'Cómo funciona', howH: 'De varado a resuelto en tres pasos.',
+    areaPlate: 'Zona de servicio', areaH: 'Locales en el suroeste de la Florida. Remolcamos en todo el estado.',
+    areaLede: 'La mayoría de las llamadas vienen de Cape Coral y Fort Myers, pero hemos recogido conductores en la I-75 y los hemos llevado hasta Miami.',
+    areas: ['Cape Coral', 'Fort Myers', 'Condado de Lee', 'Corredor de la I-75', 'Toda la Florida'], areaLink: 'Más sobre dónde trabajamos',
+    trustPlate: 'Por qué nos llaman', trustH: 'Locales, con licencia y disponibles a las 2 de la mañana.',
+    doorH: 'Busque nuestro nombre en la puerta.',
+    doorText: 'Nuestras grúas llevan nuestro nombre y nuestro número, {phone}, en la puerta, para que sepa que somos nosotros cuando lleguemos.',
+    allReviews: 'Leer las {n} reseñas', rating: '· Calificación ★ {rating} en Google',
+    requestLabel: 'Pedir grúa',
+    faqPlate: 'Preguntas', faqH: 'Bueno saber antes de llamar.',
+    faqLede: ['¿No encuentra su respuesta? Llame o escriba al', 'Siempre contesta alguien, 24/7.'], faqLink: 'Todas las preguntas',
+  },
+};
+const c = COPY[lang];
+---
+<Base title={c.title} fullTitle requestHref="#request">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="status"><span class="dot" aria-hidden="true"></span>{c.status}</span>
+        <h1 set:html={c.h1} />
+        <p class="lede" set:html={c.lede} />
+        <div class="cta-row" data-hide-bar>
+          <a class="btn btn-call btn-lg" href={tel} data-track="call-hero"><Icon name="phone" />{t.call} <span class="num">{biz.phoneDisplay}</span></a>
+          <a class="btn btn-ghost btn-lg" href="#request">{t.request}<Icon name="arrow" /></a>
+        </div>
+        <p class="hero-note"><Icon name="msg" /><span>{c.textNote[0]} <a href={sms(c.textBody)} data-track="text-hero">{c.textNote[1]}</a> {c.textNote[2]}</span></p>
+      </div>
+      <PhotoSign id="truck-highway-front" name="Alejos Towing" note={t.sign.exit} eager
+        sizes="(min-width: 1180px) 466px, (min-width: 900px) 38vw, (min-width: 572px) 518px, calc(100vw - 54px)" />
+    </div>
+  </section>
+
+  <IssuePicker onPage />
+
+  <section class="sec band" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="plate">{c.svcPlate}</span>
+        <h2 id="svc-h">{c.svcH}</h2>
+        <p class="lede">{c.svcLede}</p>
+      </div>
+      <div class="svc-grid compact">{servicesFor(lang).map((s) => <ServiceCard s={s} />)}</div>
+    </div>
+  </section>
+
+  <section class="sec roadband" aria-labelledby="jobs-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="plate">{c.jobsPlate}</span>
+        <h2 id="jobs-h">{c.jobsH}</h2>
+        <p class="lede">{c.jobsLede}</p>
+      </div>
+      <JobGallery label={c.jobsLabel} />
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="plate">{c.howPlate}</span>
+        <h2 id="how-h">{c.howH}</h2>
+      </div>
+      <Steps />
+    </div>
+  </section>
+
+  <section class="sec band" aria-labelledby="area-h">
+    <div class="wrap area-grid">
+      <div class="stack">
+        <span class="plate">{c.areaPlate}</span>
+        <h2 id="area-h">{c.areaH}</h2>
+        <p class="lede">{c.areaLede}</p>
+        <ul class="areas">{c.areas.map((a) => <li>{a}</li>)}</ul>
+        <p class="sec-foot"><a class="text-link" href={href('area', lang)}>{c.areaLink}<Icon name="arrow" /></a></p>
+      </div>
+      <FloridaMap />
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="trust-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="plate">{c.trustPlate}</span>
+        <h2 id="trust-h" set:html={c.trustH} />
+      </div>
+      <TrustFacts />
+      <div class="door">
+        <Photo id="door-red" class="door-photo" sizes="(min-width: 1180px) 580px, (min-width: 760px) 52vw, calc(100vw - 58px)" />
+        <div class="door-copy">
+          <h3 class="h-sub">{c.doorH}</h3>
+          <p>{fill(c.doorText, { phone: biz.phoneDisplay })}</p>
+        </div>
+      </div>
+      <div class="reviews">
+        {featuredReviews.map((r) => <ReviewCard r={r} />)}
+      </div>
+      <p class="reviews-note"><a class="text-link" href={href('reviews', lang)}>{c.allReviews.replace('{n}', String(reviews.length))}<Icon name="arrow" /></a> {biz.googleRatingConfirmed ? fill(c.rating, { rating: biz.googleRating }) : <Pending note="Yordan said five stars; check the exact rating on the Google profile">{fill(c.rating, { rating: biz.googleRating ?? '?.?' })}</Pending>}</p>
+    </div>
+  </section>
+
+  <section class="sec band" aria-label={c.requestLabel}>
+    <div class="wrap"><RequestForm /></div>
+  </section>
+
+  <section class="sec" aria-labelledby="faq-h">
+    <div class="wrap split">
+      <div class="sec-head split-head">
+        <span class="plate">{c.faqPlate}</span>
+        <h2 id="faq-h">{c.faqH}</h2>
+        <p class="lede">{c.faqLede[0]} <a href={tel} class="num strong-link">{biz.phoneDisplay}</a>. {c.faqLede[1]}</p>
+        <p><a class="text-link" href={href('faq', lang)}>{c.faqLink}<Icon name="arrow" /></a></p>
+      </div>
+      <FAQList items={homeFaqFor(lang)} openFirst />
+    </div>
+  </section>
+
+  <FinalCTA requestHref="#request" />
+</Base>

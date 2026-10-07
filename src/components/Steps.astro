@@ -1,0 +1,7 @@
+---
+import { langOf, UI } from '../lib/i18n';
+const t = UI[langOf(Astro.url)];
+---
+<ol class="steps">
+  {t.steps.map(([h, p]) => <li class="step"><h3>{h}</h3><p>{p}</p></li>)}
+</ol>

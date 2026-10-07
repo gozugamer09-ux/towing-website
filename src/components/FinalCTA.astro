@@ -1,0 +1,22 @@
+---
+// Closing call-to-action, drawn as a full highway guide sign: white border, big type, exit arrow.
+import Icon from './Icon.astro';
+import { biz, tel } from '../lib/site';
+import { langOf, href, UI } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const { title = t.final.title, text = t.final.text, requestHref = href('request', lang) } = Astro.props;
+---
+<section class="final" aria-labelledby="final-h">
+  <div class="wrap final-in">
+    <div class="final-copy">
+      <h2 id="final-h">{title}</h2>
+      <p>{text}</p>
+      <div class="cta-row">
+        <a class="btn btn-signal btn-lg" href={tel} data-track="call-final"><Icon name="phone" />{t.call} <span class="num">{biz.phoneDisplay}</span></a>
+        <a class="btn btn-ghost btn-lg" href={requestHref}>{t.request}<Icon name="arrow" /></a>
+      </div>
+    </div>
+    <Icon name="arrow" class="final-arrow" />
+  </div>
+</section>

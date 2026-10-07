@@ -1,17 +1,172 @@
 {
-  "_note": "Google reviews pasted by Yordan 2026-10-03. Only 'verbatim' reviews may be quoted. Reviews Google machine-translated from English (Nicole Brengel, Katie Dasher, jamie cook, Mario Betancourt, orlando lopez, Eliana Mesa Alvarez) need their English originals before use. 'Yordanis Ulloa Roque' excluded pending confirmation it is a customer review.",
+  "_note": "Google reviews pasted by Yordan on 2026-10-03. 'text' is the reviewer's own words, copied exactly (an ending '…' means Google cut the review off there). 'en' is our translation and is always labeled as one. The two reviewers named Yordanis (Ulloa Roque and Garcia) share a first name with the driver. Asked whether they are customers rather than family or staff, Yordan answered 'no they are not family' (comment on the site report, 2026-10-07), so their reviews are shown. Any review marked \"pending\": true shows highlighted in preview builds and is left out of production builds. Left out entirely: Gretel Gallardo's (place name 'kaicora' is unclear to translate), and six reviews that were pasted in Google's Spanish machine translation of English originals (Nicole Brengel, Katie Dasher, jamie cook, Mario Betancourt, orlando lopez, Eliana Mesa Alvarez). Those six can be added once we have the English originals from the Google profile. Star ratings were not in the paste, so none are shown per review.",
+  "source": "Google",
   "featured": [
-    { "author": "Fernando P.", "lang": "es", "verbatim": true, "age": "about a year ago",
+    "fernando-p",
+    "ysrael-a",
+    "meda-h"
+  ],
+  "reviews": [
+    {
+      "id": "fernando-p",
+      "author": "Fernando P.",
+      "lang": "es",
       "text": "Muy buen servicio. Lo necesite en la madrugada en medio de la I75 y los contacte y fueron por mí hasta dejarme en Miami. Muy complacido con el servicio, cumplieron con mis expectativas.",
-      "translation_en": "Very good service. I needed them in the early morning in the middle of I-75. I contacted them and they came for me and took me all the way to Miami. Very pleased with the service; they met my expectations." },
-    { "author": "Ysrael A.", "lang": "es", "verbatim": true, "age": "about a year ago",
+      "en": "Very good service. I needed them in the early morning in the middle of I-75. I contacted them and they came for me and took me all the way to Miami. Very pleased with the service; they met my expectations."
+    },
+    {
+      "id": "ysrael-a",
+      "author": "Ysrael A.",
+      "lang": "es",
       "text": "Los Mejores de Cape Coral y también de la Florida Si busca a un equipo Profesional y de gran seriedad pues has llegado al lugar correcto, hemos tenido muy buenas experiencias con ellos y de verdad creo que sus servicios son de los mejores, precios excelentes y una gran formalidad, no te arrepentirás, Gracias",
-      "translation_en": "The best in Cape Coral and in Florida too. If you're looking for a professional, very serious team, you've come to the right place. We've had very good experiences with them and I truly think their service is among the best, with excellent prices and great reliability. You won't regret it. Thank you." },
-    { "author": "Meda H.", "lang": "es", "verbatim": true, "age": "about a year ago",
+      "en": "The best in Cape Coral and in Florida too. If you're looking for a professional, very serious team, you've come to the right place. We've had very good experiences with them and I truly think their service is among the best, with excellent prices and great reliability. You won't regret it. Thank you."
+    },
+    {
+      "id": "meda-h",
+      "author": "Meda H.",
+      "lang": "es",
       "text": "Excelente servicio. En mi caso fue en horas de la madrugada y llegaron rápido. Los recomiendo 100%",
-      "translation_en": "Excellent service. In my case it was in the early morning hours and they arrived fast. I recommend them 100%." },
-    { "author": "Oriesquy", "lang": "es", "verbatim": true, "age": "6 months ago (edited)",
+      "en": "Excellent service. In my case it was in the early morning hours and they arrived fast. I recommend them 100%."
+    },
+    {
+      "id": "yareilis-g",
+      "author": "Yareilis G.",
+      "lang": "es",
+      "text": "Excelente servicio y ser humano para mi el mejor en su trabajo muy atento y servicial y a cualquier hora que lo llames ahí está 24 h como dice su servicio y es real y soy prueba de eso ya que necesite de sus servicios a la 2 de la mañana y enseguida me atendió y resolvió el problema bendiciones para ti y tu negocio sigue siendo así 🥰👍…",
+      "en": "Excellent service and an excellent person. For me, the best at what he does: very attentive and helpful, and whatever time you call, he's there. 24 hours, just like his service says, and it's true. I'm proof of that: I needed him at 2 in the morning and he answered right away and solved the problem. Blessings to you and your business, keep it up 🥰👍…"
+    },
+    {
+      "id": "danay-g",
+      "author": "Danay G.",
+      "lang": "es",
+      "text": "Tuve una excelente experiencia con el servicio de Grua ALEJOS TOWING.Desde el primer momento, la atención fue rápida y profesional. Mi auto se averió en plena carretera y en menos de 30 minutos ya estaba la grúa en el lugar. El operador fue…",
+      "en": "I had an excellent experience with ALEJOS TOWING. From the first moment, the service was fast and professional. My car broke down in the middle of the road, and in less than 30 minutes the tow truck was already there. The operator was…"
+    },
+    {
+      "id": "oriesquy",
+      "author": "Oriesquy",
+      "lang": "es",
       "text": "El mejor servicio de grúa q he recibido en el sur de florida, rápido buen precio y excelente atención. Los recomiendo 1000%",
-      "translation_en": "The best tow service I've received in South Florida: fast, good price and excellent attention. I recommend them 1000%." }
+      "en": "The best tow service I've received in South Florida: fast, a good price and excellent attention. I recommend them 1000%."
+    },
+    {
+      "id": "alejandro-o",
+      "author": "Alejandro O.",
+      "lang": "es",
+      "text": "Cuando estuve de visita en Florida hace unos meses, tuve un problema con el coche alquilado y necesitaba asistencia rápida. Un amigo me recomendó a Yordanis de Alejo’s Towing y fue un acierto total. Llegó en cuestión de minutos, fue súper…",
+      "en": "When I was visiting Florida a few months ago, I had a problem with my rental car and needed help fast. A friend recommended Yordanis from Alejo's Towing, and it was exactly the right call. He arrived within minutes and was super…"
+    },
+    {
+      "id": "george-d",
+      "author": "George D.",
+      "lang": "es",
+      "text": "El mejor servicio de la Florida gracias por tus atenciones y tu buen servicio agradecido por tu ayuda y disponibilidad a cualquier hora suerte en tu negocio siempre porque te lo mereces por ser tan atento y dispuesto a ayudará quien lo necesite gracias",
+      "en": "The best service in Florida. Thank you for your attention and your good service. Grateful for your help and for being available at any hour. Good luck with your business always, because you deserve it for being so attentive and willing to help whoever needs it. Thank you."
+    },
+    {
+      "id": "jose-alejandro-b",
+      "author": "José Alejandro B.",
+      "lang": "es",
+      "text": "Excelente servicio cumplió con toda las expectativas acudió a mi llamado rápido y con gran actitud lo recomiendo 100 por 100",
+      "en": "Excellent service. He met every expectation and came quickly when I called, with a great attitude. I recommend him 100%."
+    },
+    {
+      "id": "yasmin-f",
+      "author": "Yasmin F.",
+      "lang": "es",
+      "text": "Excelente atención se lo recomiendo el señor súper atento y muy profesional es de entera confianza y lo pueden llamar a cualquier hora Compañias así es lo que necesitamos felicidades",
+      "en": "Excellent service, I recommend him. Super attentive and very professional, completely trustworthy, and you can call him at any hour. Companies like this are what we need. Congratulations."
+    },
+    {
+      "id": "yusimin-f",
+      "author": "Yusimin F.",
+      "lang": "es",
+      "text": "Un servicio excelente con precio razonable y agradecida por salvar mi carro lo recomiendo al 💯…",
+      "en": "Excellent service at a reasonable price, and I'm grateful they saved my car. I recommend them 💯…"
+    },
+    {
+      "id": "jesus-g",
+      "author": "Jesus G.",
+      "lang": "es",
+      "text": "Muy Buen servicio  Profesional y muy puntual y Los mejores precios super recomendado alejos towing…",
+      "en": "Very good service. Professional and very punctual, and the best prices. Highly recommended, Alejos Towing…"
+    },
+    {
+      "id": "yaima-s",
+      "author": "Yaima S.",
+      "lang": "es",
+      "text": "Muy buen servicio eficiente los mejores sin duda no duden en contartarlo no se arrepentirán y quedarán súper complacidos",
+      "en": "Very good, efficient service. The best, no doubt. Don't hesitate to call them; you won't regret it and you'll be super pleased."
+    },
+    {
+      "id": "vicente-g",
+      "author": "Vicente G.",
+      "lang": "es",
+      "text": "Tremendo servicio los recomiendo 100 por ciento ,  buena calidad en su trabajo y exelente atencion , lo recomiendo .",
+      "en": "Tremendous service, I recommend them 100 percent. Good quality work and excellent attention. I recommend them."
+    },
+    {
+      "id": "anny-m",
+      "author": "Anny M.",
+      "lang": "es",
+      "text": "Excelente servicio, serio y responsable 100% recomendado",
+      "en": "Excellent service, serious and responsible. 100% recommended."
+    },
+    {
+      "id": "ahmeed-g",
+      "author": "Ahmeed G.",
+      "lang": "es",
+      "text": "Muy buena experiencia\nSuper buena atención\nMuchas Gracias\n100% recomendable",
+      "en": "Very good experience. Super good service. Thank you very much. 100% recommended."
+    },
+    {
+      "id": "reinier-g",
+      "author": "Reinier G.",
+      "lang": "es",
+      "text": "Muy buen cerbisio con un buen presio",
+      "en": "Very good service at a good price."
+    },
+    {
+      "id": "yosvanis-m",
+      "author": "Yosvanis M.",
+      "lang": "es",
+      "text": "Buen servicio y buen trato todo excelente",
+      "en": "Good service and good treatment. Everything was excellent."
+    },
+    {
+      "id": "damaris-t",
+      "author": "Damaris T.",
+      "lang": "es",
+      "text": "Eres el mejor gracias por tu excelente trabajo",
+      "en": "You're the best, thank you for your excellent work."
+    },
+    {
+      "id": "nelson-d",
+      "author": "Nelson D.",
+      "lang": "es",
+      "text": "Los mejor de lo mejor",
+      "en": "The best of the best."
+    },
+    {
+      "id": "antonio-m",
+      "author": "Antonio M.",
+      "lang": "es",
+      "text": "Super recomendado",
+      "en": "Highly recommended."
+    },
+    {
+      "id": "yordanis-u",
+      "author": "Yordanis U.",
+      "lang": "es",
+      "text": "Solicite sus servicios a las 2:30am después de llamar varias compañias sin respuesta y me asistieron en minutos, los recomiendo 1000%",
+      "en": "I requested their service at 2:30 a.m. after calling several companies with no answer, and they helped me within minutes. I recommend them 1000%."
+    },
+    {
+      "id": "yordanis-g",
+      "author": "Yordanis G.",
+      "lang": "es",
+      "text": "Super complacida con su servicio muy profesional y puntual lo recomiendo 💯 porciento…",
+      "en": "Super pleased with the service: very professional and punctual. I recommend them 💯 percent…"
+    }
   ]
 }

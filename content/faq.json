@@ -1,0 +1,69 @@
+{
+  "_note": "FAQ answers, in English with the Spanish wording in each \"es\" object. Items with \"pending\": true are not confirmed by Yordan yet: they show highlighted in preview builds and are left out of production builds. \"home\": true puts the question on the homepage. \"only\" limits an item to one language's pages; \"lang\" marks an item written in another language than its page.",
+  "groups": [
+    {
+      "title": "Getting help",
+      "es": { "title": "Cómo pedir ayuda" },
+      "items": [
+        { "q": "How fast can you get to me?", "home": true,
+          "a": "It depends on where you are. Tell us your location and we'll give you an arrival time when you call or text. We answer around the clock, including the middle of the night.",
+          "es": { "q": "¿Qué tan rápido pueden llegar?",
+            "a": "Depende de dónde esté. Díganos su ubicación y le damos un tiempo de llegada cuando llame o escriba. Contestamos a toda hora, incluso de madrugada." } },
+        { "q": "Are you really open 24/7?",
+          "a": "Yes. We take calls and texts 24 hours a day, 7 days a week, including nights and weekends.",
+          "es": { "q": "¿De verdad atienden 24/7?",
+            "a": "Sí. Atendemos llamadas y textos las 24 horas, los 7 días de la semana, incluidas las noches y los fines de semana." } },
+        { "q": "Can I text instead of calling?", "home": true,
+          "a": "Yes. Text (239) 888-7001, or use the request form. It writes the text for you, including your GPS location if you allow it.",
+          "es": { "q": "¿Puedo escribir en vez de llamar?",
+            "a": "Sí. Mande un texto al (239) 888-7001 o use el formulario de solicitud. Le escribe el mensaje, con su ubicación GPS si usted lo permite." } },
+        { "q": "What should I do while I wait?",
+          "a": "Move yourself and your passengers away from traffic if you can, turn on your hazard lights and keep your phone nearby. If anyone is hurt, call 911 first.",
+          "es": { "q": "¿Qué hago mientras espero?",
+            "a": "Si puede, aléjese del tráfico con sus pasajeros, encienda las luces de emergencia y tenga el teléfono a mano. Si hay heridos, llame primero al 911." } },
+        { "q": "Can I ride in the tow truck?", "pending": true,
+          "a": "Usually, yes, for one or two passengers. Let us know when you call.",
+          "es": { "q": "¿Puedo ir en la grúa?",
+            "a": "Por lo general sí, una o dos personas. Avísenos cuando llame." } }
+      ]
+    },
+    {
+      "title": "Price and payment",
+      "es": { "title": "Precio y pago" },
+      "items": [
+        { "q": "How much does a tow cost?", "home": true,
+          "a": "It depends on the distance, the vehicle and the situation. Call or text with where you are, where it's going and what you drive, and we'll give you a quote.",
+          "es": { "q": "¿Cuánto cuesta una grúa?",
+            "a": "Depende de la distancia, el vehículo y la situación. Llame o escriba con dónde está, a dónde va y qué vehículo tiene, y le damos un precio." } },
+        { "q": "What payment do you take?", "home": true,
+          "a": "Card, cash and Zelle.",
+          "es": { "q": "¿Qué formas de pago aceptan?",
+            "a": "Tarjeta, efectivo y Zelle." } },
+        { "q": "Do you work with insurance and roadside plans?", "pending": true,
+          "a": "Which insurers and roadside plans Alejos works with is still to be confirmed.",
+          "es": { "q": "¿Trabajan con seguros y planes de asistencia?",
+            "a": "Falta confirmar con qué aseguradoras y planes de asistencia trabaja Alejos." } }
+      ]
+    },
+    {
+      "title": "Area and vehicles",
+      "es": { "title": "Zona y vehículos" },
+      "items": [
+        { "q": "Where do you tow?", "home": true,
+          "a": "Most of our calls come from Cape Coral and Fort Myers, but we tow anywhere in Florida, including long-distance tows between cities.",
+          "es": { "q": "¿Dónde dan servicio?",
+            "a": "La mayoría de las llamadas vienen de Cape Coral y Fort Myers, pero remolcamos a cualquier lugar de la Florida, incluidos los traslados de larga distancia entre ciudades." } },
+        { "q": "What vehicles do you tow?",
+          "a": "Cars, SUVs, pickups, vans and motorcycles, from light-duty to heavy-duty. Bigger vehicles like box trucks and RVs too, as long as the tires fit on our truck. We also haul equipment like forklifts, backhoes and track loaders. Tell us what you drive and we'll confirm.",
+          "es": { "q": "¿Qué vehículos remolcan?",
+            "a": "Carros, SUV, pickups, vans y motos, desde servicio liviano hasta pesado. También vehículos grandes como camiones de caja y casas rodantes, siempre que las gomas quepan en nuestra grúa. También transportamos maquinaria como montacargas, retroexcavadoras y minicargadoras. Díganos qué vehículo tiene y se lo confirmamos." } },
+        { "q": "Does my car need a flatbed?",
+          "a": "All-wheel-drive and 4x4 vehicles, lowered cars, classics, luxury cars and anything with drivetrain damage usually ride best on a flatbed. Tell us the vehicle and we'll recommend the safest option.",
+          "es": { "q": "¿Mi carro necesita grúa de plataforma?",
+            "a": "Los vehículos AWD y 4x4, los carros rebajados, clásicos y de lujo, y los que tienen daños en la transmisión suelen viajar mejor en plataforma. Díganos qué vehículo es y le recomendamos la opción más segura." } },
+        { "q": "¿Hablan español?", "lang": "es", "only": "en", "home": true,
+          "a": "Sí, con gusto. Llámenos o escríbanos en español al (239) 888-7001. También tenemos toda la página en español." }
+      ]
+    }
+  ]
+}

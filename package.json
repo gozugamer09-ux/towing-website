@@ -3,15 +3,30 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test:visual": "node tests/run.mjs",
-    "test:journey": "node tests/wrap.mjs && node tests/journey.mjs",
-    "test:contrast": "node tests/wrap.mjs && node tests/axe1.mjs"
+    "dev": "astro dev",
+    "build": "astro build",
+    "build:preview": "PUBLIC_PREVIEW=1 astro build --outDir dist-preview",
+    "preview": "astro preview",
+    "icons": "node scripts/make-icons.mjs",
+    "map": "node scripts/make-florida.mjs",
+    "test": "node tests/site.mjs",
+    "check": "npm run build:preview && node tests/site.mjs && npm run build && node tests/site.mjs dist && html-validate \"dist/**/*.html\"",
+    "share": "npm run build:preview && node scripts/make-share-preview.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
+    "d3-geo": "^3.1.1",
     "html-validate": "^9.0.0",
     "lighthouse": "^12.0.0",
     "playwright": "1.56.1",
-    "sharp": "^0.34.0"
+    "sharp": "^0.34.0",
+    "topojson-client": "^3.1.0",
+    "us-atlas": "^3.0.1"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/overpass": "^5.3.0",
+    "@fontsource-variable/public-sans": "^5.3.0",
+    "astro": "^7.3.5"
   }
 }

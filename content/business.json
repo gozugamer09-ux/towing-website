@@ -49,14 +49,16 @@
       "Accident recovery",
       "Motorcycle towing",
       "Long-distance towing",
+      "Equipment hauling: forklifts, backhoes, track loaders and other machines that fit on the truck",
       "Junk car removal"
     ],
-    "confirmed": true
+    "confirmed": true,
+    "source": "Yordan, thread, 2026-10-03; equipment hauling added from Yordan's 'yes' on the site report, 2026-10-07"
   },
   "vehicles": {
-    "value": "Any vehicle under 20 ft",
+    "value": "Cars, SUVs, pickups, vans and motorcycles, light to heavy-duty; bigger vehicles over 20 ft (box trucks, RVs) as long as the tires fit on the truck",
     "confirmed": true,
-    "open_question": "Heavy-duty is listed too; does 'under 20 ft' apply to all jobs?"
+    "source": "Yordan, comment on the site report, 2026-10-04: 'yes so long as the tires fit on the truck'"
   },
   "quote_form": {
     "deliver_to": "Text message to +12398887001, composed on the customer's phone",
@@ -67,18 +69,39 @@
     "founded": 2019,
     "licensed": true,
     "usdot_registered": true,
-    "usdot_number": null,
+    "usdot_number": "3314605",
+    "usdot_source": "Yordan, project chat, 2026-10-04: 'dot 3314605' (also lettered on the truck doors)",
     "insurance": "Insured through Progressive",
     "confirmed": true,
-    "open_question": "USDOT number to show in footer; Google rating, review count and profile link"
+    "open_question": "Google review count and profile link (the rating is under reviews)",
+    "insurer": "Progressive"
   },
   "languages": {
-    "value": null,
-    "confirmed": false,
-    "note": "Reviews and owner replies are mostly Spanish; confirm Spanish-speaking service"
+    "value": [
+      "Spanish",
+      "English"
+    ],
+    "preferred": "Spanish",
+    "confirmed": true,
+    "source": "Yordan, comment on the site report, 2026-10-04: 'yes actually spanish preferred'",
+    "note": "The site has a full Spanish version under /es/."
   },
   "reviews": {
-    "file": "content/reviews.json"
+    "file": "content/reviews.json",
+    "google_rating": {
+      "value": "5.0",
+      "confirmed": false,
+      "source": "Yordan, thread, 2026-10-06: 'We are ready in five stars. In Florida. In Google.' (voice typing; read as rated five stars on Google)",
+      "note": "Shown in previews only until the exact figure is checked on the Google profile: owners often say five stars for 4.8 or 4.9."
+    },
+    "google_review_count": {
+      "value": null,
+      "confirmed": false
+    },
+    "google_profile_url": {
+      "value": null,
+      "confirmed": false
+    }
   },
   "payment": {
     "value": [
