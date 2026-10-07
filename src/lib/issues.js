@@ -31,6 +31,7 @@ const ISSUES = [
 // Extra choices in the form only.
 const OTHER_ISSUES = [
   { id: 'motorcycle', en: 'Motorcycle tow', es: 'Remolque de moto' },
+  { id: 'equipment', en: 'Equipment hauling', es: 'Transporte de maquinaria' },
   { id: 'junk-car', en: 'Junk car removal', es: 'Retiro de carro chatarra' },
   { id: 'other', en: 'Something else', es: 'Otra cosa' },
 ];
@@ -41,5 +42,6 @@ export const otherIssuesFor = (lang) => OTHER_ISSUES.map((i) => ({ id: i.id, lab
 // The request form's preselected answer for each service page (by English slug).
 export const ISSUE_FOR_SERVICE = {
   towing: 'breakdown', 'flatbed-towing': 'breakdown', winching: 'stuck', 'accident-recovery': 'accident',
-  'motorcycle-towing': 'motorcycle', 'long-distance-towing': 'long-distance', 'junk-car-removal': 'junk-car',
+  'motorcycle-towing': 'motorcycle', 'long-distance-towing': 'long-distance', 'equipment-hauling': 'equipment',
+  'junk-car-removal': 'junk-car',
 };

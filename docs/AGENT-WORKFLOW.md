@@ -13,6 +13,7 @@ A task is one clear outcome, written as:
 - Design rules: `docs/DESIGN.md`.
 - Page text that isn't a business fact: `content/services.json`, `content/faq.json`, `content/reviews.json` (each with its Spanish in `"es"`), and the page views in `src/views/`, which hold each page's English and Spanish wording side by side. `src/pages/` only maps addresses to views (English at `/`, Spanish under `/es/`).
 - The site is bilingual: a wording change is done in English and Spanish together (rules in `docs/DESIGN.md`, "Two languages").
+- Services: one entry in `content/services.json` per service. Its English and Spanish pages, addresses, footer link and place in the service grids all follow from that entry; a new service also needs its option in the request form (`src/lib/issues.js`) and an icon in `src/components/Icons.astro`.
 - Photos: `src/assets/photos/` with their descriptions in `src/lib/photos.js`; what may be shown and how to add one is in `docs/DESIGN.md`, "Photos".
 - Tools and costs: `TOOLS.md`.
 

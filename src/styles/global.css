@@ -282,7 +282,9 @@ picture { display: block; }
 .chip .ico { color: var(--accent); }
 
 /* Service cards */
-.svc-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+/* Three across from tablets up, so the nine services fill three rows and the three related services one */
+.svc-grid { display: grid; gap: 14px; }
+@media (min-width: 700px) { .svc-grid { grid-template-columns: repeat(3, 1fr); } }
 .svc { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 1px 2px rgb(40 18 12 / .05); padding: 22px; display: grid; gap: 10px; align-content: start; transition: transform .2s ease, box-shadow .2s ease, border-color .2s; }
 .svc:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
 /* The title link covers the whole card. Cards are h3 under a section heading, h2 on the services page. */

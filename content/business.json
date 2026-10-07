@@ -49,9 +49,11 @@
       "Accident recovery",
       "Motorcycle towing",
       "Long-distance towing",
+      "Equipment hauling: forklifts, backhoes, track loaders and other machines that fit on the truck",
       "Junk car removal"
     ],
-    "confirmed": true
+    "confirmed": true,
+    "source": "Yordan, thread, 2026-10-03; equipment hauling added from Yordan's 'yes' on the site report, 2026-10-07"
   },
   "vehicles": {
     "value": "Cars, SUVs, pickups, vans and motorcycles, light to heavy-duty; bigger vehicles over 20 ft (box trucks, RVs) as long as the tires fit on the truck",

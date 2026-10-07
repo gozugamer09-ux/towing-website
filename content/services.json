@@ -1,5 +1,5 @@
 {
-  "_note": "Service pages, in English with the Spanish wording in each service's \"es\" object (\"es.slug\" is the Spanish page address). Every service here was confirmed by Yordan on 2026-10-03. Descriptions are general and avoid prices, times or guarantees; any such claim needs Yordan's confirmation first. Box trucks and RVs: Yordan, 2026-10-04, 'yes so long as the tires fit on the truck'. \"photo\" names one of Yordan's own photos (src/lib/photos.js) shown on the service's page and card.",
+  "_note": "Service pages, in English with the Spanish wording in each service's \"es\" object (\"es.slug\" is the Spanish page address). Every service here was confirmed by Yordan on 2026-10-03. Descriptions are general and avoid prices, times or guarantees; any such claim needs Yordan's confirmation first. Box trucks and RVs: Yordan, 2026-10-04, 'yes so long as the tires fit on the truck'. Equipment hauling: Yordan, comment on the site report, 2026-10-07: 'yes' (forklifts, a backhoe and a track loader appear in the photos). \"photo\" names one of Yordan's own photos (src/lib/photos.js) shown on the service's page and card.",
   "services": [
     {
       "slug": "towing",
@@ -273,6 +273,44 @@
         ],
         "faq": [
           {"q": "¿Hasta dónde remolcan?", "a": "A cualquier lugar de la Florida. Llame o escriba con el lugar de recogida y el destino, y le damos un precio."}
+        ]
+      }
+    },
+    {
+      "slug": "equipment-hauling",
+      "icon": "forklift",
+      "photo": "backhoe",
+      "title": "Equipment hauling",
+      "nav": "Equipment",
+      "ask": "Need a machine moved?",
+      "short": "Forklifts, backhoes, track loaders and other machines, moved on our flatbed.",
+      "seoTitle": "Equipment Hauling in Cape Coral & Fort Myers",
+      "intro": "Need a forklift, backhoe or compact track loader taken to a job site, a yard or a shop? We load it on our flatbed, strap it down and take it where it needs to go.",
+      "tags": ["Forklifts", "Backhoes", "Track loaders"],
+      "includes": ["Forklifts, backhoes and compact track loaders", "Other machines and equipment, as long as they fit on our truck", "Job sites, equipment yards, shops and warehouses", "Local moves and longer hauls anywhere in Florida"],
+      "goodToKnow": [
+        {"title": "What to send us", "text": "What the machine is (make and model if you have them), about how much it weighs, where it is and where it's going. A photo helps."},
+        {"title": "Getting it on the truck", "text": "Tell us if it runs and can drive onto the bed, or if it will need the winch."}
+      ],
+      "faq": [
+        {"q": "Can you move a forklift or a backhoe?", "a": "Yes. We haul forklifts, backhoes and compact track loaders on our flatbed. Tell us what it is and where it's going, and we'll confirm it fits on our truck."}
+      ],
+      "es": {
+        "slug": "transporte-de-maquinaria",
+        "title": "Transporte de maquinaria",
+        "nav": "Maquinaria",
+        "ask": "¿Necesita mover una máquina?",
+        "short": "Montacargas, retroexcavadoras, minicargadoras y otras máquinas, en nuestra grúa de plataforma.",
+        "seoTitle": "Transporte de Maquinaria en Cape Coral y Fort Myers",
+        "intro": "¿Necesita llevar un montacargas, una retroexcavadora o una minicargadora a una obra, un patio o un taller? Subimos la máquina a nuestra plataforma, la aseguramos y la llevamos a donde tiene que ir.",
+        "tags": ["Montacargas", "Retroexcavadoras", "Minicargadoras"],
+        "includes": ["Montacargas, retroexcavadoras y minicargadoras de orugas", "Otras máquinas y equipos, siempre que quepan en nuestra grúa", "Obras, patios de equipos, talleres y almacenes", "Traslados locales y viajes más largos a cualquier lugar de la Florida"],
+        "goodToKnow": [
+          {"title": "Qué mandarnos", "text": "Qué máquina es (marca y modelo si los tiene), más o menos cuánto pesa, dónde está y a dónde va. Una foto ayuda."},
+          {"title": "Para subirla a la grúa", "text": "Díganos si funciona y puede subir sola a la plataforma, o si hay que subirla con el winche."}
+        ],
+        "faq": [
+          {"q": "¿Pueden mover un montacargas o una retroexcavadora?", "a": "Sí. Transportamos montacargas, retroexcavadoras y minicargadoras de orugas en nuestra grúa de plataforma. Díganos qué es y a dónde va, y le confirmamos que cabe en nuestra grúa."}
         ]
       }
     },

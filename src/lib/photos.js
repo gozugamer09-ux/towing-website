@@ -6,6 +6,7 @@
 const files = import.meta.glob('../assets/photos/*.jpg', { eager: true, import: 'default' });
 
 const PHOTOS = {
+  // Home page hero. The company's driver shows through the windshield; Yordan OK'd that on the site report, 2026-10-07.
   'truck-highway-front': {
     en: { alt: 'Alejos Towing red flatbed tow truck on a highway shoulder, carrying a white pickup' },
     es: { alt: 'La grúa de plataforma roja de Alejos Towing a la orilla de una carretera, con una pickup blanca encima' },

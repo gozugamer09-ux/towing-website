@@ -117,7 +117,7 @@ Rules for every photo:
 - No readable customer license plates (blur them first; the door photo's minivan plate is blurred), no other businesses' names, logos or phone numbers, and no people who haven't agreed to be shown. The company's own lettering, the bed maker's mud flaps and equipment makers' names are fine.
 - Captions say what was carried ("Box truck"), never whose it was or where it went.
 - Each photo has a description in both languages for screen readers. A photo that only decorates a link that already names its page (the services cards) is marked decorative.
-- Photos show what the truck carried, but they are not a claim: a load in the gallery (like heavy equipment) doesn't add a service to the services list until Yordan confirms it.
+- Photos show what the truck carried, but they are not a claim: a load in the gallery doesn't add a service to the services list until Yordan confirms it (equipment hauling was listed only after Yordan said yes on 2026-10-07).
 
 Adding or changing a photo:
 

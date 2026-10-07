@@ -1,5 +1,5 @@
 {
-  "_note": "Google reviews pasted by Yordan on 2026-10-03. 'text' is the reviewer's own words, copied exactly (an ending '…' means Google cut the review off there). 'en' is our translation and is always labeled as one. Reviews marked \"pending\": true show highlighted in preview builds and are left out of production builds: the two reviewers named Yordanis (Ulloa Roque and Garcia) share a first name with the driver, so we wait for Yordan to confirm they are customers. Left out entirely: Gretel Gallardo's (place name 'kaicora' is unclear to translate), and six reviews that were pasted in Google's Spanish machine translation of English originals (Nicole Brengel, Katie Dasher, jamie cook, Mario Betancourt, orlando lopez, Eliana Mesa Alvarez). Those six can be added once we have the English originals from the Google profile. Star ratings were not in the paste, so none are shown per review.",
+  "_note": "Google reviews pasted by Yordan on 2026-10-03. 'text' is the reviewer's own words, copied exactly (an ending '…' means Google cut the review off there). 'en' is our translation and is always labeled as one. The two reviewers named Yordanis (Ulloa Roque and Garcia) share a first name with the driver. Asked whether they are customers rather than family or staff, Yordan answered 'no they are not family' (comment on the site report, 2026-10-07), so their reviews are shown. Any review marked \"pending\": true shows highlighted in preview builds and is left out of production builds. Left out entirely: Gretel Gallardo's (place name 'kaicora' is unclear to translate), and six reviews that were pasted in Google's Spanish machine translation of English originals (Nicole Brengel, Katie Dasher, jamie cook, Mario Betancourt, orlando lopez, Eliana Mesa Alvarez). Those six can be added once we have the English originals from the Google profile. Star ratings were not in the paste, so none are shown per review.",
   "source": "Google",
   "featured": [
     "fernando-p",
@@ -158,8 +158,6 @@
       "id": "yordanis-u",
       "author": "Yordanis U.",
       "lang": "es",
-      "pending": true,
-      "pendingNote": "Same first name as your driver. Is this a customer?",
       "text": "Solicite sus servicios a las 2:30am después de llamar varias compañias sin respuesta y me asistieron en minutos, los recomiendo 1000%",
       "en": "I requested their service at 2:30 a.m. after calling several companies with no answer, and they helped me within minutes. I recommend them 1000%."
     },
@@ -168,9 +166,7 @@
       "author": "Yordanis G.",
       "lang": "es",
       "text": "Super complacida con su servicio muy profesional y puntual lo recomiendo 💯 porciento…",
-      "en": "Super pleased with the service: very professional and punctual. I recommend them 💯 percent…",
-      "pending": true,
-      "pendingNote": "Same first name as your driver. Is this a customer?"
+      "en": "Super pleased with the service: very professional and punctual. I recommend them 💯 percent…"
     }
   ]
 }
