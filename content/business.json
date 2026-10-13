@@ -1,9 +1,10 @@
 {
   "_note": "Single source of truth for business facts. Only confirmed:true values may appear on the live site. Source for everything below unless noted: Yordan, project chat, 2026-10-03.",
   "name": {
-    "value": "Alejos Towing",
+    "value": "Alejo’s Towing",
     "confirmed": true,
-    "open_question": "Styling: 'Alejos' or 'Alejo's' (Google owner replies use both)"
+    "source": "Spelled as on the truck doors, the federal USDOT record and the Google listing (all 'ALEJO'S TOWING INC'; listing read 2026-10-13). The site said 'Alejos Towing' (Yordan's brief, 2026-10-03) until 2026-10-13.",
+    "note": "Default picked 2026-10-13 from that evidence; Yordan can still ask for 'Alejos'. The request text uses a straight apostrophe (src/components/RequestForm.astro) so it stays a plain SMS."
   },
   "phone": {
     "value": "+12398887001",
@@ -73,7 +74,6 @@
     "usdot_source": "Yordan, project chat, 2026-10-04: 'dot 3314605' (also lettered on the truck doors)",
     "insurance": "Insured through Progressive",
     "confirmed": true,
-    "open_question": "Google review count and profile link (the rating is under reviews)",
     "insurer": "Progressive"
   },
   "languages": {
@@ -90,17 +90,26 @@
     "file": "content/reviews.json",
     "google_rating": {
       "value": "5.0",
-      "confirmed": false,
-      "source": "Yordan, thread, 2026-10-06: 'We are ready in five stars. In Florida. In Google.' (voice typing; read as rated five stars on Google)",
-      "note": "Shown in previews only until the exact figure is checked on the Google profile: owners often say five stars for 4.8 or 4.9."
+      "confirmed": true,
+      "as_of": "2026-10-13",
+      "source": "Google listing (ALEJO'S TOWING INC), read 2026-10-13: 5.0 from 42 reviews, all five-star (/mnt/project-files/website/google-listing.md). Matches Yordan's 'five stars on Google', thread, 2026-10-06."
     },
     "google_review_count": {
-      "value": null,
-      "confirmed": false
+      "value": 42,
+      "confirmed": true,
+      "as_of": "2026-10-13",
+      "note": "Goes stale as reviews come in: re-check on the listing before launch and update it here."
     },
     "google_profile_url": {
-      "value": null,
-      "confirmed": false
+      "value": "https://www.google.com/maps/place/?q=place_id:ChIJVaVL9q8fs4wRGyvkRBv8Two",
+      "confirmed": true,
+      "source": "Place ID ChIJVaVL9q8fs4wRGyvkRBv8Two read from the listing 2026-10-13; this link opened the listing in a browser."
+    },
+    "google_review_url": {
+      "value": "https://search.google.com/local/writereview?placeid=ChIJVaVL9q8fs4wRGyvkRBv8Two",
+      "confirmed": true,
+      "tested": false,
+      "note": "Google's standard write-a-review link for the listing's Place ID. Google shows cloud servers a robot check, so it was not opened from here: tap it once on a phone before launch."
     }
   },
   "payment": {

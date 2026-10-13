@@ -18,8 +18,8 @@ const photo = (await sharp('src/assets/photos/truck-highway-front.jpg').resize(1
 
 // One share image per language (public/og.png and public/og-es.png); Base.astro picks by page language.
 const COPY = {
-  en: { file: 'og.png', h1: 'Stuck on the road? <em>Alejos</em> is on the way.', size: 74, p: '24/7 towing &amp; roadside help · Cape Coral, Fort Myers &amp; all of Florida', exit: 'Help ahead' },
-  es: { file: 'og-es.png', h1: '¿Varado en la carretera? <em>Alejos</em> va en camino.', size: 66, p: 'Grúa y asistencia 24/7 · Cape Coral, Fort Myers y toda la Florida', exit: 'Ayuda en camino' },
+  en: { file: 'og.png', h1: 'Stuck on the road? <em>Alejo’s</em> is on the way.', size: 74, p: '24/7 towing &amp; roadside help · Cape Coral, Fort Myers &amp; all of Florida', exit: 'Help ahead' },
+  es: { file: 'og-es.png', h1: '¿Varado en la carretera? <em>Alejo’s</em> va en camino.', size: 66, p: 'Grúa y asistencia 24/7 · Cape Coral, Fort Myers y toda la Florida', exit: 'Ayuda en camino' },
 };
 const page_ = (c) => `<!doctype html><html><head><style>
 @font-face{font-family:Overpass;src:url(data:font/woff2;base64,${overpass}) format('woff2');font-weight:100 900}
@@ -42,7 +42,7 @@ p{font-size:28px;color:#5b4f4a;margin-top:22px;line-height:1.35}
 </style></head><body>
 <div><h1>${c.h1}</h1><p>${c.p}</p><div class="call">(239) 888-7001</div></div>
 <div class="sign"><div class="in"><img src="data:image/jpeg;base64,${photo}" alt=""><span class="shield">24/7</span>
-<div class="plate"><div><div class="name">Alejos Towing</div><div class="exit">${c.exit}</div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
+<div class="plate"><div><div class="name">Alejo’s Towing</div><div class="exit">${c.exit}</div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
 </body></html>`;
 const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });

@@ -34,6 +34,7 @@ const business = {
   '@type': 'AutomotiveBusiness',
   ...(site && { '@id': new URL('/#business', site).href, url: site.href, image: ogImage, logo: new URL('/icon-512.png', site).href }),
   name: biz.name,
+  ...(biz.googleProfileUrl && { hasMap: biz.googleProfileUrl }),
   description: DESCRIPTION[lang],
   telephone: '+1-239-888-7001',
   email: biz.email,

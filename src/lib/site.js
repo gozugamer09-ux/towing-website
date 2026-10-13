@@ -8,6 +8,9 @@ import { href } from './i18n';
 // Preview builds highlight unconfirmed items; production builds leave them out.
 export const PREVIEW = import.meta.env.PUBLIC_PREVIEW === '1' || import.meta.env.DEV;
 
+// Links and other facts that only make sense once confirmed: null until then, so pages leave them out.
+const confirmedValue = (fact) => (fact.confirmed ? fact.value : null);
+
 export const biz = {
   name: business.name.value,
   phone: business.phone.value,          // +12398887001
@@ -20,6 +23,9 @@ export const biz = {
   payment: business.payment.value,
   googleRating: business.reviews.google_rating.value,              // "5.0", or null while unknown
   googleRatingConfirmed: business.reviews.google_rating.confirmed,
+  googleReviewCount: business.reviews.google_review_count.value,   // 42 when read on 2026-10-13; re-check before launch
+  googleProfileUrl: confirmedValue(business.reviews.google_profile_url), // opens the listing on Google Maps
+  googleReviewUrl: confirmedValue(business.reviews.google_review_url),   // Google's "write a review" page for the listing
 };
 
 export const tel = `tel:${biz.phone}`;

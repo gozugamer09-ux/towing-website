@@ -37,7 +37,7 @@ Orange is never used for text on white. Red text on white and white text on red 
 
 - **Overpass** (display, weight 900): an open-source typeface inspired by Highway Gothic, the lettering on US road signs. Headings, sign text, big numbers.
 - **Public Sans** (body): the US government's open-source text face, built for plain, legible reading.
-- Brand words lean like the lettering on the truck doors: the wordmark, the hero's "Alejos", sign plates and the final banner's heading are slanted (`font-style: italic`). The browser slants the upright Overpass, so no extra font file loads.
+- Brand words lean like the lettering on the truck doors: the wordmark, the hero's "Alejo’s", sign plates and the final banner's heading are slanted (`font-style: italic`). The browser slants the upright Overpass, so no extra font file loads.
 - Both are self-hosted variable fonts (Latin subset, 39KB and 27KB), preloaded, with size-matched fallbacks so text doesn't jump when they load.
 - Headings use `text-wrap: balance`; phone numbers never break (`.num`).
 
@@ -99,7 +99,7 @@ Spanish style:
 - Formal "usted", plain and warm. Neutral US Spanish that Cuban, Puerto Rican, Mexican and South American customers all read easily.
 - Words chosen for Southwest Florida: "carro", "grúa", "goma" (with "llanta" once where it helps: "goma o llanta ponchada"), "winche", "pickup", "SUV", "paso de corriente", "la Florida".
 - Button labels are short verbs: "Llamar", "Pedir grúa", "Enviar por texto".
-- The business name "Alejos Towing", city names and highway names stay as they are.
+- The business name "Alejo’s Towing" (with the apostrophe, as on the truck doors, the USDOT record and the Google listing), city names and highway names stay as they are. The request text uses a straight apostrophe so it stays a plain text message.
 
 ## Photos
 
@@ -107,7 +107,7 @@ Only Yordan's own photos of the company's trucks, never stock photos: a customer
 
 Where they go:
 
-- **Home hero:** the red flatbed on a highway shoulder (`truck-highway-front`), as the face of a guide sign with the 24/7 shield and an "Alejos Towing" plate (`PhotoSign`).
+- **Home hero:** the red flatbed on a highway shoulder (`truck-highway-front`), as the face of a guide sign with the 24/7 shield and an "Alejo’s Towing" plate (`PhotoSign`).
 - **Service pages:** the same photo sign with that service's photo, chosen in `content/services.json` (`"photo"`). The services page shows the same photos on its cards.
 - **Job gallery (home):** nine loads that show the range, from a Ford Model T to a backhoe, each captioned with what it carried, on the asphalt band. Order and choice: `GALLERY` in `src/lib/photos.js`.
 - **"Look for our name on the door" (home, trust section):** the door lettering, so a customer can tell it's really us when a truck arrives.

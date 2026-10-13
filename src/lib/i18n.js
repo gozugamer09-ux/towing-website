@@ -28,7 +28,7 @@ export function alternates(pathname) {
   return Object.values(PAGES).find((pair) => pair.en === p || pair.es === p) || PAGES.home;
 }
 
-/** Fills {name} placeholders: fill('Call {name}', { name: 'Alejos' }). */
+/** Fills {name} placeholders: fill('Call {name}', { name: 'Alejo’s' }). */
 export const fill = (s, vars) => s.replace(/\{(\w+)\}/g, (_, k) => vars[k]);
 
 export const UI = {
@@ -63,7 +63,7 @@ export const UI = {
       ['We load up and deliver', 'Your vehicle is secured and taken where you choose, across town or across the state.'],
     ],
     picker: { heading: 'What happened?', sub: "Tap one and we'll start your request." },
-    review: { original: 'Read the original in Spanish', source: 'Google review, translated from Spanish' },
+    review: { original: 'Read the original in Spanish', source: 'Google review', translated: 'Google review, translated from Spanish' },
     map: {
       title: '{name} service area',
       desc: 'Map of Florida. The main area is Lee County, around Cape Coral and Fort Myers. Routes reach Tampa, Orlando, Miami, Jacksonville, Tallahassee, Pensacola and the rest of the state.',
@@ -100,7 +100,7 @@ export const UI = {
       ['Cargamos y entregamos', 'Aseguramos su vehículo y lo llevamos a donde usted elija, al otro lado de la ciudad o del estado.'],
     ],
     picker: { heading: '¿Qué pasó?', sub: 'Toque una opción y empezamos su solicitud.' },
-    review: { original: '', source: 'Reseña de Google' },
+    review: { original: 'Leer el original en inglés', source: 'Reseña de Google', translated: 'Reseña de Google, traducida del inglés' },
     map: {
       title: 'Zona de servicio de {name}',
       desc: 'Mapa de la Florida. La zona principal es el condado de Lee, alrededor de Cape Coral y Fort Myers. Las rutas llegan a Tampa, Orlando, Miami, Jacksonville, Tallahassee, Pensacola y el resto del estado.',

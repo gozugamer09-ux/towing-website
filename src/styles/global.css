@@ -1,4 +1,4 @@
-/* Alejos Towing · the "Highway" layout in the company's colors: the red of the trucks, the
+/* Alejo’s Towing · the "Highway" layout in the company's colors: the red of the trucks, the
    orange of their light bars and the black of the door lettering.
    Layout: mobile-first single column; call and request actions always within reach
    (sticky bar on phones, header button on larger screens). One committed light look,
@@ -269,6 +269,8 @@ picture { display: block; }
 .page-head.crumbs-only { padding-bottom: clamp(20px, 4vw, 36px); }
 .sec.after-crumbs { padding-top: clamp(28px, 5vw, 56px); }
 .rating-line { margin-top: 14px; font-weight: 700; }
+.rating-links { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 6px; }
+.rating-links .text-link { min-height: 44px; }
 
 /* Issue picker */
 .picker { padding-block: 0 clamp(48px, 7vw, 84px); }

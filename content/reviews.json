@@ -1,5 +1,5 @@
 {
-  "_note": "Google reviews pasted by Yordan on 2026-10-03. 'text' is the reviewer's own words, copied exactly (an ending '…' means Google cut the review off there). 'en' is our translation and is always labeled as one. The two reviewers named Yordanis (Ulloa Roque and Garcia) share a first name with the driver. Asked whether they are customers rather than family or staff, Yordan answered 'no they are not family' (comment on the site report, 2026-10-07), so their reviews are shown. Any review marked \"pending\": true shows highlighted in preview builds and is left out of production builds. Left out entirely: Gretel Gallardo's (place name 'kaicora' is unclear to translate), and six reviews that were pasted in Google's Spanish machine translation of English originals (Nicole Brengel, Katie Dasher, jamie cook, Mario Betancourt, orlando lopez, Eliana Mesa Alvarez). Those six can be added once we have the English originals from the Google profile. Star ratings were not in the paste, so none are shown per review.",
+  "_note": "Google reviews pasted by Yordan on 2026-10-03. 'text' is the reviewer's own words, copied exactly (an ending '…' means Google cut the review off there). 'en' is our translation and is always labeled as one. The two reviewers named Yordanis (Ulloa Roque and Garcia) share a first name with the driver. Asked whether they are customers rather than family or staff, Yordan answered 'no they are not family' (comment on the site report, 2026-10-07), so their reviews are shown. Any review marked \"pending\": true shows highlighted in preview builds and is left out of production builds. Five reviews were pasted in Google's Spanish machine translation of English originals; their English originals (Nicole Brengel, Katie Dasher, jamie cook, Mario Betancourt, orlando lopez) were read from the Google listing on 2026-10-13 (/mnt/project-files/website/google-listing.md) and are shown with \"lang\": \"en\" and our labeled Spanish translation in 'es'. Left out entirely: Gretel Gallardo's (place name 'kaicora' is unclear to translate), and Eliana Mesa Alvarez's (pasted in Google's translation; the English original wasn't visible on the listing without a Google sign-in). Star ratings aren't shown per review (all 42 reviews on the listing were five-star on 2026-10-13).",
   "source": "Google",
   "featured": [
     "fernando-p",
@@ -29,11 +29,25 @@
       "en": "Excellent service. In my case it was in the early morning hours and they arrived fast. I recommend them 100%."
     },
     {
+      "id": "mario-b",
+      "author": "Mario B.",
+      "lang": "en",
+      "text": "Alejos Towing came through when I really needed help. My car broke down unexpectedly, and they showed up fast—within 20 minutes. The driver was professional, polite, and handled my car with care from start to finish. They made a stressful situation much easier and charged a fair price with no surprises. If you ever need a reliable towing company, I highly recommend Alejos Towing. Great service, great people!",
+      "es": "Alejos Towing respondió cuando de verdad necesitaba ayuda. Mi carro se rompió de repente y llegaron rápido, en menos de 20 minutos. El chofer fue profesional, educado y trató mi carro con cuidado de principio a fin. Hicieron mucho más fácil un momento estresante y cobraron un precio justo, sin sorpresas. Si alguna vez necesita una compañía de grúas confiable, le recomiendo mucho Alejos Towing. ¡Excelente servicio, excelente gente!"
+    },
+    {
       "id": "yareilis-g",
       "author": "Yareilis G.",
       "lang": "es",
       "text": "Excelente servicio y ser humano para mi el mejor en su trabajo muy atento y servicial y a cualquier hora que lo llames ahí está 24 h como dice su servicio y es real y soy prueba de eso ya que necesite de sus servicios a la 2 de la mañana y enseguida me atendió y resolvió el problema bendiciones para ti y tu negocio sigue siendo así 🥰👍…",
       "en": "Excellent service and an excellent person. For me, the best at what he does: very attentive and helpful, and whatever time you call, he's there. 24 hours, just like his service says, and it's true. I'm proof of that: I needed him at 2 in the morning and he answered right away and solved the problem. Blessings to you and your business, keep it up 🥰👍…"
+    },
+    {
+      "id": "jamie-c",
+      "author": "Jamie C.",
+      "lang": "en",
+      "text": "The communication and service were stellar. After calling 4 or 5 other companies, some called back some didn't, Alejo's answered right away and got me taken care of. My truck had to be towed from Cape Coral to North Port and their rate was way better than everyone else. They do speak mostly Spanish but don't let that deter you from using them. They were professional, courteous and trustworthy.",
+      "es": "La comunicación y el servicio fueron excelentes. Después de llamar a 4 o 5 compañías, algunas me devolvieron la llamada y otras no, Alejo's contestó enseguida y me resolvió. Había que remolcar mi camioneta de Cape Coral a North Port y su precio fue mucho mejor que el de todos los demás. Hablan sobre todo español, pero que eso no le impida llamarlos. Fueron profesionales, amables y de confianza."
     },
     {
       "id": "danay-g",
@@ -57,11 +71,25 @@
       "en": "When I was visiting Florida a few months ago, I had a problem with my rental car and needed help fast. A friend recommended Yordanis from Alejo's Towing, and it was exactly the right call. He arrived within minutes and was super…"
     },
     {
+      "id": "nicole-b",
+      "author": "Nicole B.",
+      "lang": "en",
+      "text": "5 star service. Yordanis stopped while we were on the side of the highway near Tampa with a flat tire. We were waving people down due to it being 6pm and all tows would be at least 3 hrs. Thank you so much!! Would definitely recommend. 100%",
+      "es": "Servicio de 5 estrellas. Yordanis se detuvo cuando estábamos a la orilla de la autopista cerca de Tampa con una goma ponchada. Le hacíamos señas a la gente porque eran las 6 de la tarde y cualquier grúa iba a tardar por lo menos 3 horas. ¡¡Muchísimas gracias!! Sin duda lo recomendaría. 100%"
+    },
+    {
       "id": "george-d",
       "author": "George D.",
       "lang": "es",
       "text": "El mejor servicio de la Florida gracias por tus atenciones y tu buen servicio agradecido por tu ayuda y disponibilidad a cualquier hora suerte en tu negocio siempre porque te lo mereces por ser tan atento y dispuesto a ayudará quien lo necesite gracias",
       "en": "The best service in Florida. Thank you for your attention and your good service. Grateful for your help and for being available at any hour. Good luck with your business always, because you deserve it for being so attentive and willing to help whoever needs it. Thank you."
+    },
+    {
+      "id": "katie-d",
+      "author": "Katie D.",
+      "lang": "en",
+      "text": "Was very professional very friendly and was done and a fast timely manner. He made sure to go above and beyond and made sure to respect my vehicle As if it was his own . I will for sure use this company again if I need any towing in the future, I 100% recommend this company.",
+      "es": "Fue muy profesional, muy amable y lo hizo todo rápido y a tiempo. Hizo más de lo que tenía que hacer y cuidó mi vehículo como si fuera suyo. Sin duda volveré a llamar a esta compañía si necesito una grúa en el futuro. La recomiendo 100%."
     },
     {
       "id": "jose-alejandro-b",
@@ -111,6 +139,13 @@
       "lang": "es",
       "text": "Excelente servicio, serio y responsable 100% recomendado",
       "en": "Excellent service, serious and responsible. 100% recommended."
+    },
+    {
+      "id": "orlando-l",
+      "author": "Orlando L.",
+      "lang": "en",
+      "text": "The best of all time , very good service . , I recommend it 100%",
+      "es": "Los mejores de todos los tiempos, muy buen servicio. Lo recomiendo 100%."
     },
     {
       "id": "ahmeed-g",

@@ -1,6 +1,6 @@
-# Alejos Towing website
+# Alejo’s Towing website
 
-The website for Alejos Towing (24/7 towing and roadside help, Cape Coral and Fort Myers, anywhere in Florida), in English and Spanish. A static site built with [Astro](https://astro.build): fast pages, almost no JavaScript, and nothing that needs a server or an AI session to keep running.
+The website for Alejo’s Towing (24/7 towing and roadside help, Cape Coral and Fort Myers, anywhere in Florida), in English and Spanish. A static site built with [Astro](https://astro.build): fast pages, almost no JavaScript, and nothing that needs a server or an AI session to keep running.
 
 ## Where things are
 
