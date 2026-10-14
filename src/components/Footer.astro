@@ -1,5 +1,5 @@
 ---
-import Icon from './Icon.astro';
+import plate from '../assets/logo/logo-stacked-on-red.svg?url';
 import { biz, tel, sms, servicesFor, paymentText } from '../lib/site';
 import { langOf, href, alternates, fill, UI } from '../lib/i18n';
 const lang = langOf(Astro.url);
@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
   <div class="wrap">
     <div class="ftr-grid">
       <div class="ftr-brand">
-        <a class="brand" href={href('home', lang)}><span class="mark" aria-hidden="true"><Icon name="hook" /></span><span class="wordmark">{biz.name}<small>{t.tagline}</small></span></a>
+        <a class="brand" href={href('home', lang)}><img class="logo" src={plate} alt={biz.name} width="240" height="104" loading="lazy" /></a>
         <p>{fill(f.blurb, { year: biz.founded })}</p>
       </div>
       <div class="ftr-contact">

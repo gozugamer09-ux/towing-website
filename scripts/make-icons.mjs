@@ -5,9 +5,12 @@ import sharp from 'sharp';
 import fs from 'node:fs';
 import { chromium } from 'playwright';
 
-const svg = fs.readFileSync('public/favicon.svg');
-for (const [name, size] of [['favicon-32.png', 32], ['apple-touch-icon.png', 180], ['icon-192.png', 192], ['icon-512.png', 512]]) {
-  await sharp(svg, { density: 600 }).resize(size, size).png().toFile(`public/${name}`);
+// favicon.svg is the star and tow hook from the truck doors (src/assets/logo/mark.svg) on a truck-red tile.
+// iPhones round the corners of their home-screen icon themselves, so that one is drawn square.
+const svg = fs.readFileSync('public/favicon.svg', 'utf8');
+const square = svg.replace(' rx="12"', '');
+for (const [name, size, src] of [['favicon-32.png', 32, svg], ['apple-touch-icon.png', 180, square], ['icon-192.png', 192, svg], ['icon-512.png', 512, svg]]) {
+  await sharp(Buffer.from(src), { density: 600 }).resize(size, size).png().toFile(`public/${name}`);
 }
 
 const font = (p) => fs.readFileSync(p).toString('base64');
@@ -15,6 +18,8 @@ const overpass = font('node_modules/@fontsource-variable/overpass/files/overpass
 const publicSans = font('node_modules/@fontsource-variable/public-sans/files/public-sans-latin-wght-normal.woff2');
 // The hero photo, as on the home page: the red truck on a highway shoulder.
 const photo = (await sharp('src/assets/photos/truck-highway-front.jpg').resize(1000).jpeg({ quality: 84 }).toBuffer()).toString('base64');
+// The full logo from the truck doors, white outlines and all, on the sign's red plate.
+const logo = fs.readFileSync('src/assets/logo/logo-stacked.svg').toString('base64');
 
 // One share image per language (public/og.png and public/og-es.png); Base.astro picks by page language.
 const COPY = {
@@ -33,22 +38,22 @@ p{font-size:28px;color:#5b4f4a;margin-top:22px;line-height:1.35}
 .call{display:inline-block;margin-top:28px;background:#c8102e;color:#fff;font:800 38px/1 'Public Sans';padding:20px 28px;border-radius:12px}
 .sign{background:#c8102e;border-radius:20px;padding:10px;box-shadow:0 18px 40px rgba(40,18,12,.2)}
 .in{position:relative;overflow:hidden;border:4px solid #fff;border-radius:12px}
-.in img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-bottom:4px solid #fff}
+.in>img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-bottom:4px solid #fff}
 .shield{position:absolute;top:14px;left:14px;background:#ff8c1a;color:#1f1300;font:900 30px/1 Overpass;padding:13px 15px 15px;border-radius:9px 9px 22px 22px;box-shadow:0 3px 10px rgba(0,0,0,.3)}
 .plate{display:flex;justify-content:space-between;align-items:center;padding:16px 22px 18px;color:#fff}
-.name{font:italic 900 46px/1 Overpass;text-transform:uppercase}
+.logo{display:block;height:100px;width:auto}
 .exit{font:800 17px/1 Overpass;letter-spacing:.1em;text-transform:uppercase;margin-top:8px;opacity:.92}
 .arrow{width:62px;height:62px;flex:none;stroke:#fff;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;transform:rotate(-45deg)}
 </style></head><body>
 <div><h1>${c.h1}</h1><p>${c.p}</p><div class="call">(239) 888-7001</div></div>
 <div class="sign"><div class="in"><img src="data:image/jpeg;base64,${photo}" alt=""><span class="shield">24/7</span>
-<div class="plate"><div><div class="name">Alejo’s Towing</div><div class="exit">${c.exit}</div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
+<div class="plate"><div><img class="logo" src="data:image/svg+xml;base64,${logo}" alt="Alejo’s Towing"><div class="exit">${c.exit}</div></div><svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div></div></div>
 </body></html>`;
 const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
 for (const c of Object.values(COPY)) {
   await page.setContent(page_(c));
-  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => Promise.all([document.fonts.ready, ...[...document.images].map((i) => i.decode())]));
   await page.screenshot({ path: `public/${c.file}` });
 }
 await browser.close();

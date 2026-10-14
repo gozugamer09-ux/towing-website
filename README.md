@@ -12,6 +12,7 @@ The website for Alejo’s Towing (24/7 towing and roadside help, Cape Coral and 
 | `src/pages/` | Page addresses: English at `/`, Spanish under `/es/`. Each file just shows a view. |
 | `src/lib/i18n.js` | The two languages: page addresses in each, and the shared interface wording (header, footer, buttons). |
 | `src/components/` | Reusable parts: header, footer, photo sign, job gallery, request form, map, cards. |
+| `src/assets/logo/` | The truck-door logo as vector files, redrawn from Yordan's photos, with a README on which version goes where. |
 | `src/assets/photos/`, `src/lib/photos.js` | Yordan's truck photos and their descriptions in both languages. How to add one: `docs/DESIGN.md`, "Photos". |
 | `src/styles/global.css` | The whole design system (colors, type, components). Rules in `docs/DESIGN.md`. |
 | `public/` | Icons, share images (English and Spanish), web manifest. Regenerate with `npm run icons`. |

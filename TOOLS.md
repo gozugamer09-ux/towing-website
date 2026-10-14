@@ -1,6 +1,6 @@
 # Alejos Towing website: tools record
 
-Last updated 2026-10-04. Costs are in USD and come from general knowledge, not live price pages; each one gets re-checked with Yordan before anything is bought.
+Last updated 2026-10-14. Costs are in USD and come from general knowledge, not live price pages; each one gets re-checked with Yordan before anything is bought.
 
 ## 1. Development tools (installed and tested in the build environment)
 
@@ -16,6 +16,7 @@ None of these is sent to website visitors. All free and open source.
 | html-validate | HTML correctness | 0 errors on every page (one rule switched off in `.htmlvalidate.json`: phone numbers are kept on one line with CSS instead) |
 | sharp | Makes the icons and the link-preview images; turns Yordan's photos into AVIF/WebP at three sizes during every build | In use (`npm run icons`, `npm run build`) |
 | ImageMagick | Prepared Yordan's photos once: resized to 1600px, cropped one, blurred a customer's license plate | Used in the build environment only; not needed to build or run the site |
+| Python 3 with OpenCV, NumPy, SciPy, Pillow, fontTools and potrace (potracer) | Redrew the truck-door logo as vector files from Yordan's two door photos (2026-10-14) | Used once in the build environment; not needed to build or run the site. The SVG files in `src/assets/logo/` are now the logo's source |
 | us-atlas, topojson-client, d3-geo | Draw the Florida service-area map from US Census boundaries | Used once to generate `src/data/florida.json` (`npm run map`) |
 
 ## 2. What visitors download
@@ -24,6 +25,7 @@ None of these is sent to website visitors. All free and open source.
 |---|---|---|
 | Page HTML (includes all CSS, the icon set and the map) | Home page about 20KB compressed; other pages about 14KB | One request per page, nothing blocks the first paint |
 | Photos (AVIF, WebP for older browsers) | 15–65KB each on a typical phone; the home page's first photo 56KB (112KB on the sharpest phone screens) | Only the first photo loads at once; the rest load as they scroll into view |
+| Logo (SVG) | Header emblem about 7KB compressed (the wide version from 1150px, about 8KB); footer logo about 14KB, loaded only as the footer comes near the screen | Fingerprinted names, so browsers keep them for a year |
 | Fonts: Overpass and Public Sans (Fontsource, open font license) | 39KB + 27KB, cached after the first page | Self-hosted, preloaded, with size-matched fallbacks |
 | JavaScript | About 5KB for the request form, plus a small inline script for the menu and phone action bar | No framework |
 | Third parties | None | No trackers, no cookies, no ads, no outside requests |
@@ -50,6 +52,7 @@ Connectors that failed to connect in this environment (Figma, Canva, Notion, Sla
 | Clickable preview of the full site | https://claude.ai/artifact/CkV5aZ9LEXGV7aa7288KTg (earlier versions showed the three design directions) |
 | Screenshots of every page and size | `screenshots/site/` after `npm test -- --shots` (not stored in git) |
 | Design-direction preview | `design/preview/alejos-preview.html` |
+| The logo, redrawn from the truck-door photos | Vector files in `src/assets/logo/` (README there says which version goes where); print-ready PNG and PDF copies for Yordan in the project's files, `website/logo/` |
 
 ## 5. Running the site long term
 

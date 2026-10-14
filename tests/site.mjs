@@ -4,7 +4,7 @@
 // valid JSON-LD, every internal link resolves, every call/text link uses the company number,
 // touch targets are at least 44px on phones, axe accessibility scan, page language and the
 // language switch (English at /, Spanish under /es/), the request journey in both languages,
-// the language a first visit opens in, and that every photo loads at a sensible size.
+// the language a first visit opens in, that every photo loads at a sensible size, and the logo.
 import { chromium } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import fs from 'node:fs';
@@ -13,6 +13,7 @@ import { serve } from './serve.mjs';
 const root = process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2] : 'dist-preview';
 const SHOTS = process.argv.includes('--shots');
 const TEL = 'tel:+12398887001', SMS = 'sms:+12398887001';
+const BUSINESS_NAME = JSON.parse(fs.readFileSync('content/business.json', 'utf8')).name.value;
 const { server, url } = await serve(root);
 // Use CHROME_PATH or the build environment's Chromium when present; otherwise Playwright's own browser (CI).
 const LOCAL_CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
@@ -254,8 +255,10 @@ console.log('photos');
       const height = await p.evaluate(() => document.body.scrollHeight);
       for (let y = 0; y < height; y += h / 2) { await p.evaluate((y) => scrollTo({ top: y, behavior: 'instant' }), y); await p.waitForTimeout(80); }
       await p.waitForFunction(() => [...document.images].filter((i) => i.getBoundingClientRect().width > 0).every((i) => i.complete), null, { timeout: 15000 }).catch(() => {});
+      const logos = await p.$$eval('img.logo', (els) => els.filter((i) => i.getBoundingClientRect().width > 0).map((i) => ({ alt: i.alt, loaded: i.complete && i.naturalWidth > 0 })));
+      ok(logos.length === 2 && logos.every((l) => l.loaded && l.alt === BUSINESS_NAME), `${name} ${path}: the logo shows in the header and footer, named ${BUSINESS_NAME}`);
       // naturalWidth of a photo picked from srcset is the width "sizes" promised for it, not the file's.
-      const imgs = await p.$$eval('img', (els) => els.map((i) => {
+      const imgs = await p.$$eval('img:not(.logo)', (els) => els.map((i) => {
         const r = i.getBoundingClientRect();
         return { src: (i.currentSrc || i.src).split('/').pop(), alt: i.getAttribute('alt'), shown: r.width > 0, width: Math.round(r.width), loaded: i.complete && i.naturalWidth > 0, slot: i.naturalWidth };
       }));

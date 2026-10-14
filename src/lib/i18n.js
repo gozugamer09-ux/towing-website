@@ -38,7 +38,6 @@ export const UI = {
     previewBar: ['Preview build.', "Highlighted items still need Yordan's confirmation and are left out of the live site."],
     // The language bar's label is in the page's language; its note and link are in the language it offers.
     langBar: { label: 'Language', lang: 'es', note: 'Hablamos español.', link: 'Ver en español' },
-    tagline: 'Towing & roadside · 24/7',
     nav: { home: 'Home', services: 'Services', area: 'Service area', reviews: 'Reviews', faq: 'FAQ', request: 'Request a tow', privacy: 'Privacy' },
     mainNav: 'Main', menu: 'Menu', openMenu: 'Open menu', closeMenu: 'Close menu', breadcrumb: 'Breadcrumb', quickActions: 'Quick actions',
     call: 'Call', callNow: 'Call now', callAt: 'Call {name} at {phone}', request: 'Request a tow',
@@ -75,7 +74,6 @@ export const UI = {
     skip: 'Saltar al contenido',
     previewBar: ['Versión de prueba.', 'Lo resaltado aún espera la confirmación de Yordan y no aparece en el sitio real.'],
     langBar: { label: 'Idioma', lang: 'en', note: '', link: 'View in English' },
-    tagline: 'Grúa y asistencia · 24/7',
     nav: { home: 'Inicio', services: 'Servicios', area: 'Zona de servicio', reviews: 'Reseñas', faq: 'Preguntas', request: 'Pedir grúa', privacy: 'Privacidad' },
     mainNav: 'Principal', menu: 'Menú', openMenu: 'Abrir menú', closeMenu: 'Cerrar menú', breadcrumb: 'Ruta de navegación', quickActions: 'Acciones rápidas',
     call: 'Llamar', callNow: 'Llamar ahora', callAt: 'Llamar a {name} al {phone}', request: 'Pedir grúa',

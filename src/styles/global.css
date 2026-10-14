@@ -136,12 +136,8 @@ h3 { font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.01em; }
 .hdr { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); view-transition-name: site-header; }
 .hdr::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 6px; background: var(--livery); pointer-events: none; } /* the trucks' pinstripes */
 .hdr-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: var(--header-h); }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.mark { width: 40px; height: 40px; border-radius: 8px; background: var(--accent); color: #fff; display: grid; place-items: center; box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 3.5px #fff; flex: none; }
-.mark .ico { width: 22px; height: 22px; stroke-width: 2.4; }
-.wordmark { font-family: var(--font-display); font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: .02em; font-size: 1.15rem; line-height: 1; }
-.wordmark small { display: block; font: normal 600 .62rem/1.2 var(--font-body); letter-spacing: .16em; color: var(--muted); margin-top: 4px; }
-@media (max-width: 374px) { .hdr .wordmark small { font-size: .6rem; letter-spacing: .1em; } } /* one line on 360px phones */
+.brand { display: flex; flex: none; border-radius: 6px; }
+.logo { display: block; height: 56px; width: auto; } /* the truck-door logo (src/assets/logo/) */
 .nav { display: none; gap: 2px; }
 .nav a { text-decoration: none; font-weight: 600; font-size: .95rem; padding: 9px 12px; border-radius: 8px; color: var(--muted); transition: background-color .15s, color .15s; }
 .nav a:hover { color: var(--ink); background: var(--surface-2); }
@@ -159,6 +155,7 @@ h3 { font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.01em; }
 .sheet-bg { position: absolute; inset: 0; background: rgb(20 12 10 / .5); animation: fade .2s ease; }
 .sheet-panel { position: relative; background: var(--bg); padding: calc(12px + env(safe-area-inset-top, 0px)) var(--gutter) 22px; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; animation: drop .28s cubic-bezier(.2,.8,.2,1); display: grid; gap: 4px; box-shadow: var(--shadow-lg); max-height: 100%; overflow: auto; }
 .sheet-top { display: flex; justify-content: space-between; align-items: center; min-height: 52px; margin-bottom: 6px; }
+.sheet-top .logo { height: 48px; }
 .sheet a.navlink { display: flex; justify-content: space-between; align-items: center; font: 900 1.55rem/1.2 var(--font-display); letter-spacing: -0.01em; text-decoration: none; padding: 13px 2px; border-bottom: 1px solid var(--line); }
 .sheet a.navlink .ico { color: var(--accent); }
 .sheet .btn { margin-top: 14px; }
@@ -573,8 +570,8 @@ select.input { text-overflow: ellipsis; appearance: none; background-image: line
 }
 .ftr h2 { font: 700 .78rem/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: #b3a69e; margin-bottom: 14px; }
 .ftr ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
-.ftr .wordmark small { color: #b3a69e; }
-.ftr .mark { box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 3.5px #fff; }
+.ftr .brand { justify-self: start; }
+.ftr .logo { width: 240px; height: auto; } /* the full logo on its own red plate, as on the truck doors */
 .ftr-open { display: block; color: #fff; font: 900 1.15rem/1.2 var(--font-display); margin-bottom: 6px; }
 .ftr .big-num { font: 900 1.6rem/1 var(--font-display); color: #fff; letter-spacing: -0.01em; }
 .ftr-bottom { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; border-top: 1px solid rgb(255 255 255 / .14); margin-top: 40px; padding-top: 20px; color: #b3a69e; font-size: .88rem; }

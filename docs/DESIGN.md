@@ -37,9 +37,26 @@ Orange is never used for text on white. Red text on white and white text on red 
 
 - **Overpass** (display, weight 900): an open-source typeface inspired by Highway Gothic, the lettering on US road signs. Headings, sign text, big numbers.
 - **Public Sans** (body): the US government's open-source text face, built for plain, legible reading.
-- Brand words lean like the lettering on the truck doors: the wordmark, the hero's "Alejo’s", sign plates and the final banner's heading are slanted (`font-style: italic`). The browser slants the upright Overpass, so no extra font file loads.
+- Brand words lean like the lettering on the truck doors: the hero's "Alejo’s", sign plates and the final banner's heading are slanted (`font-style: italic`). The browser slants the upright Overpass, so no extra font file loads.
 - Both are self-hosted variable fonts (Latin subset, 39KB and 27KB), preloaded, with size-matched fallbacks so text doesn't jump when they load.
 - Headings use `text-wrap: balance`; phone numbers never break (`.num`).
+
+## Logo
+
+The logo is the one on the truck doors: the oval road swoosh with its dashed lane line, the star with a tow hook, ALEJO’S and TOWING. Yordan had no original file, so on 2026-10-14 it was redrawn as vector shapes from their photos of a truck door. The files, their versions and how to use them are in `src/assets/logo/README.md`.
+
+| Place | What shows |
+|---|---|
+| Header on phones and tablets, and up to 1149px wide | The emblem (swoosh, star and ALEJO’S), 56px tall |
+| Header from 1150px wide | The emblem with TOWING beside it, 56px tall |
+| Phone menu | The emblem, 48px tall |
+| Footer | The full logo on its own red plate, like the doors, 240px wide |
+| Link previews | The full logo on the red plate of the photo sign |
+| Browser tab, phone home screen | The star with the tow hook on a red tile |
+
+- On white, the logo is drawn without its white outlines (the `-light` files), which look the same there. On dark backgrounds it always sits on its red plate: the black lettering would disappear on asphalt black.
+- Headings and sign plates stay in Overpass (slanted where the type rules above say so); the logo's own letters appear only in the logo files.
+- No stretching, recoloring or effects; below 40px tall the emblem gets hard to read, so small spaces use the star.
 
 ## Signature motifs
 
