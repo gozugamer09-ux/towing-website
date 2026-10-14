@@ -1,6 +1,6 @@
 // Turns the preview build (dist-preview/) into a self-contained bundle (dist-artifact/) that can be
 // shared as a Claude artifact: links become relative ("services/towing/index.html"), fonts and
-// scripts are inlined, photos are copied next to the pages (dist-artifact/photos/, since the artifact
+// scripts are inlined, photos and the logo are copied next to the pages (dist-artifact/photos/, since the artifact
 // host reserves names that start with "_"), and the home page loses its <html>/<head>/<body>
 // wrapper because the artifact host adds its own.
 // Run: npm run build:preview && node scripts/make-share-preview.mjs
@@ -38,9 +38,9 @@ for (const page of pages) {
   // Fonts and the request-form script, inlined.
   html = html.replace(/url\("\/(_astro\/fonts\/[^"]+\.woff2)"\)/g, (_, p) => `url("${font(p)}")`);
   html = html.replace(/<script type="module" src="\/(_astro\/[^"]+\.js)"><\/script>/g, (_, p) => `<script type="module">${read(p).toString('utf8')}</script>`);
-  // Photos: "/_astro/truck.Ab12.avif 480w, ..." in src and srcset -> "../photos/truck.Ab12.avif 480w, ...".
+  // Photos and the logo: "/_astro/truck.Ab12.avif 480w, ..." in src and srcset -> "../photos/truck.Ab12.avif 480w, ...".
   html = html.replace(/\b(src|srcset)="([^"]*\/_astro\/[^"]*)"/g, (_, attr, val) =>
-    `${attr}="${val.replace(/\/_astro\/([^\s",]+\.(?:avif|webp|jpg|png))/g, (__, f) => (images.add(f), `${up}photos/${f}`))}"`);
+    `${attr}="${val.replace(/\/_astro\/([^\s",]+\.(?:avif|webp|jpg|png|svg))/g, (__, f) => (images.add(f), `${up}photos/${f}`))}"`);
   // Site links: "/services/towing/?x#y" -> "../services/towing/index.html?x#y" (relative to this page).
   html = html.replace(/href="\/([^"#?]*)([^"]*)"/g, (_, p, rest) => {
     const target = p === '' || p.endsWith('/') ? `${p}index.html` : p;
@@ -62,4 +62,4 @@ for (const page of pages) {
 }
 fs.mkdirSync(path.join(OUT, 'photos'), { recursive: true });
 for (const f of images) fs.copyFileSync(path.join(SRC, '_astro', f), path.join(OUT, 'photos', f));
-console.log(`${images.size} photo files copied to ${OUT}/photos/`);
+console.log(`${images.size} image files copied to ${OUT}/photos/`);

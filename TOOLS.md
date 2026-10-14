@@ -12,7 +12,7 @@ None of these is sent to website visitors. All free and open source.
 | Astro 7.3 (+ @astrojs/sitemap) | Builds the site into plain HTML and CSS, with almost no JavaScript | In use; 16 pages build in about 1.5 seconds |
 | Playwright 1.56 + Chromium | Real-browser checks of every page at 360, 390, 820 and 1440px wide, the request journey, keyboard use, screenshots | In use (`npm test`) |
 | axe-core | Accessibility scan (WCAG), including color contrast | 0 problems on all 16 pages, phone and desktop |
-| Lighthouse 12 | Speed, accessibility, best practices and search basics on a simulated slow phone connection | Production build, 2026-10-04: home 99/100/100/100, towing page 100/100/100/100, request page 100/100/100/100 |
+| Lighthouse 12 | Speed, accessibility, best practices and search basics on a simulated slow phone connection | Production build, 2026-10-14 (with the logo): home pages 97–99 for speed from run to run (English and Spanish), towing page 100; 100 for accessibility, best practices and search basics on every page tested |
 | html-validate | HTML correctness | 0 errors on every page (one rule switched off in `.htmlvalidate.json`: phone numbers are kept on one line with CSS instead) |
 | sharp | Makes the icons and the link-preview images; turns Yordan's photos into AVIF/WebP at three sizes during every build | In use (`npm run icons`, `npm run build`) |
 | ImageMagick | Prepared Yordan's photos once: resized to 1600px, cropped one, blurred a customer's license plate | Used in the build environment only; not needed to build or run the site |
