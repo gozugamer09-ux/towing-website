@@ -41,6 +41,12 @@
     ],
     "confirmed": true
   },
+  "arrival_time": {
+    "value": "Usually under 30 minutes in Cape Coral and Fort Myers, depending on where the customer is and the time of day",
+    "confirmed": true,
+    "source": "Yordan, comment on the site report, 2026-10-14: 'depends on were it is located and time of the day. usually yes' (asked: do you get there in under 30 minutes in Cape Coral and Fort Myers?). First seen in their June 2026 Google post ('llegamos en menos de 30 minutos').",
+    "used_in": "content/faq.json, 'How fast can you get to me?'"
+  },
   "services": {
     "value": [
       "Light, medium and heavy-duty towing",
@@ -60,6 +66,20 @@
     "value": "Cars, SUVs, pickups, vans and motorcycles, light to heavy-duty; bigger vehicles over 20 ft (box trucks, RVs) as long as the tires fit on the truck",
     "confirmed": true,
     "source": "Yordan, comment on the site report, 2026-10-04: 'yes so long as the tires fit on the truck'"
+  },
+  "ride_along": {
+    "value": "Yes, one passenger at most",
+    "confirmed": true,
+    "source": "Yordan, comment on the site report, 2026-10-14: 'yes max 1. but we are not liable for them'",
+    "open_question": "Yordan asked to say the company is not liable for passengers; left off the site until Yordan decides (a line on a website likely doesn't remove liability; their insurer can say whether a passenger is covered).",
+    "used_in": "content/faq.json, 'Can I ride in the tow truck?'"
+  },
+  "customer_insurance": {
+    "value": "Works with customers' insurance companies when the vehicle is going to a body shop",
+    "confirmed": true,
+    "source": "Yordan, comment on the site report, 2026-10-14: 'yes but only if going to a body shop' (asked: do you work with insurance companies or roadside plans?)",
+    "note": "No insurers or roadside plans were named, so the site names none and doesn't mention roadside plans.",
+    "used_in": "content/faq.json, 'Do you work with insurance companies?'"
   },
   "quote_form": {
     "deliver_to": "Text message to +12398887001, composed on the customer's phone",

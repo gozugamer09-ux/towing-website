@@ -6,9 +6,9 @@
       "es": { "title": "Cómo pedir ayuda" },
       "items": [
         { "q": "How fast can you get to me?", "home": true,
-          "a": "It depends on where you are. Tell us your location and we'll give you an arrival time when you call or text. We answer around the clock, including the middle of the night.",
+          "a": "In Cape Coral and Fort Myers we usually get there in under 30 minutes. It depends on where you are and the time of day, so tell us your location and we'll give you an arrival time when you call or text. We answer around the clock, including the middle of the night.",
           "es": { "q": "¿Qué tan rápido pueden llegar?",
-            "a": "Depende de dónde esté. Díganos su ubicación y le damos un tiempo de llegada cuando llame o escriba. Contestamos a toda hora, incluso de madrugada." } },
+            "a": "En Cape Coral y Fort Myers, por lo general llegamos en menos de 30 minutos. Depende de dónde esté y de la hora del día, así que díganos su ubicación y le damos un tiempo de llegada cuando llame o escriba. Contestamos a toda hora, incluso de madrugada." } },
         { "q": "Are you really open 24/7?",
           "a": "Yes. We take calls and texts 24 hours a day, 7 days a week, including nights and weekends.",
           "es": { "q": "¿De verdad atienden 24/7?",
@@ -21,10 +21,10 @@
           "a": "Move yourself and your passengers away from traffic if you can, turn on your hazard lights and keep your phone nearby. If anyone is hurt, call 911 first.",
           "es": { "q": "¿Qué hago mientras espero?",
             "a": "Si puede, aléjese del tráfico con sus pasajeros, encienda las luces de emergencia y tenga el teléfono a mano. Si hay heridos, llame primero al 911." } },
-        { "q": "Can I ride in the tow truck?", "pending": true,
-          "a": "Usually, yes, for one or two passengers. Let us know when you call.",
+        { "q": "Can I ride in the tow truck?",
+          "a": "Yes, one passenger can ride in the truck with the driver. Let us know when you call.",
           "es": { "q": "¿Puedo ir en la grúa?",
-            "a": "Por lo general sí, una o dos personas. Avísenos cuando llame." } }
+            "a": "Sí, una persona puede ir en la grúa con el chofer. Avísenos cuando llame." } }
       ]
     },
     {
@@ -39,10 +39,10 @@
           "a": "Card, cash and Zelle.",
           "es": { "q": "¿Qué formas de pago aceptan?",
             "a": "Tarjeta, efectivo y Zelle." } },
-        { "q": "Do you work with insurance and roadside plans?", "pending": true,
-          "a": "Which insurers and roadside plans Alejo’s works with is still to be confirmed.",
-          "es": { "q": "¿Trabajan con seguros y planes de asistencia?",
-            "a": "Falta confirmar con qué aseguradoras y planes de asistencia trabaja Alejo’s." } }
+        { "q": "Do you work with insurance companies?",
+          "a": "Yes, when your vehicle is going to a body shop. Tell us your insurance company when you call.",
+          "es": { "q": "¿Trabajan con seguros?",
+            "a": "Sí, cuando el vehículo va a un taller de carrocería. Díganos su compañía de seguros cuando llame." } }
       ]
     },
     {
