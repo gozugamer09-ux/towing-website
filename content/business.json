@@ -81,10 +81,10 @@
     "used_in": "content/faq.json, 'Can I ride in the tow truck?'"
   },
   "customer_insurance": {
-    "value": "Works with customers' insurance companies when the vehicle is going to a body shop; the site says G.L.O. Auto Repair, the body shop Yordan works with",
+    "value": "Works with customers' insurance companies when the vehicle is going to G.L.O. Auto Repair, the body shop Yordan works with",
     "confirmed": true,
-    "source": "Yordan, comment on the site report, 2026-10-14: 'yes but only if going to a body shop' (asked: do you work with insurance companies or roadside plans?)",
-    "note": "No insurers or roadside plans were named, so the site names none and doesn't mention roadside plans. On 2026-10-15 Yordan wrote 'we take your insurance if you do it through the body shop service', so the site narrowed 'a body shop' to G.L.O. (true either way) and asked Yordan on a decision card whether any body shop qualifies.",
+    "source": "Yordan, comment on the site report, 2026-10-14: 'yes but only if going to a body shop' (asked: do you work with insurance companies or roadside plans?); narrowed by Yordan to G.L.O. only on a decision card, 2026-10-15 ('Only G.L.O.' rather than 'Any shop')",
+    "note": "No insurers or roadside plans were named, so the site names none and doesn't mention roadside plans. On 2026-10-15 Yordan wrote 'we take your insurance if you do it through the body shop service', and on a decision card the same day Yordan said only tows to G.L.O. qualify, so the site names G.L.O. A tow to another shop the customer picks is still fine, without insurance billing.",
     "used_in": "content/faq.json, 'Do you work with insurance companies?'"
   },
   "body_shop_partner": {
