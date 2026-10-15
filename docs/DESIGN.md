@@ -98,6 +98,7 @@ Motion explains something or rewards a glance; nothing loops for attention excep
 
 - Plain, calm, short sentences, written to "you".
 - No prices, arrival times, guarantees or certifications unless Yordan has confirmed them; reviews may say "fast" in the customer's own words.
+- Nothing that could be held against the business in a lawsuit (Yordan, 2026-10-15): describe care as an aim ("with care to avoid extra damage"), never a guarantee; say insurance coverage depends on the customer's policy; call partner businesses independent and keep the customer's choice of shop; no savings or discount claims without Yordan's exact terms.
 - Reviews are shown verbatim in the original language, with our English translation labeled as a translation. No star ratings that we can't source.
 
 ## Two languages
