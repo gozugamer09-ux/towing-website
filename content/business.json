@@ -81,6 +81,14 @@
     "note": "No insurers or roadside plans were named, so the site names none and doesn't mention roadside plans.",
     "used_in": "content/faq.json, 'Do you work with insurance companies?'"
   },
+  "body_shop_partner": {
+    "value": "G.L.O. Auto Repair, a body and paint shop at 1138 Pondella Rd, Cape Coral, FL 33909",
+    "url": "https://glo-autorepair.com",
+    "confirmed": true,
+    "source": "Yordan in the website thread, 2026-10-14: 'I work with a body shop and we provide body shop service too ... It's not owned by me. But I work with them.' and 'https://glo-autorepair.com thats the website of my guys'. Their site calls the shop 'G.L.O. Auto Repair - Taller de Chapa y Pintura' in Cape Coral and lists 24/7 towing in partnership with ALEJO'S TOWING INC (read 2026-10-15).",
+    "note": "Not owned by Alejo's Towing, so the site says 'the body shop we work with', never 'our own body shop'. Customers can still pick any shop. Their 'Visit ALEJO'S TOWING INC' button links to alejostowing.com/home, which public/_redirects sends to the home page.",
+    "used_in": "content/faq.json, 'Do you work with a body shop?'; content/services.json, accident recovery, 'Need a body shop?'"
+  },
   "quote_form": {
     "deliver_to": "Text message to +12398887001, composed on the customer's phone",
     "confirmed": true,

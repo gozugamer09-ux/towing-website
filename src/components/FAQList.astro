@@ -10,6 +10,7 @@ const { items, openFirst = false } = Astro.props;
       <div class="ans">
         {i.a}
         {i.pendingA && PREVIEW && <> <span class="ph">{i.pendingA}</span></>}
+        {i.link && <p class="out-link"><a class="text-link" href={i.link.href}>{i.link.text}<Icon name="arrow" /></a></p>}
       </div>
     </details>
   ))}

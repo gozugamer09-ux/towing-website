@@ -1,5 +1,5 @@
 {
-  "_note": "FAQ answers, in English with the Spanish wording in each \"es\" object. Items with \"pending\": true are not confirmed by Yordan yet: they show highlighted in preview builds and are left out of production builds. \"home\": true puts the question on the homepage. \"only\" limits an item to one language's pages; \"lang\" marks an item written in another language than its page.",
+  "_note": "FAQ answers, in English with the Spanish wording in each \"es\" object. Items with \"pending\": true are not confirmed by Yordan yet: they show highlighted in preview builds and are left out of production builds. \"home\": true puts the question on the homepage. \"only\" limits an item to one language's pages; \"lang\" marks an item written in another language than its page. \"link\" adds a link to another website under the answer (repeat it in the \"es\" object with Spanish link text).",
   "groups": [
     {
       "title": "Getting help",
@@ -42,7 +42,13 @@
         { "q": "Do you work with insurance companies?",
           "a": "Yes, when your vehicle is going to a body shop. Tell us your insurance company when you call.",
           "es": { "q": "¿Trabajan con seguros?",
-            "a": "Sí, cuando el vehículo va a un taller de carrocería. Díganos su compañía de seguros cuando llame." } }
+            "a": "Sí, cuando el vehículo va a un taller de carrocería. Díganos su compañía de seguros cuando llame." } },
+        { "q": "Do you work with a body shop?",
+          "a": "Yes. We work with G.L.O. Auto Repair, a body and paint shop in Cape Coral, and can tow your car straight there. If you prefer another shop, tell us which one and we'll take it there.",
+          "link": { "href": "https://glo-autorepair.com", "text": "G.L.O. Auto Repair's website" },
+          "es": { "q": "¿Trabajan con algún taller de carrocería?",
+            "a": "Sí. Trabajamos con G.L.O. Auto Repair, un taller de chapa y pintura en Cape Coral, y podemos llevar su carro directamente allí. Si prefiere otro taller, díganos cuál y se lo llevamos.",
+            "link": { "href": "https://glo-autorepair.com", "text": "Sitio web de G.L.O. Auto Repair" } } }
       ]
     },
     {

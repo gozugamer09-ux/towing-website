@@ -15,7 +15,7 @@ The website for Alejo’s Towing (24/7 towing and roadside help, Cape Coral and 
 | `src/assets/logo/` | The truck-door logo as vector files, redrawn from Yordan's photos, with a README on which version goes where. |
 | `src/assets/photos/`, `src/lib/photos.js` | Yordan's truck photos and their descriptions in both languages. How to add one: `docs/DESIGN.md`, "Photos". |
 | `src/styles/global.css` | The whole design system (colors, type, components). Rules in `docs/DESIGN.md`. |
-| `public/` | Icons, share images (English and Spanish), web manifest. Regenerate with `npm run icons`. |
+| `public/` | Icons, share images (English and Spanish), web manifest (regenerate with `npm run icons`), and the Cloudflare Pages rules: `_headers` (caching, security) and `_redirects` (old addresses). |
 | `scripts/` | Generators for the Florida map data and the icons. Development only. |
 | `tests/site.mjs` | Checks every page at phone, tablet and desktop sizes, plus the request journey. |
 | `docs/AGENT-WORKFLOW.md` | How a change is requested, tested, published, reported and rolled back (ready for Friday). |

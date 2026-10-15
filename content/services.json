@@ -1,5 +1,5 @@
 {
-  "_note": "Service pages, in English with the Spanish wording in each service's \"es\" object (\"es.slug\" is the Spanish page address). Every service here was confirmed by Yordan on 2026-10-03. Descriptions are general and avoid prices, times or guarantees; any such claim needs Yordan's confirmation first. Box trucks and RVs: Yordan, 2026-10-04, 'yes so long as the tires fit on the truck'. Equipment hauling: Yordan, comment on the site report, 2026-10-07: 'yes' (forklifts, a backhoe and a track loader appear in the photos). \"photo\" names one of Yordan's own photos (src/lib/photos.js) shown on the service's page and card.",
+  "_note": "Service pages, in English with the Spanish wording in each service's \"es\" object (\"es.slug\" is the Spanish page address). Every service here was confirmed by Yordan on 2026-10-03. Descriptions are general and avoid prices, times or guarantees; any such claim needs Yordan's confirmation first. Box trucks and RVs: Yordan, 2026-10-04, 'yes so long as the tires fit on the truck'. Equipment hauling: Yordan, comment on the site report, 2026-10-07: 'yes' (forklifts, a backhoe and a track loader appear in the photos). \"photo\" names one of Yordan's own photos (src/lib/photos.js) shown on the service's page and card. A \"goodToKnow\" card may carry a \"link\" to another website. Body shop: Yordan works with G.L.O. Auto Repair but doesn't own it (2026-10-14), so the site says 'the body shop we work with'.",
   "services": [
     {
       "slug": "towing",
@@ -178,7 +178,8 @@
       "tags": ["Collisions", "Disabled vehicles"],
       "includes": ["Recovery of vehicles damaged in a collision", "Transport to a body shop, home or storage", "Careful loading to avoid further damage"],
       "goodToKnow": [
-        {"title": "Safety first", "text": "If anyone is hurt or the road is blocked, call 911 first. Call us once everyone is safe."}
+        {"title": "Safety first", "text": "If anyone is hurt or the road is blocked, call 911 first. Call us once everyone is safe."},
+        {"title": "Need a body shop?", "text": "We work with G.L.O. Auto Repair, a body and paint shop in Cape Coral, and can tow your car straight there. Or pick any shop you like.", "link": {"href": "https://glo-autorepair.com", "text": "G.L.O. Auto Repair's website"}}
       ],
       "faq": [
         {"q": "Can you take my car to my insurance company's shop?", "a": "Yes. Tell us the shop's name or address and we'll take it there."}
@@ -194,7 +195,8 @@
         "tags": ["Choques", "Vehículos inmovilizados"],
         "includes": ["Recuperación de vehículos dañados en un choque", "Traslado a un taller de carrocería, su casa o un depósito", "Carga cuidadosa para no causar más daños"],
         "goodToKnow": [
-          {"title": "Primero, la seguridad", "text": "Si hay heridos o la vía está bloqueada, llame primero al 911. Llámenos cuando todos estén a salvo."}
+          {"title": "Primero, la seguridad", "text": "Si hay heridos o la vía está bloqueada, llame primero al 911. Llámenos cuando todos estén a salvo."},
+          {"title": "¿Necesita un taller de carrocería?", "text": "Trabajamos con G.L.O. Auto Repair, un taller de chapa y pintura en Cape Coral, y podemos llevar su carro directamente allí. O elija el taller que usted quiera.", "link": {"href": "https://glo-autorepair.com", "text": "Sitio web de G.L.O. Auto Repair"}}
         ],
         "faq": [
           {"q": "¿Pueden llevar mi carro al taller de mi seguro?", "a": "Sí. Díganos el nombre o la dirección del taller y lo llevamos allí."}

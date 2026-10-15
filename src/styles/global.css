@@ -524,6 +524,8 @@ select.input { text-overflow: ellipsis; appearance: none; background-image: line
 .tip { padding: 18px 20px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--signal); }
 .tip h3 { font-size: 1.1rem; margin-bottom: 4px; }
 .tip p { color: var(--muted); }
+.out-link { margin-top: 2px; }
+.out-link .text-link { min-height: 44px; } /* a link to another website on its own line, sized for a thumb */
 .side-card { position: sticky; top: calc(var(--header-h) + 20px); background: var(--accent); color: #fff; border-radius: var(--radius); padding: 24px; display: grid; gap: 14px; box-shadow: inset 0 0 0 3px var(--accent), inset 0 0 0 5px rgb(255 255 255 / .9), var(--shadow); }
 .side-card .btn { width: 100%; }
 @media (max-width: 420px) { .side-card { padding: 20px; } .side-card .btn-lg { padding-inline: 16px; } }
