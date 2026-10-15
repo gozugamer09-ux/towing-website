@@ -71,14 +71,14 @@
     "value": "Yes, one passenger at most",
     "confirmed": true,
     "source": "Yordan, comment on the site report, 2026-10-14: 'yes max 1. but we are not liable for them'",
-    "open_question": "Yordan asked to say the company is not liable for passengers; left off the site until Yordan decides (a line on a website likely doesn't remove liability; their insurer can say whether a passenger is covered).",
+    "note": "Yordan asked to say the company is not liable for passengers, then chose to leave that line off the site (decision card, 2026-10-15): a line on a website likely doesn't remove liability, and their insurer can say whether a passenger is covered.",
     "used_in": "content/faq.json, 'Can I ride in the tow truck?'"
   },
   "customer_insurance": {
-    "value": "Works with customers' insurance companies when the vehicle is going to a body shop",
+    "value": "Works with customers' insurance companies when the vehicle is going to a body shop; the site says G.L.O. Auto Repair, the body shop Yordan works with",
     "confirmed": true,
     "source": "Yordan, comment on the site report, 2026-10-14: 'yes but only if going to a body shop' (asked: do you work with insurance companies or roadside plans?)",
-    "note": "No insurers or roadside plans were named, so the site names none and doesn't mention roadside plans.",
+    "note": "No insurers or roadside plans were named, so the site names none and doesn't mention roadside plans. On 2026-10-15 Yordan wrote 'we take your insurance if you do it through the body shop service', so the site narrowed 'a body shop' to G.L.O. (true either way) and asked Yordan on a decision card whether any body shop qualifies.",
     "used_in": "content/faq.json, 'Do you work with insurance companies?'"
   },
   "body_shop_partner": {
@@ -87,7 +87,8 @@
     "confirmed": true,
     "source": "Yordan in the website thread, 2026-10-14: 'I work with a body shop and we provide body shop service too ... It's not owned by me. But I work with them.' and 'https://glo-autorepair.com thats the website of my guys'. Their site calls the shop 'G.L.O. Auto Repair - Taller de Chapa y Pintura' in Cape Coral and lists 24/7 towing in partnership with ALEJO'S TOWING INC (read 2026-10-15).",
     "note": "Not owned by Alejo's Towing, so the site says 'the body shop we work with', never 'our own body shop'. Customers can still pick any shop. Their 'Visit ALEJO'S TOWING INC' button links to alejostowing.com/home, which public/_redirects sends to the home page.",
-    "used_in": "content/faq.json, 'Do you work with a body shop?'; content/services.json, accident recovery, 'Need a body shop?'"
+    "bundle": "Yordan, 2026-10-15: wants the tow and the G.L.O. repair shown as one offer ('kind of do like a bundle deal, like probably maybe lower prices if you do your body shop with this, or we take your insurance if you do it through the body shop service'), kept formal and professional. No set discount was given, so the site promises no prices or savings; add one only with Yordan's exact terms.",
+    "used_in": "content/faq.json, 'Do you work with a body shop?' and 'Do you work with insurance companies?'; content/services.json, accident recovery, \"partner\" panel"
   },
   "quote_form": {
     "deliver_to": "Text message to +12398887001, composed on the customer's phone",
