@@ -38,7 +38,9 @@ const otherHref = alternates(path)[other];
   <div class="sheet-bg" data-menu-close></div>
   <div class="sheet-panel" role="dialog" aria-modal="true" aria-label={t.menu}>
     <div class="sheet-top">
-      <img class="logo" src={emblem} alt={biz.name} width="93" height="48" />
+      {/* Lazy: the closed menu is display:none, so this loads when the menu opens (from cache on phones). Eager, it raced the
+          header's <picture> for the same file on wide screens, where Chrome sometimes aborted one of the two requests. */}
+      <img class="logo" src={emblem} alt={biz.name} width="93" height="48" loading="lazy" />
       <button class="icon-btn" type="button" aria-label={t.closeMenu} data-menu-close><Icon name="x" /></button>
     </div>
     <a class="navlink" href={home}>{t.nav.home}<Icon name="arrow" /></a>
