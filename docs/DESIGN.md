@@ -65,7 +65,7 @@ Each one comes from real highway signage or from the trucks themselves. Use them
 | Motif | Where | Class |
 |---|---|---|
 | Guide sign: red panel, white inset border | Photo signs (home hero, service pages), 404 sign, final banner, form callout, service side card | `.psign`, `.sign`, `.callout`, `.side-card`, `.final` |
-| Sign plate | Section eyebrows ("SERVICES", "HOW IT WORKS"), photo captions in the job gallery | `.plate`, `.job figcaption` |
+| Sign plate | Section eyebrows ("SERVICES", "HOW IT WORKS"), photo captions in the job gallery, the "TOW + REPAIR" strip at the top of the footer (every page but the accident page, which has the full panel) | `.plate`, `.job figcaption`, `.ftr-partner` |
 | Orange 24/7 shield | Top corner of every sign | `.shield` |
 | Mile-marker post | Step numbers | `.step::before` |
 | Exit arrow (rotated 45°) | Sign plates, final banner | `.psign-plate .ico`, `.sign-exit .ico`, `.final-arrow` |

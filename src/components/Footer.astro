@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import plate from '../assets/logo/logo-stacked-on-red.svg?url';
 import { biz, tel, sms, servicesFor, paymentText } from '../lib/site';
 import { langOf, href, alternates, fill, UI } from '../lib/i18n';
@@ -6,9 +7,19 @@ const lang = langOf(Astro.url);
 const t = UI[lang], f = t.footer;
 const other = lang === 'es' ? 'en' : 'es';
 const year = new Date().getFullYear();
+// The tow-and-repair offer from the accident page, repeated on every other page (Yordan, 2026-10-15).
+const withPartner = servicesFor(lang).find((s) => s.partner);
+const partner = withPartner && Astro.url.pathname !== withPartner.href ? withPartner.partner : null;
 ---
 <footer class="ftr">
   <div class="wrap">
+    {partner && (
+      <div class="ftr-partner">
+        <span class="plate">{partner.plate}</span>
+        <p><b>{partner.strip}</b> {partner.text}</p>
+        <a class="ftr-partner-link" href={`${withPartner.href}#tow-repair`}>{partner.more}<Icon name="arrow" /></a>
+      </div>
+    )}
     <div class="ftr-grid">
       <div class="ftr-brand">
         <a class="brand" href={href('home', lang)}><img class="logo" src={plate} alt={biz.name} width="240" height="104" loading="lazy" /></a>

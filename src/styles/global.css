@@ -564,6 +564,12 @@ select.input { text-overflow: ellipsis; appearance: none; background-image: line
 @media (min-width: 760px) { .ftr { padding-bottom: 40px; } }
 .ftr a { color: #fff; text-decoration: none; }
 .ftr a:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* Every page: the tow-and-repair offer with the body shop Yordan works with, like a supplemental plate under a sign */
+.ftr-partner { display: grid; gap: 12px 28px; align-items: center; margin-bottom: 44px; padding: 18px 20px; background: rgb(255 255 255 / .04); border: 1px solid rgb(255 255 255 / .14); border-left: 4px solid var(--signal); border-radius: var(--radius-sm); }
+.ftr-partner p { max-width: 68ch; }
+.ftr-partner b { color: #fff; }
+.ftr .ftr-partner-link { display: inline-flex; align-items: center; gap: 8px; justify-self: start; min-height: 44px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+@media (min-width: 1100px) { .ftr-partner { grid-template-columns: auto 1fr auto; } }
 .ftr-grid { display: grid; gap: 36px 24px; grid-template-columns: 1fr 1fr; }
 .ftr-brand, .ftr-contact, .ftr-hours { grid-column: 1 / -1; }
 .ftr-brand { display: grid; gap: 16px; align-content: start; max-width: 40ch; }

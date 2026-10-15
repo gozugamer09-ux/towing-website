@@ -78,7 +78,7 @@ const schema = [
           {s.goodToKnow.map((tip) => <div class="tip"><h3>{tip.title}</h3><p>{tip.text}</p>{tip.link && <p class="out-link"><a class="text-link" href={tip.link.href}>{tip.link.text}<Icon name="arrow" /></a></p>}</div>)}
         </div>
         {s.partner && (
-          <section class="partner" aria-labelledby="partner-h">
+          <section class="partner" id="tow-repair" aria-labelledby="partner-h">
             <span class="plate">{s.partner.plate}</span>
             <h2 id="partner-h">{s.partner.title}</h2>
             <p>{s.partner.text}</p>
