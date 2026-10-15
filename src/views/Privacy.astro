@@ -10,6 +10,7 @@ const COPY = {
   en: {
     title: 'Privacy', description: 'How the {name} website handles your information.',
     lede: "Short version: this website doesn't collect or store your personal information.",
+    updated: 'Last updated October 15, 2026.',
     sections: [
       ['The request form', [
         'When you use "Text my request", the website writes a text message on your own device and opens your messaging app. Nothing is sent until you press Send yourself, and the message goes straight from your phone to ours at {phone}. The website does not save or transmit what you type.',
@@ -26,6 +27,7 @@ const COPY = {
   es: {
     title: 'Privacidad', description: 'Cómo maneja su información la página web de {name}.',
     lede: 'En resumen: esta página web no recopila ni guarda su información personal.',
+    updated: 'Última actualización: 15 de octubre de 2026.',
     sections: [
       ['El formulario de solicitud', [
         'Cuando usa "Enviar por texto", la página escribe un mensaje de texto en su propio teléfono y abre su aplicación de mensajes. No se envía nada hasta que usted mismo presiona Enviar, y el mensaje va directo de su teléfono al nuestro, al {phone}. La página no guarda ni transmite lo que usted escribe.',
@@ -58,6 +60,7 @@ const vars = {
   <section class="sec">
     <div class="wrap prose">
       {c.sections.map(([h, ps]) => <><h2>{h}</h2>{ps.map((p) => <p set:html={fill(p, vars)} />)}</>)}
+      <p class="muted">{c.updated}</p>
     </div>
   </section>
 </Base>

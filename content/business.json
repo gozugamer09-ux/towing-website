@@ -6,6 +6,12 @@
     "source": "Spelled as on the truck doors, the federal USDOT record and the Google listing (all 'ALEJO'S TOWING INC'; listing read 2026-10-13). The site said 'Alejos Towing' (Yordan's brief, 2026-10-03) until 2026-10-13.",
     "note": "Default picked 2026-10-13 from that evidence; Yordan can still ask for 'Alejos'. The request text uses a straight apostrophe (src/components/RequestForm.astro) so it stays a plain SMS."
   },
+  "legal_name": {
+    "value": "Alejo’s Towing Inc.",
+    "confirmed": true,
+    "source": "The company's registered name, ALEJO'S TOWING INC, on the federal USDOT record (3314605), the truck doors and the Google listing (read 2026-10-13).",
+    "used_in": "the footer's copyright line"
+  },
   "phone": {
     "value": "+12398887001",
     "display": "(239) 888-7001",

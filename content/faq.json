@@ -40,14 +40,14 @@
           "es": { "q": "¿Qué formas de pago aceptan?",
             "a": "Tarjeta, efectivo y Zelle." } },
         { "q": "Do you work with insurance companies?",
-          "a": "Yes, when your vehicle is going to G.L.O. Auto Repair, the body shop we work with. Tell us your insurance company when you call.",
+          "a": "Yes, when your vehicle is going to G.L.O. Auto Repair, the body shop we work with. Coverage depends on your policy, so tell us your insurance company when you call.",
           "es": { "q": "¿Trabajan con seguros?",
-            "a": "Sí, cuando el vehículo va a G.L.O. Auto Repair, el taller de carrocería con el que trabajamos. Díganos su compañía de seguros cuando llame." } },
+            "a": "Sí, cuando el vehículo va a G.L.O. Auto Repair, el taller de carrocería con el que trabajamos. La cobertura depende de su póliza, así que díganos su compañía de seguros cuando llame." } },
         { "q": "Do you work with a body shop?",
-          "a": "Yes. We work with G.L.O. Auto Repair, a body and paint shop in Cape Coral. We tow your car straight there and work with your insurance company. If you prefer another shop, tell us which one and we'll take it there.",
+          "a": "Yes. We work with G.L.O. Auto Repair, an independent body and paint shop in Cape Coral. We tow your car straight there and work with your insurance company. If you prefer another shop, tell us which one and we'll take it there.",
           "link": { "href": "https://glo-autorepair.com", "text": "G.L.O. Auto Repair's website" },
           "es": { "q": "¿Trabajan con algún taller de carrocería?",
-            "a": "Sí. Trabajamos con G.L.O. Auto Repair, un taller de chapa y pintura en Cape Coral. Llevamos su carro directamente allí y trabajamos con su compañía de seguros. Si prefiere otro taller, díganos cuál y se lo llevamos.",
+            "a": "Sí. Trabajamos con G.L.O. Auto Repair, un taller independiente de chapa y pintura en Cape Coral. Llevamos su carro directamente allí y trabajamos con su compañía de seguros. Si prefiere otro taller, díganos cuál y se lo llevamos.",
             "link": { "href": "https://glo-autorepair.com", "text": "Sitio web de G.L.O. Auto Repair" } } }
       ]
     },

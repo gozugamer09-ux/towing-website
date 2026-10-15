@@ -13,6 +13,7 @@ const confirmedValue = (fact) => (fact.confirmed ? fact.value : null);
 
 export const biz = {
   name: business.name.value,
+  legalName: business.legal_name.value, // Alejo’s Towing Inc., for the copyright line
   phone: business.phone.value,          // +12398887001
   phoneDisplay: business.phone.display, // (239) 888-7001
   sms: business.sms.value,

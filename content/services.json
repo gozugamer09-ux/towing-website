@@ -1,5 +1,5 @@
 {
-  "_note": "Service pages, in English with the Spanish wording in each service's \"es\" object (\"es.slug\" is the Spanish page address). Every service here was confirmed by Yordan on 2026-10-03. Descriptions are general and avoid prices, times or guarantees; any such claim needs Yordan's confirmation first. Box trucks and RVs: Yordan, 2026-10-04, 'yes so long as the tires fit on the truck'. Equipment hauling: Yordan, comment on the site report, 2026-10-07: 'yes' (forklifts, a backhoe and a track loader appear in the photos). \"photo\" names one of Yordan's own photos (src/lib/photos.js) shown on the service's page and card. A \"goodToKnow\" card may carry a \"link\" to another website. \"partner\" (accident recovery) is the tow-and-repair panel for the body shop Yordan works with; it promises no prices or discounts, since Yordan hasn't set one. Body shop: Yordan works with G.L.O. Auto Repair but doesn't own it (2026-10-14), so the site says 'the body shop we work with'.",
+  "_note": "Service pages, in English with the Spanish wording in each service's \"es\" object (\"es.slug\" is the Spanish page address). Every service here was confirmed by Yordan on 2026-10-03. Descriptions are general and avoid prices, times or guarantees; any such claim needs Yordan's confirmation first. Box trucks and RVs: Yordan, 2026-10-04, 'yes so long as the tires fit on the truck'. Equipment hauling: Yordan, comment on the site report, 2026-10-07: 'yes' (forklifts, a backhoe and a track loader appear in the photos). \"photo\" names one of Yordan's own photos (src/lib/photos.js) shown on the service's page and card. A \"goodToKnow\" card may carry a \"link\" to another website. \"partner\" (accident recovery) is the tow-and-repair panel for the body shop Yordan works with; it promises no prices or discounts, since Yordan hasn't set one, calls G.L.O. independent (it does its own repairs) and says coverage depends on the customer's policy. Yordan wants nothing on the site that invites a lawsuit (2026-10-15). Body shop: Yordan works with G.L.O. Auto Repair but doesn't own it (2026-10-14), so the site says 'the body shop we work with'.",
   "services": [
     {
       "slug": "towing",
@@ -130,7 +130,7 @@
       "title": "Winching & recovery",
       "nav": "Winching",
       "ask": "Stuck right now?",
-      "short": "Out of ditches, sand, mud and tight spots without extra damage.",
+      "short": "Out of ditches, sand, mud and tight spots, with care to avoid extra damage.",
       "seoTitle": "Winch-Outs in Cape Coral & Fort Myers",
       "intro": "Slid into a ditch, sunk in sand or mud, or stuck somewhere a tow truck can't simply back up to? We winch your vehicle out carefully and get it back on solid ground.",
       "tags": ["Ditches", "Sand", "Mud", "Tight spots"],
@@ -149,7 +149,7 @@
         "title": "Winche y rescate",
         "nav": "Winche",
         "ask": "¿Se quedó atascado?",
-        "short": "Lo sacamos de zanjas, arena, lodo y lugares difíciles sin causar más daños.",
+        "short": "Lo sacamos de zanjas, arena, lodo y lugares difíciles, con cuidado para no causar más daños.",
         "seoTitle": "Servicio de Winche en Cape Coral y Fort Myers",
         "intro": "¿Se fue a una zanja, se hundió en la arena o el lodo, o quedó donde una grúa no puede llegar fácilmente? Sacamos su vehículo con el winche, con cuidado, y lo dejamos en terreno firme.",
         "tags": ["Zanjas", "Arena", "Lodo", "Lugares difíciles"],
@@ -183,9 +183,9 @@
       "partner": {
         "plate": "Tow + repair",
         "title": "The tow and the body shop, in one call",
-        "text": "After an accident, we tow your car straight to G.L.O. Auto Repair, the body and paint shop we work with in Cape Coral.",
+        "text": "After an accident, we tow your car straight to G.L.O. Auto Repair, the independent body and paint shop we work with in Cape Coral.",
         "points": ["Straight to the shop, with no second tow later", "Body work and paint by G.L.O. Auto Repair", "We work with your insurance company"],
-        "note": "Prefer another shop? We'll take your car wherever you choose.",
+        "note": "Insurance coverage depends on your policy. Prefer another shop? We'll take your car wherever you choose.",
         "link": {"href": "https://glo-autorepair.com", "text": "G.L.O. Auto Repair's website"}
       },
       "faq": [
@@ -207,9 +207,9 @@
         "partner": {
           "plate": "Grúa + reparación",
           "title": "La grúa y el taller, en una sola llamada",
-          "text": "Después de un accidente, llevamos su carro directamente a G.L.O. Auto Repair, el taller de chapa y pintura con el que trabajamos en Cape Coral.",
+          "text": "Después de un accidente, llevamos su carro directamente a G.L.O. Auto Repair, el taller independiente de chapa y pintura con el que trabajamos en Cape Coral.",
           "points": ["Directo al taller, sin una segunda grúa después", "Chapa y pintura a cargo de G.L.O. Auto Repair", "Trabajamos con su compañía de seguros"],
-          "note": "¿Prefiere otro taller? Llevamos su carro a donde usted diga.",
+          "note": "La cobertura depende de su póliza. ¿Prefiere otro taller? Llevamos su carro a donde usted diga.",
           "link": {"href": "https://glo-autorepair.com", "text": "Sitio web de G.L.O. Auto Repair"}
         },
         "faq": [
