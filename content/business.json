@@ -1,9 +1,16 @@
 {
   "_note": "Single source of truth for business facts. Only confirmed:true values may appear on the live site. Source for everything below unless noted: Yordan, project chat, 2026-10-03.",
   "name": {
-    "value": "Alejos Towing",
+    "value": "Alejo’s Towing",
     "confirmed": true,
-    "open_question": "Styling: 'Alejos' or 'Alejo's' (Google owner replies use both)"
+    "source": "Spelled as on the truck doors, the federal USDOT record and the Google listing (all 'ALEJO'S TOWING INC'; listing read 2026-10-13). The site said 'Alejos Towing' (Yordan's brief, 2026-10-03) until 2026-10-13.",
+    "note": "Default picked 2026-10-13 from that evidence; Yordan can still ask for 'Alejos'. The request text uses a straight apostrophe (src/components/RequestForm.astro) so it stays a plain SMS."
+  },
+  "legal_name": {
+    "value": "Alejo’s Towing Inc.",
+    "confirmed": true,
+    "source": "The company's registered name, ALEJO'S TOWING INC, on the federal USDOT record (3314605), the truck doors and the Google listing (read 2026-10-13).",
+    "used_in": "the footer's copyright line"
   },
   "phone": {
     "value": "+12398887001",
@@ -17,6 +24,12 @@
   "email": {
     "value": "alejostowing85@gmail.com",
     "confirmed": true
+  },
+  "website": {
+    "value": null,
+    "confirmed": false,
+    "source": "alejostowing.com, the old address, is registered at Cloudflare to someone in Texas (public record, read 2026-10-16), most likely the old web company, and Yordan said on 2026-10-16 they can't get it back: 'it's under the other company'. Yordan is picking a new address to buy in their own Cloudflare account (decision card, 2026-10-16).",
+    "note": "The live address, like https://example.com. Once Yordan's new address serves the site, set the value and confirmed: true; production builds then add canonical links, hreflang, the sitemap and full URLs in the business data (astro.config.mjs). The SITE_URL environment variable overrides it for a one-off build."
   },
   "address": {
     "value": null,
@@ -40,6 +53,12 @@
     ],
     "confirmed": true
   },
+  "arrival_time": {
+    "value": "Usually under 30 minutes in Cape Coral and Fort Myers, depending on where the customer is and the time of day",
+    "confirmed": true,
+    "source": "Yordan, comment on the site report, 2026-10-14: 'depends on were it is located and time of the day. usually yes' (asked: do you get there in under 30 minutes in Cape Coral and Fort Myers?). First seen in their June 2026 Google post ('llegamos en menos de 30 minutos').",
+    "used_in": "content/faq.json, 'How fast can you get to me?'"
+  },
   "services": {
     "value": [
       "Light, medium and heavy-duty towing",
@@ -49,14 +68,39 @@
       "Accident recovery",
       "Motorcycle towing",
       "Long-distance towing",
+      "Equipment hauling: forklifts, backhoes, track loaders and other machines that fit on the truck",
       "Junk car removal"
     ],
-    "confirmed": true
+    "confirmed": true,
+    "source": "Yordan, thread, 2026-10-03; equipment hauling added from Yordan's 'yes' on the site report, 2026-10-07"
   },
   "vehicles": {
-    "value": "Any vehicle under 20 ft",
+    "value": "Cars, SUVs, pickups, vans and motorcycles, light to heavy-duty; bigger vehicles over 20 ft (box trucks, RVs) as long as the tires fit on the truck",
     "confirmed": true,
-    "open_question": "Heavy-duty is listed too; does 'under 20 ft' apply to all jobs?"
+    "source": "Yordan, comment on the site report, 2026-10-04: 'yes so long as the tires fit on the truck'"
+  },
+  "ride_along": {
+    "value": "Yes, one passenger at most",
+    "confirmed": true,
+    "source": "Yordan, comment on the site report, 2026-10-14: 'yes max 1. but we are not liable for them'",
+    "note": "Yordan asked to say the company is not liable for passengers, then chose to leave that line off the site (decision card, 2026-10-15): a line on a website likely doesn't remove liability, and their insurer can say whether a passenger is covered.",
+    "used_in": "content/faq.json, 'Can I ride in the tow truck?'"
+  },
+  "customer_insurance": {
+    "value": "Works with customers' insurance companies when the vehicle is going to G.L.O. Auto Repair, the body shop Yordan works with",
+    "confirmed": true,
+    "source": "Yordan, comment on the site report, 2026-10-14: 'yes but only if going to a body shop' (asked: do you work with insurance companies or roadside plans?); narrowed by Yordan to G.L.O. only on a decision card, 2026-10-15 ('Only G.L.O.' rather than 'Any shop')",
+    "note": "No insurers or roadside plans were named, so the site names none and doesn't mention roadside plans. On 2026-10-15 Yordan wrote 'we take your insurance if you do it through the body shop service', and on a decision card the same day Yordan said only tows to G.L.O. qualify, so the site names G.L.O. A tow to another shop the customer picks is still fine, without insurance billing.",
+    "used_in": "content/faq.json, 'Do you work with insurance companies?'"
+  },
+  "body_shop_partner": {
+    "value": "G.L.O. Auto Repair, a body and paint shop at 1138 Pondella Rd, Cape Coral, FL 33909",
+    "url": "https://glo-autorepair.com",
+    "confirmed": true,
+    "source": "Yordan in the website thread, 2026-10-14: 'I work with a body shop and we provide body shop service too ... It's not owned by me. But I work with them.' and 'https://glo-autorepair.com thats the website of my guys'. Their site calls the shop 'G.L.O. Auto Repair - Taller de Chapa y Pintura' in Cape Coral and lists 24/7 towing in partnership with ALEJO'S TOWING INC (read 2026-10-15).",
+    "note": "Not owned by Alejo's Towing, so the site says 'the body shop we work with', never 'our own body shop'. Customers can still pick any shop. Their 'Visit ALEJO'S TOWING INC' button links to alejostowing.com/home, which stays with the old web company; once the new address is live, G.L.O. should link there instead (public/_redirects sends /home to the home page).",
+    "bundle": "Yordan, 2026-10-15: wants the tow and the G.L.O. repair shown as one offer ('kind of do like a bundle deal, like probably maybe lower prices if you do your body shop with this, or we take your insurance if you do it through the body shop service'), kept formal and professional. No set discount was given, so the site promises no prices or savings; add one only with Yordan's exact terms.",
+    "used_in": "content/faq.json, 'Do you work with a body shop?' and 'Do you work with insurance companies?'; content/services.json, accident recovery, \"partner\" panel"
   },
   "quote_form": {
     "deliver_to": "Text message to +12398887001, composed on the customer's phone",
@@ -67,18 +111,47 @@
     "founded": 2019,
     "licensed": true,
     "usdot_registered": true,
-    "usdot_number": null,
+    "usdot_number": "3314605",
+    "usdot_source": "Yordan, project chat, 2026-10-04: 'dot 3314605' (also lettered on the truck doors)",
     "insurance": "Insured through Progressive",
     "confirmed": true,
-    "open_question": "USDOT number to show in footer; Google rating, review count and profile link"
+    "insurer": "Progressive"
   },
   "languages": {
-    "value": null,
-    "confirmed": false,
-    "note": "Reviews and owner replies are mostly Spanish; confirm Spanish-speaking service"
+    "value": [
+      "Spanish",
+      "English"
+    ],
+    "preferred": "Spanish",
+    "confirmed": true,
+    "source": "Yordan, comment on the site report, 2026-10-04: 'yes actually spanish preferred'",
+    "note": "The site has a full Spanish version under /es/."
   },
   "reviews": {
-    "file": "content/reviews.json"
+    "file": "content/reviews.json",
+    "google_rating": {
+      "value": "5.0",
+      "confirmed": true,
+      "as_of": "2026-10-13",
+      "source": "Google listing (ALEJO'S TOWING INC), read 2026-10-13: 5.0 from 42 reviews, all five-star (/mnt/project-files/website/google-listing.md). Matches Yordan's 'five stars on Google', thread, 2026-10-06."
+    },
+    "google_review_count": {
+      "value": 42,
+      "confirmed": true,
+      "as_of": "2026-10-13",
+      "note": "Goes stale as reviews come in: re-check on the listing before launch and update it here."
+    },
+    "google_profile_url": {
+      "value": "https://www.google.com/maps/place/?q=place_id:ChIJVaVL9q8fs4wRGyvkRBv8Two",
+      "confirmed": true,
+      "source": "Place ID ChIJVaVL9q8fs4wRGyvkRBv8Two read from the listing 2026-10-13; this link opened the listing in a browser."
+    },
+    "google_review_url": {
+      "value": "https://search.google.com/local/writereview?placeid=ChIJVaVL9q8fs4wRGyvkRBv8Two",
+      "confirmed": true,
+      "tested": false,
+      "note": "Google's standard write-a-review link for the listing's Place ID. Google shows cloud servers a robot check, so it was not opened from here: tap it once on a phone before launch."
+    }
   },
   "payment": {
     "value": [

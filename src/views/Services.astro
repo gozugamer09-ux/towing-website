@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Steps from '../components/Steps.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { biz, tel, servicesFor } from '../lib/site';
+import { langOf, href, UI } from '../lib/i18n';
+
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const COPY = {
+  en: {
+    title: 'Towing & Roadside Services',
+    description: 'Towing from light to heavy-duty, flatbed, roadside assistance, winching, accident recovery, motorcycle towing, long-distance towing, equipment hauling and junk car removal. 24/7 in Cape Coral, Fort Myers and across Florida.',
+    h1: 'Towing and roadside services',
+    lede: 'Nine ways we get you moving again, any hour of the day or night, in Cape Coral, Fort Myers and anywhere in Florida.',
+    howPlate: 'How it works', howH: 'Not sure what you need? Just tell us what happened.',
+    howLede: "We'll work out whether you need a tow, a flatbed or a quick fix on the spot.",
+  },
+  es: {
+    title: 'Servicios de Grúa y Asistencia en Carretera',
+    description: 'Grúa liviana a pesada, grúa de plataforma, asistencia en carretera, winche, accidentes, remolque de motos, larga distancia, transporte de maquinaria y retiro de carros chatarra. 24/7 en Cape Coral, Fort Myers y toda la Florida.',
+    h1: 'Servicios de grúa y asistencia en carretera',
+    lede: 'Nueve formas de ponerlo en marcha otra vez, a cualquier hora del día o de la noche, en Cape Coral, Fort Myers y toda la Florida.',
+    howPlate: 'Cómo funciona', howH: '¿No sabe qué necesita? Solo cuéntenos qué pasó.',
+    howLede: 'Le diremos si hace falta una grúa, una plataforma o un arreglo rápido ahí mismo.',
+  },
+};
+const c = COPY[lang];
+---
+<Base title={c.title} description={c.description}>
+  <section class="page-head">
+    <div class="wrap">
+      <nav aria-label={t.breadcrumb}><ol class="crumbs"><li><a href={href('home', lang)}>{t.nav.home}</a></li><li aria-current="page">{t.nav.services}</li></ol></nav>
+      <h1>{c.h1}</h1>
+      <p class="lede">{c.lede}</p>
+      <div class="cta-row" data-hide-bar>
+        <a class="btn btn-call btn-lg" href={tel} data-track="call-services"><Icon name="phone" />{t.call} <span class="num">{biz.phoneDisplay}</span></a>
+        <a class="btn btn-ghost btn-lg" href={href('request', lang)}>{t.request}<Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <div class="svc-grid">{servicesFor(lang).map((s) => <ServiceCard s={s} headingLevel={2} photo />)}</div>
+    </div>
+  </section>
+  <section class="sec band" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="sec-head"><span class="plate">{c.howPlate}</span><h2 id="how-h">{c.howH}</h2><p class="lede">{c.howLede}</p></div>
+      <Steps />
+    </div>
+  </section>
+  <FinalCTA />
+</Base>

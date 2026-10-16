@@ -1,0 +1,21 @@
+---
+// A Google review, in the reviewer's own words when they wrote in the page's language.
+// Otherwise the page shows our labeled translation ("en" or "es"), with the original one tap away.
+import Icon from './Icon.astro';
+import { langOf, UI } from '../lib/i18n';
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const { r, original = true } = Astro.props;
+const own = lang === r.lang;
+---
+<figure class:list={["review", r.pending && "ph-block"]} title={r.pending ? r.pendingNote : undefined}>
+  <span class="qmark" aria-hidden="true">“</span>
+  <blockquote><p>{own ? r.text : r[lang]}</p></blockquote>
+  {!own && original && (
+    <details class="orig">
+      <summary>{t.review.original} <Icon name="chev" /></summary>
+      <p lang={r.lang}>{r.text}</p>
+    </details>
+  )}
+  <figcaption><b>{r.author}</b> · {own ? t.review.source : t.review.translated}</figcaption>
+</figure>

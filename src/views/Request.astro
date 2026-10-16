@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import RequestForm from '../components/RequestForm.astro';
+import { langOf, href, UI } from '../lib/i18n';
+
+const lang = langOf(Astro.url);
+const t = UI[lang];
+const COPY = {
+  en: {
+    title: 'Request a Tow',
+    description: 'Send a tow or roadside request by text in under a minute. Your phone writes the message for you, with a map pin of your location. 24/7 in Cape Coral, Fort Myers and across Florida.',
+    heading: 'Request a tow by text.',
+  },
+  es: {
+    title: 'Pedir una Grúa',
+    description: 'Pida una grúa o asistencia en carretera por texto en menos de un minuto. Su teléfono escribe el mensaje por usted, con un pin de su ubicación. 24/7 en Cape Coral, Fort Myers y toda la Florida.',
+    heading: 'Pida su grúa por texto.',
+  },
+};
+const c = COPY[lang];
+---
+<Base title={c.title} description={c.description} requestHref="#request">
+  <section class="page-head crumbs-only">
+    <div class="wrap">
+      <nav aria-label={t.breadcrumb}><ol class="crumbs"><li><a href={href('home', lang)}>{t.nav.home}</a></li><li aria-current="page">{t.nav.request}</li></ol></nav>
+    </div>
+  </section>
+  <section class="sec after-crumbs">
+    <div class="wrap"><RequestForm heading={c.heading} headingLevel={1} /></div>
+  </section>
+</Base>

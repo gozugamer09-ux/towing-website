@@ -1,0 +1,9 @@
+---
+// Wraps a business claim that Yordan hasn't confirmed yet.
+// Preview builds show it highlighted; production builds render nothing.
+import { PREVIEW } from '../lib/site';
+const { block = false, note } = Astro.props;
+---
+{PREVIEW && (block
+  ? <div class="ph-block" title={note}><slot /></div>
+  : <span class="ph" title={note}><slot /></span>)}
