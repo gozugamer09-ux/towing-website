@@ -36,7 +36,7 @@ None of these is sent to website visitors. All free and open source.
 |---|---|---|---|
 | GitHub repository `gozugamer09-ux/towing-website` | Version history, backups, source for deploys | Free | Created by Yordan. The site is on branch `site/highway`, waiting for Yordan's approval to go to `main` |
 | Cloudflare Pages (recommended host) | Hosting, HTTPS, global CDN, a preview link for every change, one-click rollback | Free tier | Needs Yordan's free Cloudflare account. Cache and security headers are ready in `public/_headers`, and `public/_redirects` sends the old site's `/home` address to the home page |
-| Domain name (e.g. alejostowing.com) | The site's address | About $10–15 per year | Not bought. Needs Yordan's decision |
+| Domain name | The site's address | About $10.50 per year (Cloudflare charges the registry's price, no markup) | Not bought. alejostowing.com stays with the old web company (2026-10-16), so Yordan is picking a new address to buy in their own Cloudflare account |
 | Request form | Opens a text to (239) 888-7001 on the customer's own phone, with every detail and an optional GPS map link | Free, no service | Built and tested in a browser; still needs one real test from a phone |
 | Email copy of each request (optional) | Backup copy to alejostowing85@gmail.com | Free tiers exist (e.g. Web3Forms) | Not set up. Only if Yordan wants it |
 | Cloudflare Web Analytics | Visitor counts without cookies or a consent banner | Free | Not set up; comes with the Cloudflare account |

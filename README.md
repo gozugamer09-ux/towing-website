@@ -35,7 +35,7 @@ npm run check            # everything GitHub checks on a pull request: both buil
 npm run share            # self-contained copy of the preview in dist-artifact/, for sharing as a Claude artifact
 ```
 
-Set `SITE_URL` (for example `SITE_URL=https://alejostowing.com npm run build`) once the domain exists; that turns on canonical links, the sitemap and full URLs in the business data.
+Once the domain serves the site, put it in `content/business.json` (`website`, with `confirmed: true`); that turns on canonical links, the sitemap and full URLs in the business data. `SITE_URL=https://… npm run build` overrides it for a one-off build.
 
 ## Status
 

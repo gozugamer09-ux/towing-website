@@ -3,9 +3,10 @@ import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import fs from 'node:fs';
 
-// SITE_URL is the live address (e.g. https://alejostowing.com). Until the domain is chosen,
-// builds leave out canonical URLs and the sitemap rather than guess.
-const SITE_URL = process.env.SITE_URL;
+// The live address: "website" in content/business.json once it is confirmed (SITE_URL overrides it
+// for a one-off build). Until then builds leave out canonical URLs and the sitemap rather than guess.
+const website = JSON.parse(fs.readFileSync(new URL('./content/business.json', import.meta.url), 'utf8')).website;
+const SITE_URL = process.env.SITE_URL || (website.confirmed ? website.value : undefined);
 
 // Cloudflare Pages answers a missing address with the closest 404.html, so the Spanish
 // "page not found" (built at es/404/) moves to es/404.html.
