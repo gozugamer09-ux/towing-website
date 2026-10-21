@@ -1,0 +1,5 @@
+# Redirects for Cloudflare Pages (the planned host). Other hosts ignore this file.
+# The old alejostowing.com site's home page was /home, and G.L.O. Auto Repair's website
+# (the body shop Yordan works with) still links there with its "Visit ALEJO'S TOWING INC" button.
+/home / 301
+/home/ / 301

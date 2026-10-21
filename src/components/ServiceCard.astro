@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro';
+import Photo from './Photo.astro';
+const { s, headingLevel = 3, showTags = true, photo = false } = Astro.props;
+const H = `h${headingLevel}`;
+---
+<article class:list={['svc', { 'has-photo': photo }]}>
+  {photo && <Photo id={s.photo} decorative class="svc-photo" widths={[480, 800]} sizes="(min-width: 1180px) 361px, (min-width: 700px) calc(33.33vw - 33px), calc(100vw - 34px)" />}
+  <span class="svc-ico"><Icon name={s.icon} /></span>
+  <H><a href={s.href}>{s.title}</a></H>
+  <p>{s.short}</p>
+  {showTags && <ul class="tags">{s.tags.map((t) => <li>{t}</li>)}</ul>}
+</article>

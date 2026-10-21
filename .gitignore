@@ -1,6 +1,9 @@
 node_modules/
 screenshots/
-design/preview/_wrapped.html
 .env
 .env.*
 .DS_Store
+dist/
+dist-preview/
+dist-artifact/
+.astro/

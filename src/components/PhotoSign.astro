@@ -1,0 +1,23 @@
+---
+// A highway guide sign with one of Yordan's photos as its face: the home page hero and the
+// header of each service page. The orange 24/7 shield and the red plate repeat what the page
+// already says, so screen readers hear only the photo's description.
+import Icon from './Icon.astro';
+import Photo from './Photo.astro';
+const { id, name, note, sizes, eager = false, class: className } = Astro.props;
+const notes = [note].flat(); // one line, or several items set apart with dots
+---
+<div class:list={['psign', className]}>
+  <div class="psign-face">
+    <div class="psign-in">
+      <Photo id={id} sizes={sizes} eager={eager} />
+      <span class="shield" aria-hidden="true">24/7</span>
+      <div class="psign-plate" aria-hidden="true">
+        <span class="psign-name">{name}</span>
+        <span class="psign-note">{notes.map((x, n) => <>{n > 0 && ' '}<span class="nw">{x}{n < notes.length - 1 && <i class="sep" />}</span></>)}</span>
+        <Icon name="arrow" />
+      </div>
+    </div>
+  </div>
+  <div class="posts" aria-hidden="true"><span></span><span></span></div>
+</div>
