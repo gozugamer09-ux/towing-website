@@ -45,13 +45,29 @@
     "value": [
       "Cape Coral",
       "Fort Myers",
+      "North Fort Myers",
+      "Lehigh Acres",
+      "Estero",
+      "Port Charlotte",
+      "Punta Gorda",
+      "North Port",
       "Anywhere in Florida"
     ],
     "primary": [
       "Cape Coral",
       "Fort Myers"
     ],
-    "confirmed": true
+    "nearby": [
+      "North Fort Myers",
+      "Lehigh Acres",
+      "Estero",
+      "Port Charlotte",
+      "Punta Gorda",
+      "North Port"
+    ],
+    "confirmed": true,
+    "nearby_source": "Yordan, comment on google-ads-setup.md, 2026-10-29: 'al those + nort port and punta gorda and portcharlotte' (asked which towns they can reach fast besides Cape Coral and Fort Myers, with North Fort Myers, Lehigh Acres and Estero as examples)",
+    "note": "Arrival times are only claimed for Cape Coral and Fort Myers (see arrival_time). The ad area for Google ads is the primary and nearby towns."
   },
   "arrival_time": {
     "value": "Usually under 30 minutes in Cape Coral and Fort Myers, depending on where the customer is and the time of day",
