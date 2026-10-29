@@ -15,7 +15,8 @@ The website for Alejo’s Towing (24/7 towing and roadside help, Cape Coral and 
 | `src/assets/logo/` | The truck-door logo as vector files, redrawn from Yordan's photos, with a README on which version goes where. |
 | `src/assets/photos/`, `src/lib/photos.js` | Yordan's truck photos and their descriptions in both languages. How to add one: `docs/DESIGN.md`, "Photos". |
 | `src/styles/global.css` | The whole design system (colors, type, components). Rules in `docs/DESIGN.md`. |
-| `public/` | Icons, share images (English and Spanish), web manifest (regenerate with `npm run icons`), and the Cloudflare Pages rules: `_headers` (caching, security) and `_redirects` (old addresses). |
+| `public/` | Icons, share images (English and Spanish), web manifest (regenerate with `npm run icons`), and Cloudflare's rules: `_headers` (caching, security) and `_redirects` (old addresses). |
+| `wrangler.jsonc` | How Cloudflare serves the site: it uploads `dist/` as plain files and answers a missing address with the closest `404.html` (Spanish under `/es/`). |
 | `scripts/` | Generators for the Florida map data and the icons. Development only. |
 | `tests/site.mjs` | Checks every page at phone, tablet and desktop sizes, plus the request journey. |
 | `docs/AGENT-WORKFLOW.md` | How a change is requested, tested, published, reported and rolled back (ready for Friday). |
@@ -31,12 +32,13 @@ npm run dev              # local preview while editing, with unconfirmed claims 
 npm run build:preview    # preview build in dist-preview/ (unconfirmed claims highlighted, not indexed)
 npm run build            # production build in dist/ (unconfirmed claims left out)
 npm test                 # check dist-preview/ (add "dist" to check production; add --shots for screenshots)
-npm run check            # everything GitHub checks on a pull request: both builds, all tests, HTML validity
+npm run check            # everything GitHub checks on a pull request: both builds, all tests, HTML validity, Cloudflare settings
+npm run serve            # production build served the way Cloudflare serves it (404 pages, redirects, headers), at localhost:8787
 npm run share            # self-contained copy of the preview in dist-artifact/, for sharing as a Claude artifact
 ```
 
-Once the domain serves the site, put it in `content/business.json` (`website`, with `confirmed: true`); that turns on canonical links, the sitemap and full URLs in the business data. `SITE_URL=https://… npm run build` overrides it for a one-off build.
+The live address is `website` in `content/business.json` (https://alejostowingfl.com, confirmed); it turns on canonical links, the sitemap and full URLs in the business data. `SITE_URL=https://… npm run build` overrides it for a one-off build.
 
 ## Status
 
-The full site is built and tested in preview. Before launch it needs: a host account (Cloudflare Pages, free), a domain, the remaining business confirmations listed in `content/business.json` (`open_question` entries), and one real test request sent from Yordan's phone.
+Live since 2026-10-29 at https://alejostowingfl.com (also www.alejostowingfl.com), on Cloudflare, published from `main` on every push (settings in `docs/AGENT-WORKFLOW.md`, "Publish"). Still open: the business confirmations listed in `content/business.json` (`open_question` entries) and one real test request sent from Yordan's phone.

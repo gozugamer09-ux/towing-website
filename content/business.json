@@ -26,9 +26,9 @@
     "confirmed": true
   },
   "website": {
-    "value": null,
-    "confirmed": false,
-    "source": "alejostowing.com, the old address, is registered at Cloudflare to someone in Texas (public record, read 2026-10-16), most likely the old web company, and Yordan said on 2026-10-16 they can't get it back: 'it's under the other company'. Yordan is picking a new address to buy in their own Cloudflare account (decision card, 2026-10-16).",
+    "value": "https://alejostowingfl.com",
+    "confirmed": true,
+    "source": "alejostowing.com, the old address, is registered at Cloudflare to someone in Texas (public record, read 2026-10-16), most likely the old web company, and Yordan said on 2026-10-16 they can't get it back: 'it's under the other company'. Yordan picked alejostowingfl.com on the decision card (2026-10-21), bought it in their own Cloudflare account on 2026-10-29 (Verisign RDAP: registered 2026-10-29, registrar Cloudflare) and attached it and www.alejostowingfl.com to the site's Cloudflare Worker the same day ('done', 2026-10-29). Both addresses served the site over HTTPS when checked on 2026-10-29.",
     "note": "The live address, like https://example.com. Once Yordan's new address serves the site, set the value and confirmed: true; production builds then add canonical links, hreflang, the sitemap and full URLs in the business data (astro.config.mjs). The SITE_URL environment variable overrides it for a one-off build."
   },
   "address": {

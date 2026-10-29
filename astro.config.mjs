@@ -8,8 +8,8 @@ import fs from 'node:fs';
 const website = JSON.parse(fs.readFileSync(new URL('./content/business.json', import.meta.url), 'utf8')).website;
 const SITE_URL = process.env.SITE_URL || (website.confirmed ? website.value : undefined);
 
-// Cloudflare Pages answers a missing address with the closest 404.html, so the Spanish
-// "page not found" (built at es/404/) moves to es/404.html.
+// Cloudflare answers a missing address with the closest 404.html ("not_found_handling" in wrangler.jsonc),
+// so the Spanish "page not found" (built at es/404/) moves to es/404.html.
 const spanish404 = {
   name: 'spanish-404',
   hooks: {

@@ -13,7 +13,7 @@ export function serve(root, port = 0) {
       if (p.endsWith('/')) file = path.join(file, 'index.html');
       if (!fs.existsSync(file) || fs.statSync(file).isDirectory()) {
         if (fs.existsSync(path.join(file, 'index.html'))) { res.writeHead(301, { Location: p + '/' }); return res.end(); }
-        // Like Cloudflare Pages: the closest 404.html up the folder tree (es/404.html for /es/...).
+        // Like Cloudflare ("not_found_handling" in wrangler.jsonc): the closest 404.html up the folder tree (es/404.html for /es/...).
         let dir = path.dirname(path.join(root, p.endsWith('/') ? p + 'x' : p));
         while (!fs.existsSync(path.join(dir, '404.html')) && dir.length > root.length) dir = path.dirname(dir);
         const notFound = path.join(dir, '404.html');

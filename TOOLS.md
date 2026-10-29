@@ -1,6 +1,6 @@
 # Alejos Towing website: tools record
 
-Last updated 2026-10-14. Costs are in USD and come from general knowledge, not live price pages; each one gets re-checked with Yordan before anything is bought.
+Last updated 2026-10-29. Costs are in USD and come from general knowledge, not live price pages; each one gets re-checked with Yordan before anything is bought.
 
 ## 1. Development tools (installed and tested in the build environment)
 
@@ -13,6 +13,7 @@ None of these is sent to website visitors. All free and open source.
 | Playwright 1.56 + Chromium | Real-browser checks of every page at 360, 390, 820 and 1440px wide, the request journey, keyboard use, screenshots | In use (`npm test`) |
 | axe-core | Accessibility scan (WCAG), including color contrast | 0 problems on all 16 pages, phone and desktop |
 | Lighthouse 12 | Speed, accessibility, best practices and search basics on a simulated slow phone connection | Production build, 2026-10-14 (with the logo): home pages 97–99 for speed from run to run (English and Spanish), towing page 100; 100 for accessibility, best practices and search basics on every page tested |
+| Wrangler 4 (Cloudflare's tool) | Uploads the built site on every deploy (Cloudflare's build runs it), and `npm run serve` shows the production build exactly as Cloudflare serves it | Installed 2026-10-29. Tested locally: every page answers, a missing address gets the English or Spanish "page not found" page with a 404 status, `/home` redirects, the cache and security headers apply |
 | html-validate | HTML correctness | 0 errors on every page (one rule switched off in `.htmlvalidate.json`: phone numbers are kept on one line with CSS instead) |
 | sharp | Makes the icons and the link-preview images; turns Yordan's photos into AVIF/WebP at three sizes during every build | In use (`npm run icons`, `npm run build`) |
 | ImageMagick | Prepared Yordan's photos once: resized to 1600px, cropped one, blurred a customer's license plate | Used in the build environment only; not needed to build or run the site |
@@ -34,9 +35,9 @@ None of these is sent to website visitors. All free and open source.
 
 | Service | Purpose | Cost | Status |
 |---|---|---|---|
-| GitHub repository `gozugamer09-ux/towing-website` | Version history, backups, source for deploys | Free | Created by Yordan. The site is on branch `site/highway`, waiting for Yordan's approval to go to `main` |
-| Cloudflare Pages (recommended host) | Hosting, HTTPS, global CDN, a preview link for every change, one-click rollback | Free tier | Needs Yordan's free Cloudflare account. Cache and security headers are ready in `public/_headers`, and `public/_redirects` sends the old site's `/home` address to the home page |
-| Domain name | The site's address | About $10.50 per year (Cloudflare charges the registry's price, no markup) | Not bought. alejostowing.com stays with the old web company (2026-10-16), so Yordan is picking a new address to buy in their own Cloudflare account |
+| GitHub repository `gozugamer09-ux/towing-website` | Version history, backups, source for deploys | Free | Created by Yordan. The site is on `main` (merged 2026-10-21); every push to `main` publishes the live site |
+| Cloudflare Workers (static files only), built by Workers Builds | Hosting, HTTPS, global CDN, rollback to any of the last 100 versions | Free plan: requests for static files are free and unlimited; 3,000 build minutes a month (a build takes about 2 minutes) | Live since 2026-10-29 at alejostowingfl.com (and towing-website.gozugamer09.workers.dev), in Yordan's Cloudflare account. `wrangler.jsonc` sets what is uploaded and the 404 pages; cache and security headers are in `public/_headers`, and `public/_redirects` sends the old site's `/home` address to the home page |
+| Domain name alejostowingfl.com | The site's address | About $10.50 per year (Cloudflare charges the registry's price, no markup) | Bought by Yordan in their own Cloudflare account on 2026-10-29 (renews 2027-10-29) and attached to the site the same day, with www.alejostowingfl.com. alejostowing.com stays with the old web company |
 | Request form | Opens a text to (239) 888-7001 on the customer's own phone, with every detail and an optional GPS map link | Free, no service | Built and tested in a browser; still needs one real test from a phone |
 | Email copy of each request (optional) | Backup copy to alejostowing85@gmail.com | Free tiers exist (e.g. Web3Forms) | Not set up. Only if Yordan wants it |
 | Cloudflare Web Analytics | Visitor counts without cookies or a consent banner | Free | Not set up; comes with the Cloudflare account |
@@ -56,7 +57,7 @@ Connectors that failed to connect in this environment (Figma, Canva, Notion, Sla
 
 ## 5. Running the site long term
 
-- **Hosting:** static files on Cloudflare Pages. No server, database or AI session to keep alive; the site stays up on its own.
+- **Hosting:** static files on Cloudflare (a Worker that serves files only). No server, database or AI session to keep alive; the site stays up on its own.
 - **Yearly:** domain renewal (set to auto-renew).
 - **Optional, later:** a scheduled check that runs the test suite against the live site and reports problems, and the Friday connection described in `docs/AGENT-WORKFLOW.md`.
 
