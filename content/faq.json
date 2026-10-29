@@ -56,9 +56,9 @@
       "es": { "title": "Zona y vehículos" },
       "items": [
         { "q": "Where do you tow?", "home": true,
-          "a": "Most of our calls come from Cape Coral and Fort Myers, but we tow anywhere in Florida, including long-distance tows between cities.",
+          "a": "Most of our calls come from Cape Coral and Fort Myers, and we also cover North Fort Myers, Lehigh Acres, Estero, Port Charlotte, Punta Gorda and North Port. We tow anywhere in Florida too, including long-distance tows between cities.",
           "es": { "q": "¿Dónde dan servicio?",
-            "a": "La mayoría de las llamadas vienen de Cape Coral y Fort Myers, pero remolcamos a cualquier lugar de la Florida, incluidos los traslados de larga distancia entre ciudades." } },
+            "a": "La mayoría de las llamadas vienen de Cape Coral y Fort Myers, y también cubrimos North Fort Myers, Lehigh Acres, Estero, Port Charlotte, Punta Gorda y North Port. Además remolcamos a cualquier lugar de la Florida, incluidos los traslados de larga distancia entre ciudades." } },
         { "q": "What vehicles do you tow?",
           "a": "Cars, SUVs, pickups, vans and motorcycles, from light-duty to heavy-duty. Bigger vehicles like box trucks and RVs too, as long as the tires fit on our truck. We also haul equipment like forklifts, backhoes and track loaders. Tell us what you drive and we'll confirm.",
           "es": { "q": "¿Qué vehículos remolcan?",

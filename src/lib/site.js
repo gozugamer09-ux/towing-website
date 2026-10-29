@@ -29,6 +29,14 @@ export const biz = {
   googleReviewUrl: confirmedValue(business.reviews.google_review_url),   // Google's "write a review" page for the listing
 };
 
+// Towns we cover locally (Cape Coral and Fort Myers first, then nearby towns), and the same list for
+// search engines' structured data. Long-distance tows go anywhere in Florida.
+export const areaTowns = [...business.service_area.primary, ...business.service_area.nearby];
+export const areaServed = [
+  ...areaTowns.map((name) => ({ '@type': 'City', name, containedInPlace: { '@type': 'State', name: 'Florida' } })),
+  { '@type': 'State', name: 'Florida' },
+];
+
 export const tel = `tel:${biz.phone}`;
 export const sms = (body) => `sms:${biz.sms}${body ? `?&body=${encodeURIComponent(body)}` : ''}`;
 

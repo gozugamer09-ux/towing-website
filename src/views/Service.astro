@@ -6,7 +6,7 @@ import ServiceCard from '../components/ServiceCard.astro';
 import PhotoSign from '../components/PhotoSign.astro';
 import FAQList from '../components/FAQList.astro';
 import FinalCTA from '../components/FinalCTA.astro';
-import { biz, tel, servicesFor, paymentText } from '../lib/site';
+import { biz, tel, servicesFor, paymentText, areaServed } from '../lib/site';
 import { ISSUE_FOR_SERVICE } from '../lib/issues';
 import { langOf, href, fill, UI } from '../lib/i18n';
 
@@ -39,7 +39,7 @@ const schema = [
   {
     '@context': 'https://schema.org', '@type': 'Service', name: s.title, serviceType: s.title, description: s.intro, inLanguage: lang,
     provider: site ? { '@id': new URL('/#business', site).href } : { '@type': 'AutomotiveBusiness', name: biz.name },
-    areaServed: [{ '@type': 'City', name: 'Cape Coral' }, { '@type': 'City', name: 'Fort Myers' }, { '@type': 'State', name: 'Florida' }],
+    areaServed,
   },
   ...(site ? [{
     '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [

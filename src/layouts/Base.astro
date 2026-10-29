@@ -6,7 +6,7 @@ import Icon from '../components/Icon.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ActionBar from '../components/ActionBar.astro';
-import { biz, PREVIEW, DESCRIPTION } from '../lib/site';
+import { biz, PREVIEW, DESCRIPTION, areaServed } from '../lib/site';
 import { langOf, alternates, href, UI } from '../lib/i18n';
 import { PHOTO_CSS } from '../lib/photos';
 
@@ -46,11 +46,7 @@ const business = {
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     opens: '00:00', closes: '23:59',
   }],
-  areaServed: [
-    { '@type': 'City', name: 'Cape Coral', containedInPlace: { '@type': 'State', name: 'Florida' } },
-    { '@type': 'City', name: 'Fort Myers', containedInPlace: { '@type': 'State', name: 'Florida' } },
-    { '@type': 'State', name: 'Florida' },
-  ],
+  areaServed,
 };
 const jsonLd = [business, ...schema];
 ---
