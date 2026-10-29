@@ -22,5 +22,8 @@
   // The free towing-website.gozugamer09.workers.dev address stays on as a backup (every page names
   // alejostowingfl.com as its real address for search engines); turning it off also ends preview links.
   "workers_dev": true,
-  "preview_urls": true
+  "preview_urls": true,
+  // Cloudflare builds every other branch with `npx wrangler preview`, which needs this block (it may be
+  // empty). Previews get their own link and use nothing extra.
+  "previews": {}
 }
