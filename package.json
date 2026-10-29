@@ -7,6 +7,7 @@
     "build": "astro build",
     "build:preview": "PUBLIC_PREVIEW=1 astro build --outDir dist-preview",
     "preview": "astro preview",
+    "serve": "npm run build && wrangler dev",
     "icons": "node scripts/make-icons.mjs",
     "map": "node scripts/make-florida.mjs",
     "test": "node tests/site.mjs",
@@ -21,7 +22,8 @@
     "playwright": "1.56.1",
     "sharp": "^0.34.0",
     "topojson-client": "^3.1.0",
-    "us-atlas": "^3.0.1"
+    "us-atlas": "^3.0.1",
+    "wrangler": "^4.155.0"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

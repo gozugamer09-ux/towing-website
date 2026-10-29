@@ -1,0 +1,23 @@
+// How Cloudflare serves the site. On every push to main, Cloudflare's build runs `npm run build`
+// and then `npx wrangler deploy`, which uploads the dist/ folder exactly as built: plain files,
+// no server code, no databases. Without this file, Cloudflare would rebuild the site its own way
+// on every deploy (adding a server adapter, a KV store and an image service it doesn't need).
+// Test locally with `npm run serve`, which answers like Cloudflare does (404 pages, redirects, headers).
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Must match the Worker's name in the Cloudflare dashboard.
+  "name": "towing-website",
+  "compatibility_date": "2026-10-23",
+  "assets": {
+    "directory": "./dist",
+    // A missing address gets the closest 404.html with a 404 status:
+    // es/404.html (Spanish) under /es/, 404.html (English) everywhere else.
+    "not_found_handling": "404-page",
+    // Folder pages answer with a trailing slash (/services/towing/), like Astro's trailingSlash: 'always'.
+    "html_handling": "auto-trailing-slash"
+  },
+  // The free towing-website.gozugamer09.workers.dev address. Keep it on until alejostowingfl.com
+  // serves the site; turning it off also turns off preview links.
+  "workers_dev": true,
+  "preview_urls": true
+}
