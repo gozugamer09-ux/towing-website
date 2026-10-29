@@ -11,7 +11,7 @@
     "icons": "node scripts/make-icons.mjs",
     "map": "node scripts/make-florida.mjs",
     "test": "node tests/site.mjs",
-    "check": "npm run build:preview && node tests/site.mjs && npm run build && node tests/site.mjs dist && html-validate \"dist/**/*.html\"",
+    "check": "npm run build:preview && node tests/site.mjs && npm run build && node tests/site.mjs dist && html-validate \"dist/**/*.html\" && wrangler deploy --dry-run",
     "share": "npm run build:preview && node scripts/make-share-preview.mjs"
   },
   "devDependencies": {

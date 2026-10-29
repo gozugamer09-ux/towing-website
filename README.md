@@ -32,13 +32,13 @@ npm run dev              # local preview while editing, with unconfirmed claims 
 npm run build:preview    # preview build in dist-preview/ (unconfirmed claims highlighted, not indexed)
 npm run build            # production build in dist/ (unconfirmed claims left out)
 npm test                 # check dist-preview/ (add "dist" to check production; add --shots for screenshots)
-npm run check            # everything GitHub checks on a pull request: both builds, all tests, HTML validity
+npm run check            # everything GitHub checks on a pull request: both builds, all tests, HTML validity, Cloudflare settings
 npm run serve            # production build served the way Cloudflare serves it (404 pages, redirects, headers), at localhost:8787
 npm run share            # self-contained copy of the preview in dist-artifact/, for sharing as a Claude artifact
 ```
 
-Once the domain serves the site, put it in `content/business.json` (`website`, with `confirmed: true`); that turns on canonical links, the sitemap and full URLs in the business data. `SITE_URL=https://… npm run build` overrides it for a one-off build.
+The live address is `website` in `content/business.json` (https://alejostowingfl.com, confirmed); it turns on canonical links, the sitemap and full URLs in the business data. `SITE_URL=https://… npm run build` overrides it for a one-off build.
 
 ## Status
 
-Live on Cloudflare since 2026-10-29 at https://towing-website.gozugamer09.workers.dev, published from `main` on every push (settings in `docs/AGENT-WORKFLOW.md`, "Publish"). Yordan bought alejostowingfl.com the same day; once it is attached to the Worker and serves the site, it goes in `content/business.json` as `website`. Still open: the business confirmations listed in `content/business.json` (`open_question` entries) and one real test request sent from Yordan's phone.
+Live since 2026-10-29 at https://alejostowingfl.com (also www.alejostowingfl.com), on Cloudflare, published from `main` on every push (settings in `docs/AGENT-WORKFLOW.md`, "Publish"). Still open: the business confirmations listed in `content/business.json` (`open_question` entries) and one real test request sent from Yordan's phone.

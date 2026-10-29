@@ -24,7 +24,7 @@ Work on a branch. Before anything is published, run:
 npm run check            # both builds; every page in both languages at 360/390/820/1440px: errors,
                          # layout, links, page language, call/text numbers, touch targets, axe;
                          # the request journey in English and Spanish; every photo loads at a
-                         # sensible size; HTML validity
+                         # sensible size; HTML validity; Cloudflare's settings file (a dry-run deploy)
 npm test -- --shots      # screenshots of the preview build in screenshots/site/
 ```
 
@@ -32,7 +32,7 @@ GitHub runs `npm run check` automatically on every pull request (`.github/workfl
 
 ## 4. Publish (within permissions)
 - The host is Cloudflare, in Yordan's account: a Worker named `towing-website` that serves static files only, connected to this repository through Workers Builds. Build settings: production branch `main`, build command `npm run build`, deploy command `npx wrangler deploy`; no environment variables, since `.node-version` pins Node 22. `wrangler.jsonc` says what gets uploaded (`dist/`, as built) and how a missing address is answered (the closest `404.html`, Spanish under `/es/`); keep its `name` equal to the Worker's name. `npm run serve` shows the production build exactly as Cloudflare serves it.
-- The live address is `website` in `content/business.json`: once the domain serves the site, set it there with `confirmed: true` (canonical links, hreflang and the sitemap). Until then the site answers at https://towing-website.gozugamer09.workers.dev.
+- The live address is https://alejostowingfl.com, set as `website` in `content/business.json` (canonical links, hreflang and the sitemap use it). It and www.alejostowingfl.com are Custom Domains on the Worker, added in the dashboard (Settings › Domains & Routes); deploys leave them alone because `wrangler.jsonc` lists no routes. https://towing-website.gozugamer09.workers.dev also still answers.
 - Other branches get a preview version with its own link only when branch builds are turned on in the Worker's build settings (unlisted, but anyone with the link can open it).
 - Merging to `main` publishes the live site. Default permission: content and copy fixes may merge after checks pass; design, pricing, claims and anything costing money need Yordan's approval.
 

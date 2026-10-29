@@ -16,8 +16,11 @@
     // Folder pages answer with a trailing slash (/services/towing/), like Astro's trailingSlash: 'always'.
     "html_handling": "auto-trailing-slash"
   },
-  // The free towing-website.gozugamer09.workers.dev address. Keep it on until alejostowingfl.com
-  // serves the site; turning it off also turns off preview links.
+  // alejostowingfl.com and www.alejostowingfl.com are attached as Custom Domains in the Cloudflare
+  // dashboard (Worker > Settings > Domains & Routes). Deploys leave them alone because this file lists
+  // no "routes"; if routes are ever added here, list both addresses.
+  // The free towing-website.gozugamer09.workers.dev address stays on as a backup (every page names
+  // alejostowingfl.com as its real address for search engines); turning it off also ends preview links.
   "workers_dev": true,
   "preview_urls": true
 }
